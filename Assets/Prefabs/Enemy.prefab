@@ -1,15 +1,15 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &108396
+--- !u!1 &147594
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 484880}
-  - 212: {fileID: 21218608}
-  - 95: {fileID: 9576962}
+  - 4: {fileID: 403800}
+  - 212: {fileID: 21256464}
+  - 95: {fileID: 9569524}
   m_Layer: 0
   m_Name: EnemyGraphics
   m_TagString: Untagged
@@ -17,17 +17,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &111050
+--- !u!1 &148802
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 467376}
-  - 61: {fileID: 6114912}
-  - 114: {fileID: 11431816}
-  - 114: {fileID: 11450744}
+  - 4: {fileID: 424572}
+  - 61: {fileID: 6166928}
+  - 114: {fileID: 11441094}
+  - 114: {fileID: 11404992}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Enemy
@@ -35,39 +35,39 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &467376
+--- !u!4 &403800
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111050}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.36, y: -2.41, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 484880}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
---- !u!4 &484880
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 108396}
+  m_GameObject: {fileID: 147594}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 467376}
+  m_Father: {fileID: 424572}
   m_RootOrder: 0
---- !u!61 &6114912
+--- !u!4 &424572
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148802}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -19.07, y: -1.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 403800}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!61 &6166928
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111050}
+  m_GameObject: {fileID: 148802}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -76,13 +76,13 @@ BoxCollider2D:
   m_Offset: {x: -0.0064582825, y: 0}
   serializedVersion: 2
   m_Size: {x: 2.1337957, y: 2.56}
---- !u!95 &9576962
+--- !u!95 &9569524
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 108396}
+  m_GameObject: {fileID: 147594}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e977d8abf1da75b429ef431a4aee18b1, type: 2}
@@ -93,43 +93,12 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11431816
+--- !u!114 &11404992
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38d09129e1477cc43853b7599475edba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionMask:
-    serializedVersion: 2
-    m_Bits: 0
-  SkinWidth: 0
-  HorizontalRayCount: 0
-  VerticalRayCount: 0
-  HorizontalRaySpacing: 0
-  VerticalRaySpacing: 0
-  Collider: {fileID: 0}
-  InteractiveMask:
-    serializedVersion: 2
-    m_Bits: 256
-  PInput: {fileID: 0}
-  TimeToRecover: 0
-  InvulnerabilityTime: 0
-  PlayerInput: {x: 0, y: 0}
-  MoveSpeedX: 0
-  MoveSpeedY: 0
-  AccelerationTimeX: 0
-  AccelerationTimeY: 0
---- !u!114 &11450744
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111050}
+  m_GameObject: {fileID: 148802}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 510b25163f2b52a44bfc6c4ccdefbada, type: 3}
@@ -151,12 +120,41 @@ MonoBehaviour:
   Speed: 2
   WaitTime: 0
   EaseAmount: 0.32
---- !u!212 &21218608
+--- !u!114 &11441094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d09129e1477cc43853b7599475edba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  SkinWidth: 0
+  HorizontalRayCount: 0
+  VerticalRayCount: 0
+  HorizontalRaySpacing: 0
+  VerticalRaySpacing: 0
+  Collider: {fileID: 0}
+  InteractiveMask:
+    serializedVersion: 2
+    m_Bits: 256
+  PInput: {fileID: 0}
+  TimeToRecover: 0
+  InvulnerabilityTime: 0
+  PlayerInput: {x: 0, y: 0}
+  _deltaMovement: {x: 0, y: 0}
+  EnemyGraphics: {fileID: 147594}
+--- !u!212 &21256464
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 108396}
+  m_GameObject: {fileID: 147594}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -190,5 +188,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 111050}
+  m_RootGameObject: {fileID: 148802}
   m_IsPrefabParent: 1

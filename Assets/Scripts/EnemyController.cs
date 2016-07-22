@@ -7,18 +7,17 @@ namespace Assets.Scripts
     {
 
         #region Variables
-        private Vector2 _velocity;
+        [SerializeField]
+        private Vector2 _deltaMovement;
         private WaypointController _waypoints;
-        private int _faceDir;
-        private int _verDir;
-        private bool _change;
+        private bool _horDir;
+        private bool _verDir;
         private float _hp;
-        private float _velocityXSmoothing;
-        private float _velocityYSmoothing;
-        public float MoveSpeedX;
-        public float MoveSpeedY;
-        public float AccelerationTimeX;
-        public float AccelerationTimeY;
+        private Vector2 _oldPosition;
+        public GameObject EnemyGraphics;
+        private Animator _graphicsAnimator;
+
+
         #endregion
 
         #region Start
@@ -26,32 +25,27 @@ namespace Assets.Scripts
         {
             base.Start();
             SetDefaut();
+            _graphicsAnimator = EnemyGraphics.GetComponent<Animator>();
         }
 
         private void SetDefaut()
         {
             _waypoints = GetComponent<WaypointController>();
             _hp = 1;
-            AccelerationTimeX = .04f;
-            AccelerationTimeY = .04f;
-            _faceDir = 1;
-            _verDir = 0;
         }
         #endregion
 
         #region Update
         public new void Update()
         {
-            Vector2 velocity = _waypoints.CalculateWaypointMovement();
-            EnemyMove(velocity);
-            if (Collisions.Left || Collisions.Right)
-                ChangeDirection();
-        }
+            _horDir = (_oldPosition.x < transform.position.x) ? true : false;
+            _verDir = (_oldPosition.y < transform.position.y) ? true : false;
+            _oldPosition = (Vector2)transform.position;
+            _deltaMovement = _waypoints.CalculateWaypointMovement();
+            EnemyMove(_deltaMovement);
+            _graphicsAnimator.SetBool("horDir", _horDir);
+            _graphicsAnimator.SetBool("verDir", _verDir);
 
-        private void ChangeDirection()
-        {
-            _change = false;
-            _faceDir = _faceDir == 1 ? -1 : 1;
         }
         #endregion
     }
