@@ -1,9 +1,10 @@
 fileFormatVersion: 2
 guid: 0de6e89d4d559ac49894f9547066e1b9
-timeCreated: 1469471673
+timeCreated: 1469480256
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: stats_select_1_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +31,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +39,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +50,29 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: stats_select_1_0
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 189
+        width: 226
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38, y: 36}
+        - {x: -113, y: 26}
+        - {x: -113, y: -36}
+        - {x: 83, y: -36}
+        - {x: 113, y: -19}
+        - {x: 113, y: 36}
+      - - {x: 8, y: -26}
+        - {x: 7, y: -27}
+        - {x: 7, y: -32}
+        - {x: 13, y: -32}
+        - {x: 13, y: -26}
     outline: []
   spritePackingTag: 
   userData: 

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0291fd258322c8f44b6e25d8194d12f0
-timeCreated: 1469472751
+timeCreated: 1469480210
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -54,32 +54,35 @@ TextureImporter:
     - name: stats_normal_2_7
       rect:
         serializedVersion: 2
-        x: 540
-        y: 145
-        width: 180
-        height: 50
+        x: 519
+        y: 132
+        width: 218
+        height: 66
       alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 98, y: -6}
-        - {x: 90, y: -14}
-        - {x: 87, y: -18}
-        - {x: 87, y: -20}
-        - {x: 87, y: -14}
-        - {x: 86, y: -11}
-        - {x: 77, y: -13}
-        - {x: 76, y: -16}
-        - {x: 76, y: -21}
-        - {x: 75, y: -17}
-        - {x: 69, y: -13}
-        - {x: 62, y: -12}
-        - {x: 49, y: -7}
-        - {x: 43, y: -6}
-        - {x: 0, y: -6}
-        - {x: 0, y: -49}
-        - {x: 171, y: -49}
-        - {x: 171, y: -6}
+      - - {x: 133, y: -9}
+        - {x: 111, y: -17}
+        - {x: 108, y: -21}
+        - {x: 108, y: -23}
+        - {x: 108, y: -17}
+        - {x: 107, y: -14}
+        - {x: 98, y: -16}
+        - {x: 97, y: -19}
+        - {x: 97, y: -24}
+        - {x: 96, y: -20}
+        - {x: 92, y: -12}
+        - {x: 59, y: -9}
+        - {x: 20, y: -9}
+        - {x: 20, y: -21}
+        - {x: 22, y: -22}
+        - {x: 30, y: -47}
+        - {x: 36, y: -52}
+        - {x: 189, y: -52}
+        - {x: 192, y: -51}
+        - {x: 192, y: -14}
+        - {x: 186, y: -9}
     outline: []
   spritePackingTag: 
   userData: 
