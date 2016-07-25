@@ -340,7 +340,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 91, y: -21}
+  m_AnchoredPosition: {x: 150, y: -64}
   m_SizeDelta: {x: 204, y: 51}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &851659710
@@ -440,7 +440,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 368293087}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -554,7 +554,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 100, y: 58}
+  m_AnchoredPosition: {x: 150, y: 58}
   m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1624607583
@@ -676,7 +676,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 100, y: 110}
+  m_AnchoredPosition: {x: 150, y: 115}
   m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1996500067
@@ -719,14 +719,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1215382348}
-        m_MethodName: StartButtonCallback
-        m_Mode: 1
+        m_MethodName: SceneButtonCallback
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: LevelSelector
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -796,8 +796,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.57169, y: 0}
-  m_SizeDelta: {x: 403.14, y: 226}
+  m_AnchoredPosition: {x: 1, y: 0}
+  m_SizeDelta: {x: 639, y: 360}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2122363356
 MonoBehaviour:
