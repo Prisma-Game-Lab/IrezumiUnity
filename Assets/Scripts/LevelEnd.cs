@@ -13,6 +13,10 @@ public class LevelEnd : MonoBehaviour {
         gm = gameManager.GetComponent<GameManager>();
     }
 
+    /// <summary>
+    /// Method called on trigger enter.
+    /// </summary>
+    /// <param name="other">Collider responsible for triggering the trigger</param>
 	void OnTriggerEnter2D (Collider2D other)
     {
         if (other.gameObject.tag == "Player")

@@ -4,6 +4,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+    // Singleton
     private static GameManager _instance;
 
     public static GameManager Instance { get { return _instance; } }
@@ -19,11 +20,7 @@ public class GameManager : MonoBehaviour {
             _instance = this;
         }
     }
-
-    // Use this for initialization
-    void Start () {
-	
-	}
+    
 	
 	// Update is called once per frame
 	void Update ()
@@ -35,10 +32,13 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// This method is called at the end of the level.
+    /// </summary>
     public void LevelEnd()
     {
         int scene = (SceneManager.GetActiveScene().buildIndex + 1);
-        if ( scene>SceneManager.sceneCount)
+        if ( scene + 1>SceneManager.sceneCountInBuildSettings)
         {
             scene = 0;
         }
