@@ -16,6 +16,9 @@ namespace Assets.Scripts
         public float DashSpeed;
         public float DashTime;
         public float Hp;
+		public float HpLostPerSecond;
+		public float HpLostOnDash;
+		public float HpRecoverOnKill;
         public Vector2 WallJumpClimb;
         public Vector2 WallJumpOff;
         public Vector2 WallJumpLeap;
@@ -73,6 +76,9 @@ namespace Assets.Scripts
             DashSpeed = 30;
             DashTime = .3f;
             Hp = 100;
+			HpLostPerSecond = 1;
+			HpLostOnDash = 10;
+			HpRecoverOnKill = 15;
 
             WallJumpClimb = new Vector2(36, 28);
             WallJumpOff = new Vector2(2, 3);
@@ -97,6 +103,7 @@ namespace Assets.Scripts
         {
             _wallSliding = false;
             _wallDirX = (_controller.Collisions.Left) ? -1 : 1;
+			Hp -= HpLostPerSecond * Time.deltaTime;
 
             CalculateVelocity();
             HandleWallSliding();
@@ -208,6 +215,7 @@ namespace Assets.Scripts
         {
             IsDashing = true;
             Invoke("ResetDashing", DashTime);
+			Hp -= HpLostOnDash;
         }
        
         public void OnJumpInputDown()
@@ -243,6 +251,16 @@ namespace Assets.Scripts
                 Velocity.y = _minjumpVelocity;
         }
          #endregion
+
+		#region Others
+		/// <summary>
+		/// Recovers the hp.
+		/// </summary>
+		public void RecoverHp(){
+			Hp += HpRecoverOnKill;
+			if (Hp > 100) Hp = 100;
+		}
+		#endregion
 
         #region Not used
         public void ResetDashing()

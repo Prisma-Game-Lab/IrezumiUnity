@@ -76,8 +76,11 @@ namespace Assets.Scripts
             {
                 if (hit1.collider.tag == "Enemy" && hit1.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
                 {
-                    if (PInput.Player.IsDashing)
+					if (PInput.Player.IsDashing)
+					{
                         Destroy(hit1.collider.gameObject);
+						PInput.Player.RecoverHp ();
+					}
                     else
                     {
                         SetPlayerWasHitAndIsInvulnerable();
@@ -99,8 +102,11 @@ namespace Assets.Scripts
             {
                 if (hit2.collider.tag == "Enemy" && hit2.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
                 {
-                    if (PInput.Player.IsDashing)
-                        Destroy(hit2.collider.gameObject);
+					if (PInput.Player.IsDashing) 
+					{
+						Destroy (hit2.collider.gameObject);
+						PInput.Player.RecoverHp ();
+					}
                     else
                         SetPlayerWasHitAndIsInvulnerable();
                 }
