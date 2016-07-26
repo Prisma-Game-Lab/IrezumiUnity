@@ -38,11 +38,14 @@ public class GameManager : MonoBehaviour {
     public void LevelEnd()
     {
         int scene = (SceneManager.GetActiveScene().buildIndex + 1);
-        if ( scene>SceneManager.sceneCount)
+        print("pre if: " +scene);
+        if (scene > SceneManager.sceneCountInBuildSettings -1 /*SceneManager.sceneCount*/)
         {
-            scene = 0;
+            print("no if: " + scene);
+            scene = 2;
         }
-      
+
+        print("pos if: " + scene);
         SceneManager.LoadScene(scene);
     }
 }
