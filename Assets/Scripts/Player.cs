@@ -41,6 +41,7 @@ namespace Assets.Scripts
         private bool _facingRight;
         private bool _stopped;
         private bool _grounded;
+		private bool _firstInput;
         private int _wallDirX;
         private Controller2D _controller;
         private Vector2 _directionalInput;
@@ -66,6 +67,7 @@ namespace Assets.Scripts
             _accelerationTimeAirborne = .04f;
             _accelerationTimeGrounded = .01f;
             _firstTimeTakingHit = true;
+			_firstInput = false;
 
             MoveSpeed = 16;
             MaxjumpHeight = 9;
@@ -103,7 +105,8 @@ namespace Assets.Scripts
         {
             _wallSliding = false;
             _wallDirX = (_controller.Collisions.Left) ? -1 : 1;
-			Hp -= HpLostPerSecond * Time.deltaTime;
+			if(_firstInput)
+				Hp -= HpLostPerSecond * Time.deltaTime;
 
             CalculateVelocity();
             HandleWallSliding();
@@ -206,6 +209,11 @@ namespace Assets.Scripts
         #endregion
 
         #region Player Input
+		public void CheckIfPlayerMoved (Vector2 directionalInput){
+			if (directionalInput != Vector2.zero && !_firstInput) 
+				_firstInput = true;
+		}
+
         public void SetDirectionalInput(Vector2 input)
         {
             _directionalInput = input;
@@ -213,13 +221,15 @@ namespace Assets.Scripts
 
         public void OnDashInput()
         {
+			_firstInput = true;
             IsDashing = true;
             Invoke("ResetDashing", DashTime);
 			Hp -= HpLostOnDash;
         }
        
         public void OnJumpInputDown()
-        {
+		{
+			_firstInput = true;
             if (_wallSliding)
             {
                 /*player trying to move the same direction as the wall its facing and move away from the wall*/
@@ -246,7 +256,8 @@ namespace Assets.Scripts
         }
 
         public void OnJumpInputUp()
-        {
+		{
+			_firstInput = true;
             if (Velocity.y > _minjumpVelocity)
                 Velocity.y = _minjumpVelocity;
         }
