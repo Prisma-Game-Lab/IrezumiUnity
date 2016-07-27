@@ -5,10 +5,10 @@ namespace Assets.Scripts
 	public class HpBar : MonoBehaviour
     {
         #region Variables
-		private float _value;           /*current value*/
-		private float _fullBarValue;    /*value when bar is full*/
+		[SerializeField] private float _value;           /*current value*/
+		[SerializeField] private float _fullBarValue;    /*value when bar is full*/
+		private bool _firstTime;
 		public Vector2 Size;          /*size of bar*/
-		public Vector2 ImageSize;
 		public Vector2 Position;        /*position to create the bar*/
 		public Texture2D EmptyBarImg;   /*image with empty bar*/
 		public Texture2D FullBarImg;    /*image with full bar*/
@@ -19,17 +19,20 @@ namespace Assets.Scripts
 
 		public void Awake()
 		{
-			//Size = new Vector2(60, 10);
-			//ImageSize = new Vector2(483, 79);
 			Size = new Vector2(200, 50);
 			Position = new Vector2(20, 40); 
+			_firstTime = true;
 		}
 
-        public new void Start () {
+        public void Start () {
             _fullBarValue = Player.Hp;
         }
 
         public void Update () {
+			if (_firstTime) {
+				_fullBarValue = Player.Hp;
+				_firstTime = false;
+			}
             _value = Player.Hp;
         }
 
