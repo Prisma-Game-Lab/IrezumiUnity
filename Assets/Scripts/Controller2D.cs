@@ -17,6 +17,7 @@ namespace Assets.Scripts
         public float InvulnerabilityTime;
         [HideInInspector]
         public Vector2 PlayerInput;
+        protected bool _isEnemyDead;
         #endregion
 
         #region Start
@@ -71,16 +72,15 @@ namespace Assets.Scripts
             rayOrigin1 += Vector2.up*(HorizontalRaySpacing*i);
             Debug.DrawRay(rayOrigin1, Vector2.left*rayLength, Color.green);
 
-            RaycastHit2D hit1 = Physics2D.Raycast(rayOrigin1, Vector2.left, rayLength, InteractiveMask);
-            if (hit1)
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin1, Vector2.left, rayLength, InteractiveMask);
+            if (hit)
             {
-                if (hit1.collider.tag == "Enemy" && hit1.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
+                if (hit.collider.tag == "Enemy" && hit.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
                 {
 					if (PInput.Player.IsDashing)
 					{
-                        Destroy(hit1.collider.gameObject);
-						PInput.Player.RecoverHp ();
-					}
+                        DestroyEnemy(hit);
+                    }
                     else
                     {
                         SetPlayerWasHitAndIsInvulnerable();
@@ -97,20 +97,28 @@ namespace Assets.Scripts
             rayOrigin2 += Vector2.up*(HorizontalRaySpacing*i);
             Debug.DrawRay(rayOrigin2, Vector2.right*rayLength, Color.cyan);
 
-            RaycastHit2D hit2 = Physics2D.Raycast(rayOrigin2, Vector2.right, rayLength, InteractiveMask);
-            if (hit2)
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin2, Vector2.right, rayLength, InteractiveMask);
+            if (hit)
             {
-                if (hit2.collider.tag == "Enemy" && hit2.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
+                if (hit.collider.tag == "Enemy" && hit.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
                 {
 					if (PInput.Player.IsDashing) 
 					{
-						Destroy (hit2.collider.gameObject);
-						PInput.Player.RecoverHp ();
-					}
+                        DestroyEnemy(hit);
+                    }
                     else
                         SetPlayerWasHitAndIsInvulnerable();
                 }
             }
+        }
+
+        private void DestroyEnemy(RaycastHit2D hit)
+        {
+            _isEnemyDead = true;
+            var enemyHit = hit.collider.gameObject;
+            enemyHit.layer = 10;
+            enemyHit.tag = "DeadEnemy";
+            PInput.Player.RecoverHp();
         }
 
         private void VerticalEnemyCollision(float rayLength)

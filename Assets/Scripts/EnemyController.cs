@@ -15,8 +15,8 @@ namespace Assets.Scripts
         private float _hp;
         private Vector2 _oldPosition;
         public GameObject EnemyGraphics;
-        private Animator _graphicsAnimator;
-        bool Alive = true;
+        public Animator _graphicsAnimator;
+        public bool Alive = true ;
 
         #endregion
 
@@ -45,8 +45,9 @@ namespace Assets.Scripts
             EnemyMove(_deltaMovement);
             _graphicsAnimator.SetBool("horDir", _horDir);
             _graphicsAnimator.SetBool("verDir", _verDir);
+            if (gameObject.tag == "DeadEnemy")
+                Alive = false;
             _graphicsAnimator.SetBool("Alive", Alive);
-
         }
         #endregion
     }
