@@ -17,6 +17,7 @@ namespace Assets.Scripts
         private float _targetLookAheadX;
         private float _lookAheadDirX;
         private float _smoothLookVelocityX;
+        private float _smoothLookVelocityY;
         private float _smoothVelocityY;
         private bool _lookAheadStopped;
 
@@ -66,8 +67,8 @@ namespace Assets.Scripts
             if (CamShake)
             {
                 float randomValue = Random.value;
-                focusPosition.x += Mathf.Sin(randomValue) * _shakeAmount;
-                focusPosition.y += (Mathf.Sin(randomValue) * _shakeAmount - 0.5f);
+                focusPosition.x = Mathf.SmoothDamp(focusPosition.x, focusPosition.x + Mathf.Sin(randomValue) * _shakeAmount, ref _smoothLookVelocityX, 0.02f);
+                focusPosition.y = Mathf.SmoothDamp(focusPosition.y, focusPosition.y + (Mathf.Sin(randomValue) * _shakeAmount) - 0.5f, ref _smoothLookVelocityY, 0.02f);
             }
             transform.position = (Vector3)focusPosition + Vector3.forward * -10;
         }
