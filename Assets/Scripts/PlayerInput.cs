@@ -11,12 +11,18 @@ namespace Assets.Scripts
 
         [SerializeField]
         public bool TakingHit;
+
+        public GameObject ParticleSpawn;
+        ParticleSystem ParticleSystem;
+
         #endregion
 
         #region Start
         public void Start()
         {
             Player = GetComponent<Player>();
+            ParticleSystem = ParticleSpawn.GetComponent<ParticleSystem>();
+            DeactivateParticle();
         }
         #endregion
 
@@ -41,6 +47,8 @@ namespace Assets.Scripts
                     {
                         DashCooldown = 1.5f;
                         Player.OnDashInput();
+                        ActivateParticle();
+                        Invoke("DeactivateParticle", 0.32f);
                     }
                 }            
             }
@@ -59,6 +67,18 @@ namespace Assets.Scripts
         public bool GetHit()
         {
             return TakingHit;
+        }
+        #endregion
+
+        #region Paticles
+
+        void ActivateParticle()
+        {
+            ParticleSystem.Play();
+        }
+        void DeactivateParticle()
+        {
+            ParticleSystem.Stop();
         }
         #endregion
     }
