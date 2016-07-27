@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.07, y: -1.34, z: 0}
+  m_LocalPosition: {x: -16.33, y: 11.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -144,6 +144,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   PInput: {fileID: 0}
+  FreezeFrame: {fileID: 0}
+  PauseDuration: 0
   TimeToRecover: 0
   InvulnerabilityTime: 0
   PlayerInput: {x: 0, y: 0}

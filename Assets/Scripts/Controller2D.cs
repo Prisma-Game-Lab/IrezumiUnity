@@ -21,6 +21,9 @@ namespace Assets.Scripts
         public float InvulnerabilityTime;
         [HideInInspector]
         public Vector2 PlayerInput;
+
+        GameObject MainCamera;
+        CameraFollow CamScript;
         #endregion
 
         #region Start
@@ -33,6 +36,10 @@ namespace Assets.Scripts
             Collider = GetComponent<BoxCollider2D> ();
 			FreezeFrame = GetComponent<FreezeFrame> ();
             CalculateRaySpacing ();
+
+            MainCamera = GameObject.Find("Main Camera");
+            CamScript = MainCamera.GetComponent<CameraFollow>();
+
         }
 
         private void SetDefaut()
@@ -83,11 +90,11 @@ namespace Assets.Scripts
             {
                 if (hit1.collider.tag == "Enemy" && hit1.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
                 {
-					if (PInput.Player.IsDashing) {
-						FreezeFrame.Pause (PauseDuration);
+					if (PInput.Player.IsDashing)
+                    {
 						ObjToDestroy = hit1.collider.gameObject;
-						Invoke ("DestroyObject", PauseDuration);
-					}
+                        CamScript.ShakeCam();
+                    }
                     else
                     {
                         SetPlayerWasHitAndIsInvulnerable();
@@ -109,11 +116,11 @@ namespace Assets.Scripts
             {
                 if (hit2.collider.tag == "Enemy" && hit2.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
                 {
-					if (PInput.Player.IsDashing) {
-						FreezeFrame.Pause (PauseDuration);
+					if (PInput.Player.IsDashing)
+                    {
 						ObjToDestroy = hit2.collider.gameObject;
-						Invoke ("DestroyObject", PauseDuration);
-					}
+                        CamScript.ShakeCam();
+                    }
                     else
                         SetPlayerWasHitAndIsInvulnerable();
                 }
@@ -143,7 +150,10 @@ namespace Assets.Scripts
                 if (hit1.collider.tag == "Enemy" && hit1.distance == 0)
                 {
                     if (PInput.Player.IsDashing)
+                    {
                         Destroy(hit1.collider.gameObject);
+                        CamScript.ShakeCam();
+                    }
                     return true;
                 }
             }
@@ -163,7 +173,10 @@ namespace Assets.Scripts
                 if (hit2.collider.tag == "Enemy" && hit2.distance == 0)
                 {
                     if (PInput.Player.IsDashing)
+                    {
                         Destroy(hit2.collider.gameObject);
+                        CamScript.ShakeCam();
+                    }
                 }
             }
         }
