@@ -4,6 +4,8 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+    GameObject statsScreen;
+
     private static GameManager _instance;
 
     public static GameManager Instance { get { return _instance; } }
@@ -22,8 +24,9 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	
-	}
+        statsScreen = GameObject.Find("Stat Screen");
+        statsScreen.SetActive(false);
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -37,15 +40,6 @@ public class GameManager : MonoBehaviour {
 
     public void LevelEnd()
     {
-        int scene = (SceneManager.GetActiveScene().buildIndex + 1);
-        print("pre if: " +scene);
-        if (scene > SceneManager.sceneCountInBuildSettings -1 /*SceneManager.sceneCount*/)
-        {
-            print("no if: " + scene);
-            scene = 2;
-        }
-
-        print("pos if: " + scene);
-        SceneManager.LoadScene(scene);
+        statsScreen.SetActive(true);
     }
 }

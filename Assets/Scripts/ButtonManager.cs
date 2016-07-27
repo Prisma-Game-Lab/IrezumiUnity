@@ -31,6 +31,24 @@ public class ButtonManager : MonoBehaviour {
         SceneManager.LoadScene(scene);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public void RestartButtonCallback()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void NextLevelButtonCallback()
+    {
+        int scene = (SceneManager.GetActiveScene().buildIndex + 1);
+        if (scene > SceneManager.sceneCountInBuildSettings -1 )
+        {
+            scene = 2;
+        }
+        SceneManager.LoadScene(scene);
+    }
+
 
     /// <summary>
     /// Quit Button Callback. Quits the application.
