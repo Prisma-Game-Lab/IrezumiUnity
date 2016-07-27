@@ -34,6 +34,7 @@ namespace Assets.Scripts
 
                 /*vector input stores players coordinates*/
                 var directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+                Player.CheckIfPlayerMoved(directionalInput);
                 Player.SetDirectionalInput(directionalInput);
 
                 if (!TakingHit)
