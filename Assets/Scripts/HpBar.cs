@@ -14,13 +14,15 @@ namespace Assets.Scripts
 		public Texture2D FullBarImg;    /*image with full bar*/
 		public Texture2D CriticalBarImg;
 		public Texture2D ForegroundBarImg;
+		public float CriticalHP;
         public Player Player;
         #endregion
 
 		public void Awake()
 		{
 			Size = new Vector2(200, 50);
-			Position = new Vector2(20, 40); 
+			Position = new Vector2(20, 40);
+			CriticalHP = 40;
 			_firstTime = true;
 		}
 
@@ -48,7 +50,7 @@ namespace Assets.Scripts
 
 			/*full part*/
 			GUI.BeginGroup (new Rect (0,0 , Size.x * (_value/_fullBarValue), Size.y));
-			GUI.Box (new Rect (0, 0, Size.x, Size.y), _value > 20 ? FullBarImg : CriticalBarImg, new GUIStyle());
+			GUI.Box (new Rect (0, 0, Size.x, Size.y), _value > CriticalHP ? FullBarImg : CriticalBarImg, new GUIStyle());
 
 
 			GUI.EndGroup();
