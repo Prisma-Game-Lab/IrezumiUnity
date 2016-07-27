@@ -24,8 +24,13 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        statsScreen = GameObject.Find("Stat Screen");
-        statsScreen.SetActive(false);
+        DontDestroyOnLoad(this);
+    }
+
+    void OnLevelWasLoaded(int level)
+    {
+        if (statsScreen = GameObject.Find("Stat Screen"))
+            statsScreen.SetActive(false);
     }
 	
 	// Update is called once per frame
