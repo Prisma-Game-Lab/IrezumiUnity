@@ -8,6 +8,10 @@ namespace Assets.Scripts
         #region Variables
         public Player Player;
         public float DashCooldown;
+
+        GameObject gameManager;
+        GameManager gm;
+
         [SerializeField]
         public bool TakingHit;
         #endregion
@@ -16,34 +20,39 @@ namespace Assets.Scripts
         public void Start()
         {
             Player = GetComponent<Player>();
+            gameManager = GameObject.Find("Game Manager");
+            gm = gameManager.GetComponent<GameManager>();
         }
         #endregion
 
         #region Update
         public void Update()
         {
-            SetDashCooldown();
+            if (!gm.IsPaused())
+            {
+                SetDashCooldown();
 
-            /*vector input stores players coordinates*/
-            var directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+                /*vector input stores players coordinates*/
+                var directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+                Player.SetDirectionalInput(directionalInput);
 
-			Player.CheckIfPlayerMoved (directionalInput);
-            Player.SetDirectionalInput(directionalInput);
-
-            if (!TakingHit)
-            {         
-				if (Input.GetKeyDown (KeyCode.Space)) 
-					Player.OnJumpInputDown ();
-				if (Input.GetKeyUp (KeyCode.Space)) 
-					Player.OnJumpInputUp ();
-                if (Input.GetKeyDown(KeyCode.F))
-                    if (DashCooldown == 0)
+                if (!TakingHit)
+                {
+                    if (Input.GetKeyDown(KeyCode.Space))
+                        Player.OnJumpInputDown();
+                    if (Input.GetKeyUp(KeyCode.Space))
+                        Player.OnJumpInputUp();
+                    if (Input.GetKeyDown(KeyCode.F))
                     {
-                        DashCooldown = 1.5f;
-                        Player.OnDashInput();
+                        if (DashCooldown == 0)
+                        {
+                            DashCooldown = 1.5f;
+                            Player.OnDashInput();
+                        }
                     }
+                }
+                Player.TakingHit = TakingHit;
             }
-            Player.TakingHit = TakingHit;
         }
 
         private void SetDashCooldown()
