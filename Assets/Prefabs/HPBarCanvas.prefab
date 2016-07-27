@@ -51,13 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8412786db491842b0fabc4b208834c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _value: 0
+  _fullBarValue: 0
   Size: {x: 0, y: 0}
-  ImageSize: {x: 0, y: 0}
   Position: {x: 0, y: 0}
   EmptyBarImg: {fileID: 2800000, guid: 6f83c70202853b54782b5c1bca40abea, type: 3}
   FullBarImg: {fileID: 2800000, guid: 05c75391ff3fc34458b05c6989a76bd6, type: 3}
   CriticalBarImg: {fileID: 2800000, guid: 6d1e44c263ae6aa4d9dcc533ca91a825, type: 3}
   ForegroundBarImg: {fileID: 2800000, guid: b7411de9913466c4ea797739931bbc9b, type: 3}
+  CriticalHP: 0
   Player: {fileID: 0}
 --- !u!114 &11482134
 MonoBehaviour:
@@ -83,7 +85,7 @@ Canvas:
   m_GameObject: {fileID: 103358}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -91,7 +93,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_SortingLayerID: 1308754601
+  m_SortingLayerID: 437324363
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &22469824

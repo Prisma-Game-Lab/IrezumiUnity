@@ -5,6 +5,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
     GameObject statsScreen;
+	GameObject HpBar;
 
     private static GameManager _instance;
 
@@ -29,8 +30,10 @@ public class GameManager : MonoBehaviour {
 
     void OnLevelWasLoaded(int level)
     {
-        if (statsScreen = GameObject.Find("Stat Screen"))
+		if (statsScreen = GameObject.Find("Stat Screen"))
             statsScreen.SetActive(false);
+		
+		HpBar = GameObject.Find("HPBarCanvas");
     }
 	
 	// Update is called once per frame
@@ -46,5 +49,6 @@ public class GameManager : MonoBehaviour {
     public void LevelEnd()
     {
         statsScreen.SetActive(true);
+		HpBar.SetActive (false);
     }
 }
