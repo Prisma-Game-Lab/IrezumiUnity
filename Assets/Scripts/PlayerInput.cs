@@ -15,11 +15,17 @@ namespace Assets.Scripts
         public GameObject ParticleSpawn;
         ParticleSystem ParticleSystem;
 
+        private GameObject Trail;
+
+        private TrailRenderer tr;
+
         #endregion
 
         #region Start
         public void Start()
         {
+            Trail = GameObject.Find("FollowTrail");
+            tr = Trail.GetComponent<TrailRenderer>();
             Player = GetComponent<Player>();
             ParticleSystem = ParticleSpawn.GetComponent<ParticleSystem>();
             DeactivateParticle();
@@ -34,6 +40,8 @@ namespace Assets.Scripts
             /*vector input stores players coordinates*/
             var directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             Player.SetDirectionalInput(directionalInput);
+
+            
 
             if (!TakingHit)
             {         
@@ -52,6 +60,11 @@ namespace Assets.Scripts
                     }
                 }            
             }
+            if (Player.IsDashing)
+                tr.material = tr.materials[0];
+            else 
+                tr.material = tr.materials[1];
+
             Player.TakingHit = TakingHit;
         }
 
