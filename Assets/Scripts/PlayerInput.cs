@@ -8,9 +8,13 @@ namespace Assets.Scripts
         #region Variables
         public Player Player;
         public float DashCooldown;
+        public GameObject ParticleSpawn;
 
-        GameObject gameManager;
-        GameManager gm;
+        private ParticleSystem ParticleSystem;
+        private GameObject Trail;
+        private TrailRenderer tr;
+        private GameObject gameManager;
+        private GameManager gm;
 
         [SerializeField]
         public bool TakingHit;
@@ -19,9 +23,13 @@ namespace Assets.Scripts
         #region Start
         public void Start()
         {
+            Trail = GameObject.Find("FollowTrail");
+            tr = Trail.GetComponent<TrailRenderer>();
             Player = GetComponent<Player>();
             gameManager = GameObject.Find("Game Manager");
             gm = gameManager.GetComponent<GameManager>();
+            ParticleSystem = ParticleSpawn.GetComponent<ParticleSystem>();
+            DeactivateParticle();
         }
         #endregion
 
@@ -49,6 +57,8 @@ namespace Assets.Scripts
                         {
                             DashCooldown = 1.5f;
                             Player.OnDashInput();
+                            ActivateParticle();
+                            Invoke("DeactivateParticle", 0.32f);
                         }
                     }
                 }
@@ -68,6 +78,19 @@ namespace Assets.Scripts
         public bool GetHit()
         {
             return TakingHit;
+        }
+        #endregion
+
+        #region Paticles
+
+        private void ActivateParticle()
+        {
+            ParticleSystem.Play();
+        }
+
+        private void DeactivateParticle()
+        {
+            ParticleSystem.Stop();
         }
         #endregion
     }

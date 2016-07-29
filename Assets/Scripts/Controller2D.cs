@@ -3,23 +3,28 @@
 namespace Assets.Scripts
 {
     [RequireComponent (typeof (BoxCollider2D))]
+    [RequireComponent(typeof(FreezeFrame))]
     public class Controller2D : RaycastController
     {
 
         #region Variables
         private float _maxClimbAngle;
         private float _maxDescendAngle;
-
+        private GameObject MainCamera;
+        private CameraFollow CamScript;
+                       
         public LayerMask InteractiveMask;
         public CollisionInfo Collisions;
-        public PlayerInput PInput; 
+        public PlayerInput PInput;
+        public FreezeFrame FreezeFrame;
         public float TimeToRecover;
         public float InvulnerabilityTime;
+        public float PauseDuration;
         [HideInInspector]
         public Vector2 PlayerInput;
         protected bool _isEnemyDead;
-        #endregion
-
+        #endregion     
+                       
         #region Start
         public override void Start()
         {
@@ -28,7 +33,12 @@ namespace Assets.Scripts
             Collisions.FaceDir = 1;
 
             Collider = GetComponent<BoxCollider2D> ();
+            FreezeFrame = GetComponent<FreezeFrame>();
             CalculateRaySpacing ();
+
+            MainCamera = GameObject.Find("Main Camera");
+            CamScript = MainCamera.GetComponent<CameraFollow>();
+
         }
 
         private void SetDefaut()
@@ -39,8 +49,8 @@ namespace Assets.Scripts
             InvulnerabilityTime = 2;
             InteractiveMask = LayerMask.GetMask("Enemy");
         }
-        #endregion
-        
+        #endregion          
+                       
         #region Update
         public void Update()
         {
@@ -115,6 +125,7 @@ namespace Assets.Scripts
         private void DestroyEnemy(RaycastHit2D hit)
         {
             _isEnemyDead = true;
+            CamScript.ShakeCam();
             var enemyHit = hit.collider.gameObject;
             enemyHit.layer = 10;
             enemyHit.tag = "DeadEnemy";
@@ -138,13 +149,13 @@ namespace Assets.Scripts
             rayOrigin1 += Vector2.right*(VerticalRaySpacing*i);
             Debug.DrawRay(rayOrigin1, Vector2.down*rayLength, Color.gray);
 
-            RaycastHit2D hit1 = Physics2D.Raycast(rayOrigin1, Vector2.down, rayLength, InteractiveMask);
-            if (hit1)
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin1, Vector2.down, rayLength, InteractiveMask);
+            if (hit)
             {
-                if (hit1.collider.tag == "Enemy" && hit1.distance == 0)
+                if (hit.collider.tag == "Enemy" && hit.distance == 0)
                 {
                     if (PInput.Player.IsDashing)
-                        Destroy(hit1.collider.gameObject);
+                        DestroyEnemy(hit);
                     return true;
                 }
             }
@@ -157,14 +168,14 @@ namespace Assets.Scripts
             rayOrigin2 += Vector2.right*(VerticalRaySpacing*i);
             Debug.DrawRay(rayOrigin2, Vector2.up*rayLength, Color.blue);
 
-            RaycastHit2D hit2 = Physics2D.Raycast(rayOrigin2, Vector2.up, rayLength, InteractiveMask);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin2, Vector2.up, rayLength, InteractiveMask);
 
-            if (hit2)
+            if (hit)
             {
-                if (hit2.collider.tag == "Enemy" && hit2.distance == 0)
+                if (hit.collider.tag == "Enemy" && hit.distance == 0)
                 {
                     if (PInput.Player.IsDashing)
-                        Destroy(hit2.collider.gameObject);
+                        DestroyEnemy(hit);
                 }
             }
         }

@@ -11,14 +11,20 @@ namespace Assets.Scripts
         public float LookSmoothTimeX;
         public float VerticalSmoothTime;
         public Vector2 FocusAreaSize;
+        public bool CamShake = false;
+        public float _shakeDuration;
+        public float _shakeAmount;
 
         private FocusArea _focusArea;
         private float _currentLookAheadX;
         private float _targetLookAheadX;
         private float _lookAheadDirX;
         private float _smoothLookVelocityX;
+        private float _smoothLookVelocityY;
         private float _smoothVelocityY;
         private bool _lookAheadStopped;
+
+        
         #endregion
 
         #region Start
@@ -35,6 +41,8 @@ namespace Assets.Scripts
             LookAheadDstX = 5;
             LookSmoothTimeX = .25f;
             VerticalSmoothTime = .25f;
+            _shakeDuration = 0.5f;
+            _shakeAmount = 1;
         }
         #endregion
 
@@ -59,6 +67,9 @@ namespace Assets.Scripts
 
             focusPosition.y = Mathf.SmoothDamp(transform.position.y, focusPosition.y, ref _smoothVelocityY, VerticalSmoothTime);
             focusPosition += Vector2.right * _currentLookAheadX;
+
+            ShakeCamera(focusPosition);
+
             transform.position = (Vector3)focusPosition + Vector3.forward * -10;
         }
 
@@ -139,6 +150,30 @@ namespace Assets.Scripts
                 _left += shiftX;
                 _right += shiftX;
                 return shiftX;
+            }
+        }
+        #endregion
+
+        #region Cam Shake
+
+        private void ChangeShake()
+        {
+            CamShake = !CamShake;
+        }
+
+        public void ShakeCam()
+        {
+            ChangeShake();
+            Invoke("ChangeShake", _shakeDuration);
+        }
+
+        private void ShakeCamera(Vector2 focusPosition)
+        {
+            if (CamShake)
+            {
+                float randomValue = Random.value;
+                focusPosition.x = Mathf.SmoothDamp(focusPosition.x, focusPosition.x + Mathf.Sin(randomValue) * _shakeAmount, ref _smoothLookVelocityX, 0.02f);
+                focusPosition.y = Mathf.SmoothDamp(focusPosition.y, focusPosition.y + (Mathf.Sin(randomValue) * _shakeAmount) - 0.5f, ref _smoothLookVelocityY, 0.02f);
             }
         }
         #endregion
