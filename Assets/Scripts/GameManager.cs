@@ -41,8 +41,6 @@ public class GameManager : MonoBehaviour {
         if (pausedScreen = GameObject.Find("Paused Screen"))
             pausedScreen.SetActive(false);		HpBar = GameObject.Find("HPBarCanvas");    }
 	
-	}
-	
 	// Update is called once per frame
 	void Update ()
     {

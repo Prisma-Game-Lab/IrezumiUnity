@@ -18,7 +18,6 @@ namespace Assets.Scripts
         public Animator _graphicsAnimator;
         public bool Alive = true ;
 
-
         #endregion
 
         #region Start
