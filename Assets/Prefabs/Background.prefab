@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 488620}
   - 212: {fileID: 21275446}
   m_Layer: 0
-  m_Name: bg2
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
