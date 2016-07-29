@@ -6,7 +6,6 @@ TagManager:
   tags:
   - CanPass
   - Enemy
-  - DeadEnemy
   layers:
   - Default
   - TransparentFX
@@ -52,7 +51,4 @@ TagManager:
     locked: 0
   - name: Obstacles
     uniqueID: 2897443405
-    locked: 0
-  - name: UI
-    uniqueID: 437324363
     locked: 0

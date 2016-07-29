@@ -17,8 +17,13 @@ namespace Assets.Scripts
         private float _targetLookAheadX;
         private float _lookAheadDirX;
         private float _smoothLookVelocityX;
+        private float _smoothLookVelocityY;
         private float _smoothVelocityY;
         private bool _lookAheadStopped;
+
+        public bool CamShake = false;
+        public float _shakeDuration;
+        public float _shakeAmount;
         #endregion
 
         #region Start
@@ -56,9 +61,15 @@ namespace Assets.Scripts
             SetTargetLookAheadX();
 
             _currentLookAheadX = Mathf.SmoothDamp(_currentLookAheadX, _targetLookAheadX, ref _smoothLookVelocityX, LookSmoothTimeX);
-
             focusPosition.y = Mathf.SmoothDamp(transform.position.y, focusPosition.y, ref _smoothVelocityY, VerticalSmoothTime);
             focusPosition += Vector2.right * _currentLookAheadX;
+
+            if (CamShake)
+            {
+                float randomValue = Random.value;
+                focusPosition.x = Mathf.SmoothDamp(focusPosition.x, focusPosition.x + Mathf.Sin(randomValue) * _shakeAmount, ref _smoothLookVelocityX, 0.02f);
+                focusPosition.y = Mathf.SmoothDamp(focusPosition.y, focusPosition.y + (Mathf.Sin(randomValue) * _shakeAmount) - 0.5f, ref _smoothLookVelocityY, 0.02f);
+            }
             transform.position = (Vector3)focusPosition + Vector3.forward * -10;
         }
 
@@ -141,6 +152,21 @@ namespace Assets.Scripts
                 return shiftX;
             }
         }
+        #endregion
+
+        #region Methods
+
+        void ChangeShake()
+        {
+            CamShake = !CamShake;
+        }
+        public void ShakeCam()
+        {
+            ChangeShake();
+            Invoke("ChangeShake", _shakeDuration);
+        }
+
+
         #endregion
 
     }

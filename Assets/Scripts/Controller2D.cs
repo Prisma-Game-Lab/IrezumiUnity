@@ -3,6 +3,7 @@
 namespace Assets.Scripts
 {
     [RequireComponent (typeof (BoxCollider2D))]
+	[RequireComponent (typeof (FreezeFrame))]
     public class Controller2D : RaycastController
     {
 
@@ -13,11 +14,16 @@ namespace Assets.Scripts
         public LayerMask InteractiveMask;
         public CollisionInfo Collisions;
         public PlayerInput PInput; 
+		GameObject ObjToDestroy;
+		public FreezeFrame FreezeFrame;
+		public float PauseDuration;
         public float TimeToRecover;
         public float InvulnerabilityTime;
         [HideInInspector]
         public Vector2 PlayerInput;
         protected bool _isEnemyDead;
+        GameObject MainCamera;
+        CameraFollow CamScript;
         #endregion
 
         #region Start
@@ -28,7 +34,12 @@ namespace Assets.Scripts
             Collisions.FaceDir = 1;
 
             Collider = GetComponent<BoxCollider2D> ();
+			FreezeFrame = GetComponent<FreezeFrame> ();
             CalculateRaySpacing ();
+
+            MainCamera = GameObject.Find("Main Camera");
+            CamScript = MainCamera.GetComponent<CameraFollow>();
+
         }
 
         private void SetDefaut()
@@ -38,6 +49,7 @@ namespace Assets.Scripts
             TimeToRecover = .18f;
             InvulnerabilityTime = 2;
             InteractiveMask = LayerMask.GetMask("Enemy");
+			ObjToDestroy = null;
         }
         #endregion
         
@@ -78,8 +90,9 @@ namespace Assets.Scripts
                 if (hit.collider.tag == "Enemy" && hit.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
                 {
 					if (PInput.Player.IsDashing)
-					{
+                    {
                         DestroyEnemy(hit);
+                        CamScript.ShakeCam();
                     }
                     else
                     {
@@ -102,9 +115,10 @@ namespace Assets.Scripts
             {
                 if (hit.collider.tag == "Enemy" && hit.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
                 {
-					if (PInput.Player.IsDashing) 
-					{
+					if (PInput.Player.IsDashing)
+                    {
                         DestroyEnemy(hit);
+                        CamScript.ShakeCam();
                     }
                     else
                         SetPlayerWasHitAndIsInvulnerable();
@@ -144,7 +158,10 @@ namespace Assets.Scripts
                 if (hit1.collider.tag == "Enemy" && hit1.distance == 0)
                 {
                     if (PInput.Player.IsDashing)
+                    {
                         Destroy(hit1.collider.gameObject);
+                        CamScript.ShakeCam();
+                    }
                     return true;
                 }
             }
@@ -164,7 +181,10 @@ namespace Assets.Scripts
                 if (hit2.collider.tag == "Enemy" && hit2.distance == 0)
                 {
                     if (PInput.Player.IsDashing)
+                    {
                         Destroy(hit2.collider.gameObject);
+                        CamScript.ShakeCam();
+                    }
                 }
             }
         }
@@ -437,6 +457,22 @@ namespace Assets.Scripts
             Collisions.PassingPlatform = false;
         }
         #endregion
+
+		#region Destroy Objects
+		/// <summary>
+		/// Destroys the object in ObjToDestroy.
+		/// DOES NOT RECIEVE PARAMETERS, PUT THE OBJECT YOU WANT TO DESTROY
+		/// IN ObjToDestroy
+		/// </summary>
+		public void DestroyObject()
+		{
+			if (ObjToDestroy && !FreezeFrame.IsFrozen) {
+				Destroy(ObjToDestroy);
+				ObjToDestroy = null;
+			}
+		}
+
+		#endregion Destroy Objects
 
         #region Structs
         public struct CollisionInfo {
