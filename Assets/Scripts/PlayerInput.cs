@@ -60,10 +60,7 @@ namespace Assets.Scripts
                     }
                 }            
             }
-            if (Player.IsDashing)
-                tr.material = tr.materials[0];
-            else 
-                tr.material = tr.materials[1];
+            print(tr);
 
             Player.TakingHit = TakingHit;
         }
