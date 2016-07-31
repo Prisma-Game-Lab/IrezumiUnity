@@ -8,6 +8,11 @@ TagManager:
   - Enemy
   - DeadEnemy
   - Trap
+  - ButtonManager
+  - GameManager
+  - HPBarCanvas
+  - PausedScreen
+  - StatScreen
   layers:
   - Default
   - TransparentFX

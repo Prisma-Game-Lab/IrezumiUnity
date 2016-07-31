@@ -30,7 +30,7 @@ GameObject:
   - 114: {fileID: 11401998}
   m_Layer: 5
   m_Name: Paused Screen
-  m_TagString: Untagged
+  m_TagString: PausedScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -36,10 +36,17 @@ public class GameManager : MonoBehaviour {
 
     void OnLevelWasLoaded(int level)
     {
-		if (statsScreen = GameObject.Find("Stat Screen"))
-            statsScreen.SetActive(false);
-        if (pausedScreen = GameObject.Find("Paused Screen"))
-            pausedScreen.SetActive(false);		HpBar = GameObject.Find("HPBarCanvas");    }
+		if (statsScreen = GameObject.FindGameObjectWithTag ("StatScreen")) 
+		{
+			statsScreen.SetActive(false);
+		}
+            
+		if (pausedScreen = GameObject.FindGameObjectWithTag ("PausedScreen")) 
+		{
+			pausedScreen.SetActive(false);
+			HpBar = GameObject.FindGameObjectWithTag("HPBarCanvas");	
+		}
+	}
 	
 	// Update is called once per frame
 	void Update ()

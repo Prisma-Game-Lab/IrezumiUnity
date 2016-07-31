@@ -271,6 +271,13 @@ namespace Assets.Scripts
 			Hp += HpRecoverOnKill;
 			if (Hp > 100) Hp = 100;
 		}
+
+        public void Damage(float dmg)
+        {
+            Hp -= dmg;
+            if (Hp < 0)
+                Hp = 0;
+        }
 		#endregion
 
         #region Not used

@@ -9,7 +9,7 @@ public class LevelEnd : MonoBehaviour {
 
     void Start()
     {
-        gameManager = GameObject.Find("Game Manager");
+		gameManager = GameObject.FindGameObjectWithTag("GameManager");
         gm = gameManager.GetComponent<GameManager>();
     }
 

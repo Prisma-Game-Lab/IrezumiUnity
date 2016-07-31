@@ -26,7 +26,7 @@ namespace Assets.Scripts
             Trail = GameObject.Find("FollowTrail");
             tr = Trail.GetComponent<TrailRenderer>();
             Player = GetComponent<Player>();
-            gameManager = GameObject.Find("Game Manager");
+			gameManager = GameObject.FindGameObjectWithTag("GameManager");
             gm = gameManager.GetComponent<GameManager>();
             ParticleSystem = ParticleSpawn.GetComponent<ParticleSystem>();
             DeactivateParticle();

@@ -23,7 +23,7 @@ public class ButtonManager : MonoBehaviour {
 
 
     /// <summary>
-    /// Scene Button Callback. Load the scene passed as parameter.
+    /// Scene Button Callback. Loads the scene passed as parameter.
     /// </summary>
     /// <param name="scene">Name if the scene.</param>
     public void SceneButtonCallback(string scene)
@@ -32,13 +32,16 @@ public class ButtonManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// Restart Button Callback. Restart the scene.
     /// </summary>
     public void RestartButtonCallback()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+	/// <summary>
+	/// Next level button callback. Loads the next level.
+	/// </summary>
     public void NextLevelButtonCallback()
     {
         int scene = (SceneManager.GetActiveScene().buildIndex + 1);
