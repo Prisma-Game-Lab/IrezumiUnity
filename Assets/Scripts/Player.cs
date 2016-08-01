@@ -27,7 +27,7 @@ namespace Assets.Scripts
         public bool IsInvulnerable;
         public bool IsDashing;
         public GameObject PlayerGraphics;
-        [HideInInspector]
+        //[HideInInspector]
         public Vector2 Velocity;
 
         private float _timeToWallUnstick;
@@ -153,6 +153,11 @@ namespace Assets.Scripts
                 }
                 targetVelocityX = pushDir * PushSpeed.x;
                 Velocity.y += _gravity * Time.deltaTime;
+            }
+
+            if (Velocity.y < -70)
+            {
+                Velocity.y = -70;
             }
 
             Velocity.x = Mathf.SmoothDamp(Velocity.x, targetVelocityX, ref _velocityXSmoothing, (_controller.Collisions.Below) ? _accelerationTimeGrounded : _accelerationTimeAirborne);
