@@ -3,8 +3,8 @@ using System.Collections;
 
 namespace Assets.Scripts {
 	public class WindTrap : MonoBehaviour {
-		[SerializeField]private float _timeSinceLastChange = 0;
-		[SerializeField]private GameObject _wind;
+		private float _timeSinceLastChange = 0;
+		private GameObject _wind;
 		public float TimeTurnedOn; //time until it turns off
 		public float TimeTurnedOff; //time until it turns on
 
