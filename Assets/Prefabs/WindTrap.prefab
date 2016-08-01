@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 423656}
   - 212: {fileID: 21265276}
   - 114: {fileID: 11495812}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WindTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

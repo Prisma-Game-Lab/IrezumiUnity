@@ -15,7 +15,7 @@ namespace Assets.Scripts
         private float _hp;
         private Vector2 _oldPosition;
         public GameObject EnemyGraphics;
-        public Animator _graphicsAnimator;
+        public Animator GraphicsAnimator;
         public bool Alive = true ;
 
         #endregion
@@ -25,7 +25,7 @@ namespace Assets.Scripts
         {
             base.Start();
             SetDefaut();
-            _graphicsAnimator = EnemyGraphics.GetComponent<Animator>();
+            GraphicsAnimator = EnemyGraphics.GetComponent<Animator>();
         }
 
         private void SetDefaut()
@@ -43,11 +43,11 @@ namespace Assets.Scripts
             _oldPosition = (Vector2)transform.position;
             _deltaMovement = _waypoints.CalculateWaypointMovement();
             EnemyMove(_deltaMovement);
-            _graphicsAnimator.SetBool("horDir", _horDir);
-            _graphicsAnimator.SetBool("verDir", _verDir);
+            GraphicsAnimator.SetBool("horDir", _horDir);
+            GraphicsAnimator.SetBool("verDir", _verDir);
             if (gameObject.tag == "DeadEnemy")
                 Alive = false;
-            _graphicsAnimator.SetBool("Alive", Alive);
+            GraphicsAnimator.SetBool("Alive", Alive);
         }
         #endregion
     }

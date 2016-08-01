@@ -1,105 +1,125 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
-public class GameManager : MonoBehaviour
+namespace Assets.Scripts
 {
-
-    GameObject statsScreen;
-    GameObject HpBar;
-
-    GameObject pausedScreen;
-
-    private static GameManager _instance;
-
-    public static GameManager Instance
+    public class GameManager : MonoBehaviour
     {
-        get { return _instance; }
-    }
 
-    private bool _gamePaused = false;
+        private GameObject statsScreen;
+        private GameObject HpBar;
+        private GameObject pausedScreen;
+        private GameObject playerObj;
+        private Stopwatch _stopWatch = new Stopwatch();
+        private bool _gamePaused;
+        private bool _firstTime = true;
+        private float _timeScaleTemp;
+        private Player _player;
 
-    private float _timeScaleTemp;
+        private static GameManager _instance;
+        private bool _playerIsOnScene;
 
-    private void TogglePause()
-    {
-        if (!_gamePaused)
+        public static GameManager Instance
         {
-            _gamePaused = true;
-            _timeScaleTemp = Time.timeScale;
-            Time.timeScale = 0;
-        }
-        else
-        {
-            _gamePaused = false;
-            Time.timeScale = _timeScaleTemp;
-        }
-    }
-
-private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
-    }
-
-    // Use this for initialization
-    void Start () {
-        DontDestroyOnLoad(this);
-    }
-
-    void OnLevelWasLoaded(int level)
-    {
-		if (statsScreen = GameObject.FindGameObjectWithTag ("StatScreen")) 
-		{
-			statsScreen.SetActive(false);
-		}
-            
-		if (pausedScreen = GameObject.FindGameObjectWithTag ("PausedScreen")) 
-		{
-			pausedScreen.SetActive(false);
-			HpBar = GameObject.FindGameObjectWithTag("HPBarCanvas");	
-		}
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            print(SceneManager.GetActiveScene().name);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            get { return _instance; }
         }
 
-        if (Input.GetKeyDown(KeyCode.P) && pausedScreen)
+
+        private void TogglePause()
         {
             if (!_gamePaused)
             {
-                pausedScreen.SetActive(true);
-                print("PAUSED");
+                _gamePaused = true;
+                _timeScaleTemp = Time.timeScale;
+                Time.timeScale = 0;
             }
             else
             {
-                pausedScreen.SetActive(false);
-                print("UNPAUSED");
+                _gamePaused = false;
+                Time.timeScale = _timeScaleTemp;
             }
-            TogglePause();
         }
-    }
 
-    public void LevelEnd()
-    {
-        statsScreen.SetActive(true);
-		HpBar.SetActive (false);
-    }
+        private void Awake()
+        {
+            if (_instance != null && _instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                _instance = this;
+            }
+        }
 
-    public bool IsPaused()
-    {
-        return _gamePaused;
+        // Use this for initialization
+        void Start () {
+            DontDestroyOnLoad(this);
+        }
+
+        void OnLevelWasLoaded(int level)
+        {
+            if (statsScreen = GameObject.FindGameObjectWithTag ("StatScreen")) 
+            {
+                statsScreen.SetActive(false);
+            }
+            
+            if (pausedScreen = GameObject.FindGameObjectWithTag ("PausedScreen")) 
+            {
+                pausedScreen.SetActive(false);
+                HpBar = GameObject.FindGameObjectWithTag("HPBarCanvas");	
+            }
+            if (playerObj = GameObject.FindGameObjectWithTag("Player"))
+            {
+                _playerIsOnScene = true;
+                _player = playerObj.GetComponent<Player>();
+            }
+        }
+	
+        // Update is called once per frame
+        void Update ()
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                print(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+
+            if (Input.GetKeyDown(KeyCode.P) && pausedScreen)
+            {
+                if (!_gamePaused)
+                {
+                    pausedScreen.SetActive(true);
+                    print("PAUSED");
+                }
+                else
+                {
+                    pausedScreen.SetActive(false);
+                    print("UNPAUSED");
+                }
+                TogglePause();
+            }
+            if(_playerIsOnScene)
+                if (_player.FirstInput && _firstTime)
+                {
+                    _stopWatch.Start();
+                    _firstTime = false;
+                }
+        }
+
+        public void LevelEnd()
+        {
+            statsScreen.SetActive(true);
+            var stat = statsScreen.GetComponent<StatScreen>();
+            _stopWatch.Stop();
+            stat.SetStats(_player, _stopWatch);
+            HpBar.SetActive (false);
+        }
+
+        public bool IsPaused()
+        {
+            return _gamePaused;
+        }
     }
 }

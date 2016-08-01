@@ -27,8 +27,12 @@ namespace Assets.Scripts
         public bool IsInvulnerable;
         public bool IsDashing;
         public GameObject PlayerGraphics;
-        //[HideInInspector]
+        [HideInInspector]
         public Vector2 Velocity;
+        [HideInInspector]
+        public float InkCollected;
+        [HideInInspector]
+        public bool FirstInput;
 
         private float _timeToWallUnstick;
         private float _accelerationTimeAirborne;
@@ -41,7 +45,6 @@ namespace Assets.Scripts
         private bool _facingRight;
         private bool _stopped;
         private bool _grounded;
-		private bool _firstInput;
         private int _wallDirX;
         private Controller2D _controller;
         private Vector2 _directionalInput;
@@ -67,7 +70,7 @@ namespace Assets.Scripts
             _accelerationTimeAirborne = .04f;
             _accelerationTimeGrounded = .01f;
             _firstTimeTakingHit = true;
-			_firstInput = false;
+			FirstInput = false;
 
             MoveSpeed = 16;
             MaxjumpHeight = 9;
@@ -81,6 +84,7 @@ namespace Assets.Scripts
 			HpLostPerSecond = 1;
 			HpLostOnDash = 10;
 			HpRecoverOnKill = 15;
+            InkCollected = 0;
 
             WallJumpClimb = new Vector2(36, 28);
             WallJumpOff = new Vector2(2, 3);
@@ -108,7 +112,7 @@ namespace Assets.Scripts
         {
             _wallSliding = false;
             _wallDirX = (_controller.Collisions.Left) ? -1 : 1;
-			if(_firstInput)
+			if(FirstInput)
 				Hp -= HpLostPerSecond * Time.deltaTime;
 
             CalculateVelocity();
@@ -218,8 +222,8 @@ namespace Assets.Scripts
 
         #region Player Input
 		public void CheckIfPlayerMoved (Vector2 directionalInput){
-			if (directionalInput != Vector2.zero && !_firstInput) 
-				_firstInput = true;
+			if (directionalInput != Vector2.zero && !FirstInput) 
+				FirstInput = true;
 		}
 
         public void SetDirectionalInput(Vector2 input)
@@ -229,7 +233,7 @@ namespace Assets.Scripts
 
         public void OnDashInput()
         {
-			_firstInput = true;
+			FirstInput = true;
             IsDashing = true;
             Invoke("ResetDashing", DashTime);
 			Hp -= HpLostOnDash;
@@ -237,7 +241,7 @@ namespace Assets.Scripts
        
         public void OnJumpInputDown()
 		{
-			_firstInput = true;
+			FirstInput = true;
             if (_wallSliding)
             {
                 /*player trying to move the same direction as the wall its facing and move away from the wall*/
@@ -265,7 +269,7 @@ namespace Assets.Scripts
 
         public void OnJumpInputUp()
 		{
-			_firstInput = true;
+			FirstInput = true;
             if (Velocity.y > _minjumpVelocity)
                 Velocity.y = _minjumpVelocity;
         }
@@ -275,7 +279,9 @@ namespace Assets.Scripts
 		/// <summary>
 		/// Recovers the hp.
 		/// </summary>
-		public void RecoverHp(){
+		public void RecoverHp()
+		{
+		    InkCollected += HpRecoverOnKill;
 			Hp += HpRecoverOnKill;
 			if (Hp > 100) Hp = 100;
 		}
