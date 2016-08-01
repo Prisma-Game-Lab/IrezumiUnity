@@ -68,8 +68,12 @@ namespace Assets.Scripts
             focusPosition.y = Mathf.SmoothDamp(transform.position.y, focusPosition.y, ref _smoothVelocityY, VerticalSmoothTime);
             focusPosition += Vector2.right * _currentLookAheadX;
 
-            ShakeCamera(focusPosition);
-
+            if (CamShake)
+            {
+                float randomValue = Random.Range(-Mathf.PI, Mathf.PI);
+                focusPosition.x = Mathf.SmoothDamp(focusPosition.x, focusPosition.x + Mathf.Cos(randomValue) * _shakeAmount, ref _smoothLookVelocityX, 0.02f);
+                focusPosition.y = Mathf.SmoothDamp(focusPosition.y, focusPosition.y + Mathf.Sin(randomValue) * _shakeAmount, ref _smoothLookVelocityY, 0.02f);
+            }
             transform.position = (Vector3)focusPosition + Vector3.forward * -10;
         }
 
@@ -167,15 +171,6 @@ namespace Assets.Scripts
             Invoke("ChangeShake", _shakeDuration);
         }
 
-        private void ShakeCamera(Vector2 focusPosition)
-        {
-            if (CamShake)
-            {
-                float randomValue = Random.value;
-                focusPosition.x = Mathf.SmoothDamp(focusPosition.x, focusPosition.x + Mathf.Sin(randomValue) * _shakeAmount, ref _smoothLookVelocityX, 0.02f);
-                focusPosition.y = Mathf.SmoothDamp(focusPosition.y, focusPosition.y + (Mathf.Sin(randomValue) * _shakeAmount) - 0.5f, ref _smoothLookVelocityY, 0.02f);
-            }
-        }
         #endregion
 
     }
