@@ -2,22 +2,41 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     GameObject statsScreen;
-	GameObject HpBar;
+    GameObject HpBar;
 
     GameObject pausedScreen;
 
     private static GameManager _instance;
 
-    public static GameManager Instance { get { return _instance; } }
+    public static GameManager Instance
+    {
+        get { return _instance; }
+    }
 
     private bool _gamePaused = false;
 
     private float _timeScaleTemp;
 
-    private void Awake()
+    private void TogglePause()
+    {
+        if (!_gamePaused)
+        {
+            _gamePaused = true;
+            _timeScaleTemp = Time.timeScale;
+            Time.timeScale = 0;
+        }
+        else
+        {
+            _gamePaused = false;
+            Time.timeScale = _timeScaleTemp;
+        }
+    }
+
+private void Awake()
     {
         if (_instance != null && _instance != this)
         {
@@ -61,19 +80,15 @@ public class GameManager : MonoBehaviour {
         {
             if (!_gamePaused)
             {
-                _gamePaused = true;
-                _timeScaleTemp = Time.timeScale;
-                Time.timeScale = 0;
                 pausedScreen.SetActive(true);
                 print("PAUSED");
             }
             else
             {
-                _gamePaused = false;
-                Time.timeScale = _timeScaleTemp;
                 pausedScreen.SetActive(false);
                 print("UNPAUSED");
             }
+            TogglePause();
         }
     }
 
