@@ -8,7 +8,7 @@ namespace Assets.Scripts{
 		[SerializeField]private bool _forcePushActivated;
 		[SerializeField]private float CurrentSpeed;
 		[SerializeField]private float DampSpeed = 4;
-		public float WindThrowMaxSpeed;
+		public float WindThrowSpeed;
 
 		// Use this for initialization
 		void Start () {
@@ -22,10 +22,10 @@ namespace Assets.Scripts{
 		void Update () {
 			
 			if(_forcePushActivated){
-				CurrentSpeed = Mathf.SmoothDamp (CurrentSpeed, WindThrowMaxSpeed, ref DampSpeed, 0.5f);
+				CurrentSpeed = Mathf.SmoothDamp (CurrentSpeed, WindThrowSpeed, ref DampSpeed, 0.5f);
 				player.ForcePush(new Vector2(CurrentSpeed, -10), true);
 
-				if(CurrentSpeed > WindThrowMaxSpeed - 1){
+				if(CurrentSpeed > WindThrowSpeed - 1){
 					_forcePushActivated = false;
 					CurrentSpeed = 0;
 				}

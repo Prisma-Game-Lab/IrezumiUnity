@@ -110,7 +110,7 @@ MonoBehaviour:
   _forcePushActivated: 0
   CurrentSpeed: 0
   DampSpeed: 0.5
-  WindThrowMaxSpeed: 10
+  WindThrowSpeed: 10
 --- !u!114 &11495812
 MonoBehaviour:
   m_ObjectHideFlags: 1
