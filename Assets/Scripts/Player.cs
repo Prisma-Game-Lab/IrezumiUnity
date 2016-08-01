@@ -90,7 +90,10 @@ namespace Assets.Scripts
             TakingHit = false;
             IsInvulnerable = false;
             IsDashing = false;
+
+         
         }
+        
 
         private void SetGravityAndVelocityEquations()
         {

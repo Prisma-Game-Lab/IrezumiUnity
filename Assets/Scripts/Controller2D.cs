@@ -47,36 +47,36 @@ namespace Assets.Scripts
             _maxDescendAngle = 80;
             TimeToRecover = .18f;
             InvulnerabilityTime = 2;
-            InteractiveMask = LayerMask.GetMask("Enemy");
+            InteractiveMask = LayerMask.GetMask("Enemy","Trap");
         }
         #endregion          
                        
         #region Update
         public void Update()
         {
-            EnemyCollisions();
+            InteractiveCollisions();
         }
         #endregion
 
-        #region EnemyCollisions
-        public void EnemyCollisions()
+        #region InteractiveCollisions
+        public void InteractiveCollisions()
         {
             var rayLength = 2 * SkinWidth;
-            HorizontalEnemyCollision(rayLength);
-            VerticalEnemyCollision(rayLength);
+            HorizontalInteractiveCollision(rayLength);
+            VerticalInteractiveCollision(rayLength);
         }
 
-        private void HorizontalEnemyCollision(float rayLength)
+        private void HorizontalInteractiveCollision(float rayLength)
         {
             for (var i = 0; i < HorizontalRayCount; i++)
             {
-                if (LeftEnemyCollision(rayLength, i)) 
+                if (LeftInteractiveCollision(rayLength, i)) 
                     continue;
-                RightEnemyCollision(rayLength, i);
+                RightInteractiveCollision(rayLength, i);
             }
         }
 
-        private bool LeftEnemyCollision(float rayLength, int i)
+        private bool LeftInteractiveCollision(float rayLength, int i)
         {
             Vector2 rayOrigin1 = RaycastOrigins.BottomLeft;
             rayOrigin1 += Vector2.up*(HorizontalRaySpacing*i);
@@ -97,11 +97,17 @@ namespace Assets.Scripts
                     }
                     return true;
                 }
+                else if (hit.collider.tag == "Trap" && hit.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
+                {
+                    print("Green flame");
+                   PInput.Player.Damage(20);
+                   SetPlayerWasHitAndIsInvulnerable();
+                }
             }
             return false;
         }
 
-        private void RightEnemyCollision(float rayLength, int i)
+        private void RightInteractiveCollision(float rayLength, int i)
         {
             Vector2 rayOrigin2 = RaycastOrigins.BottomRight;
             rayOrigin2 += Vector2.up*(HorizontalRaySpacing*i);
@@ -119,6 +125,12 @@ namespace Assets.Scripts
                     else
                         SetPlayerWasHitAndIsInvulnerable();
                 }
+                else if (hit.collider.tag == "Trap" && hit.distance == 0)
+                {
+                    print("Green flame");
+                    PInput.Player.Damage(20);
+                    SetPlayerWasHitAndIsInvulnerable();
+                }
             }
         }
 
@@ -132,18 +144,18 @@ namespace Assets.Scripts
             PInput.Player.RecoverHp();
         }
 
-        private void VerticalEnemyCollision(float rayLength)
+        private void VerticalInteractiveCollision(float rayLength)
         {
             for (var i = 0; i < VerticalRayCount; i++)
             {
-                if (DownEnemyCollision(rayLength, i)) 
+                if (DownInteractiveCollision(rayLength, i)) 
                     continue;
 
-                UpEnemyCollision(rayLength, i);
+                UpInteractiveCollision(rayLength, i);
             }
         }
 
-        private bool DownEnemyCollision(float rayLength, int i)
+        private bool DownInteractiveCollision(float rayLength, int i)
         {
             Vector2 rayOrigin1 = RaycastOrigins.BottomLeft;
             rayOrigin1 += Vector2.right*(VerticalRaySpacing*i);
@@ -158,11 +170,17 @@ namespace Assets.Scripts
                         DestroyEnemy(hit);
                     return true;
                 }
+                else if (hit.collider.tag == "Trap" && hit.distance == 0)
+                {
+                    print("Green flame");
+                    PInput.Player.Damage(20);
+                    SetPlayerWasHitAndIsInvulnerable();
+                }
             }
             return false;
         }
 
-        private void UpEnemyCollision(float rayLength, int i)
+        private void UpInteractiveCollision(float rayLength, int i)
         {
             Vector2 rayOrigin2 = RaycastOrigins.TopLeft;
             rayOrigin2 += Vector2.right*(VerticalRaySpacing*i);
@@ -177,10 +195,16 @@ namespace Assets.Scripts
                     if (PInput.Player.IsDashing)
                         DestroyEnemy(hit);
                 }
+                else if (hit.collider.tag == "Trap" && hit.distance == 0)
+                {
+                    print("Green flame");
+                    PInput.Player.Damage(20);
+                    SetPlayerWasHitAndIsInvulnerable();
+                }
             }
         }
 
-        private void SetPlayerWasHitAndIsInvulnerable()
+        public void SetPlayerWasHitAndIsInvulnerable()
         {
             ChangeHit();
             Invoke("ChangeHit", TimeToRecover);
