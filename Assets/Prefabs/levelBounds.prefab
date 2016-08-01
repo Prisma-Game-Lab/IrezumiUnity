@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 447134}
   - 114: {fileID: 11435042}
   - 50: {fileID: 5057258}
-  - 60: {fileID: 6061878}
+  - 68: {fileID: 6852048}
   m_Layer: 0
   m_Name: levelBounds
   m_TagString: Untagged
@@ -48,8 +48,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!60 &6061878
-PolygonCollider2D:
+--- !u!68 &6852048
+EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -57,16 +57,18 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
-    m_Paths:
-    - - {x: 1.0336441, y: -23.652052}
-      - {x: 63.92015, y: -22.565765}
-      - {x: 62.20683, y: -27.982435}
-      - {x: -66.12732, y: -28.320316}
-      - {x: -65.06108, y: -22.716604}
+  - {x: -55.68905, y: 46.55076}
+  - {x: -59.19952, y: -24.966988}
+  - {x: 54.419262, y: -28.691772}
+  - {x: -51.58826, y: -19.67265}
+  - {x: 29.050758, y: -19.554497}
+  - {x: 58.277683, y: -24.462803}
+  - {x: 56.825935, y: 43.444218}
+  - {x: -49.410084, y: 44.631145}
 --- !u!114 &11435042
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -902,30 +902,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 6061878, guid: 3751bd26a0ed17143a822f08c6d87dae, type: 2}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
-      value: 47.043396
-      objectReference: {fileID: 0}
-    - target: {fileID: 6061878, guid: 3751bd26a0ed17143a822f08c6d87dae, type: 2}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
-      value: -65.06108
-      objectReference: {fileID: 0}
-    - target: {fileID: 6061878, guid: 3751bd26a0ed17143a822f08c6d87dae, type: 2}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
-      value: 1.8087559
-      objectReference: {fileID: 0}
-    - target: {fileID: 6061878, guid: 3751bd26a0ed17143a822f08c6d87dae, type: 2}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
-      value: 49.20839
-      objectReference: {fileID: 0}
-    - target: {fileID: 6061878, guid: 3751bd26a0ed17143a822f08c6d87dae, type: 2}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
-      value: 48.744453
-      objectReference: {fileID: 0}
-    - target: {fileID: 6061878, guid: 3751bd26a0ed17143a822f08c6d87dae, type: 2}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
-      value: 63.145065
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3751bd26a0ed17143a822f08c6d87dae, type: 2}
   m_IsPrefabParent: 0
