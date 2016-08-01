@@ -3,11 +3,11 @@ using System.Collections;
 
 namespace Assets.Scripts{
 	public class Wind : MonoBehaviour {
-		[SerializeField]private GameObject playerObj;
-		[SerializeField]private Player player;
-		[SerializeField]private bool _forcePushActivated;
-		[SerializeField]private float CurrentSpeed;
-		[SerializeField]private float DampSpeed = 4;
+		private GameObject playerObj;
+		private Player player;
+		private bool _forcePushActivated;
+		private float CurrentSpeed;
+		private float DampSpeed = 4;
 		public float WindThrowSpeed;
 
 		// Use this for initialization
