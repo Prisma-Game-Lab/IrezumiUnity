@@ -32,12 +32,20 @@ namespace Assets.Scripts
                 playerScript.Damage(20);
             }
 
-            Destroy(this.gameObject);
+            if (other.gameObject.tag == "Trap")
+            {
+                Physics2D.IgnoreLayerCollision(0, 15);
+            }
+
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
 
         void Update()
         {
-            switch(dir)
+            /*switch(dir)
             {
                 case "up":
                     transform.Translate(Vector2.up * Time.deltaTime * speed);
@@ -51,7 +59,8 @@ namespace Assets.Scripts
                 case "right":
                     transform.Translate(Vector2.right * Time.deltaTime * speed);
                     break;
-            }
+            }*/
+            transform.Translate(Vector2.up * Time.deltaTime * speed);
         }
     }
 }
