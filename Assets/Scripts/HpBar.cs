@@ -22,7 +22,7 @@ namespace Assets.Scripts
 		{
 			Size = new Vector2(200, 50);
 			Position = new Vector2(20, 40);
-			CriticalHP = 40;
+			CriticalHP = 30;
 			_firstTime = true;
 		}
 
