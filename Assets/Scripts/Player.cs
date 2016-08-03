@@ -313,7 +313,15 @@ namespace Assets.Scripts
 		/// </summary>
 		/// <param name="velocity">Velocity.</param>
 		public void ForcePush(Vector2 velocity, bool standingOnPlatform = false){
-			_controller.Move (velocity * Time.deltaTime, standingOnPlatform);
+            if (_wallSliding)
+            {
+                Velocity.x = -_wallDirX * 1.75f * WallJumpLeap.x;
+                Velocity.y = WallJumpLeap.y;
+            }
+            else
+            {
+                _controller.Move(velocity * Time.deltaTime, standingOnPlatform);
+            }
 		}
 		#endregion
     }

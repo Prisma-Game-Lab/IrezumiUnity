@@ -214,6 +214,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 146702, guid: 5b4c86171a1143f4bb9d61d7ff6efeb2, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b4c86171a1143f4bb9d61d7ff6efeb2, type: 2}
   m_IsPrefabParent: 0
@@ -622,6 +626,52 @@ Transform:
   - {fileID: 983376335}
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!1001 &938110890
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 423656, guid: 5b4c86171a1143f4bb9d61d7ff6efeb2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -13.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 423656, guid: 5b4c86171a1143f4bb9d61d7ff6efeb2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 5.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 423656, guid: 5b4c86171a1143f4bb9d61d7ff6efeb2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 423656, guid: 5b4c86171a1143f4bb9d61d7ff6efeb2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 423656, guid: 5b4c86171a1143f4bb9d61d7ff6efeb2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 423656, guid: 5b4c86171a1143f4bb9d61d7ff6efeb2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 423656, guid: 5b4c86171a1143f4bb9d61d7ff6efeb2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 423656, guid: 5b4c86171a1143f4bb9d61d7ff6efeb2, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 146702, guid: 5b4c86171a1143f4bb9d61d7ff6efeb2, type: 2}
+      propertyPath: m_Name
+      value: WindTrap (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5b4c86171a1143f4bb9d61d7ff6efeb2, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &983376334
 GameObject:
   m_ObjectHideFlags: 0

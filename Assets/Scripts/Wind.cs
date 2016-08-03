@@ -23,7 +23,7 @@ namespace Assets.Scripts{
 			
 			if(_forcePushActivated){
 				CurrentSpeed = Mathf.SmoothDamp (CurrentSpeed, WindThrowSpeed, ref DampSpeed, 0.5f);
-				player.ForcePush(new Vector2(CurrentSpeed, -10), true);
+				player.ForcePush(new Vector2(CurrentSpeed, -10), false);
 
 				if(CurrentSpeed > WindThrowSpeed - 1){
 					_forcePushActivated = false;

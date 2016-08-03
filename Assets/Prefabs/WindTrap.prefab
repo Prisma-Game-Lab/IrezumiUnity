@@ -31,7 +31,7 @@ GameObject:
   - 114: {fileID: 11456542}
   m_Layer: 0
   m_Name: Wind
-  m_TagString: Untagged
+  m_TagString: Wind
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.73, y: -1.63, z: 0}
+  m_LocalPosition: {x: -13.73, y: 5.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -105,11 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be62dcaf44b07f740b3fd9eb386796fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObj: {fileID: 0}
-  player: {fileID: 0}
-  _forcePushActivated: 0
-  CurrentSpeed: 0
-  DampSpeed: 0.5
   WindThrowSpeed: 10
 --- !u!114 &11495812
 MonoBehaviour:
@@ -122,8 +117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ec866ea607e54fa4351ceac64e823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeSinceLastChange: 0
-  _wind: {fileID: 0}
   TimeTurnedOn: 1.25
   TimeTurnedOff: 0.75
 --- !u!212 &21249118
