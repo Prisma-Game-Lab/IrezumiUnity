@@ -88,8 +88,8 @@ namespace Assets.Scripts
                 if (hit.collider.tag == "Enemy" && hit.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
                 {
 					if (PInput.Player.IsDashing)
-					{
-                        DestroyEnemy(hit);
+                    {
+                        HitEnemy(hit);
                     }
                     else
                     {
@@ -120,7 +120,7 @@ namespace Assets.Scripts
                 {
 					if (PInput.Player.IsDashing) 
 					{
-                        DestroyEnemy(hit);
+                        HitEnemy(hit);
                     }
                     else
                         SetPlayerWasHitAndIsInvulnerable();
@@ -142,6 +142,17 @@ namespace Assets.Scripts
             enemyHit.layer = 10;
             enemyHit.tag = "DeadEnemy";
             PInput.Player.RecoverHp();
+        }
+
+        private void HitEnemy(RaycastHit2D hit)
+        {
+            EnemyController enemy = hit.collider.gameObject.GetComponent<EnemyController>();
+            enemy.DecreaseHP();
+            print("hp--");
+            if (enemy.Hp <= 0)
+            {
+                DestroyEnemy(hit);
+            }
         }
 
         private void VerticalInteractiveCollision(float rayLength)
@@ -167,7 +178,9 @@ namespace Assets.Scripts
                 if (hit.collider.tag == "Enemy" && hit.distance == 0)
                 {
                     if (PInput.Player.IsDashing)
-                        DestroyEnemy(hit);
+                    {
+                        HitEnemy(hit);
+                    }
                     return true;
                 }
                 else if (hit.collider.tag == "Trap" && hit.distance == 0)
@@ -193,7 +206,9 @@ namespace Assets.Scripts
                 if (hit.collider.tag == "Enemy" && hit.distance == 0)
                 {
                     if (PInput.Player.IsDashing)
-                        DestroyEnemy(hit);
+                    {
+                        HitEnemy(hit);
+                    }
                 }
                 else if (hit.collider.tag == "Trap" && hit.distance == 0)
                 {
