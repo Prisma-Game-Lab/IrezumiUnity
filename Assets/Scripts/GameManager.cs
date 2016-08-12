@@ -63,6 +63,10 @@ namespace Assets.Scripts
             if (statsScreen = GameObject.FindGameObjectWithTag ("StatScreen")) 
             {
                 statsScreen.SetActive(false);
+                print("Last Hp: " + PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Hp"));
+                print("Last Ink: " + PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Ink"));
+                print("Last Minute: " + PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Minutes"));
+                print("Last Second: " + PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Seconds"));
             }
             
             if (pausedScreen = GameObject.FindGameObjectWithTag ("PausedScreen")) 
@@ -115,6 +119,10 @@ namespace Assets.Scripts
             _stopWatch.Stop();
             stat.SetStats(_player, _stopWatch);
             HpBar.SetActive (false);
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Hp", ((int)_player.Hp));
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Ink", (int)_player.InkCollected);
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Minutes", _stopWatch.Elapsed.Minutes);
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Seconds", _stopWatch.Elapsed.Seconds);
         }
 
         public bool IsPaused()
