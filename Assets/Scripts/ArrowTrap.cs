@@ -8,9 +8,7 @@ namespace Assets.Scripts
         public GameObject arrowPrefab;
 
         GameObject arrow;
-
-        string[] dir = { "right", "up", "left", "down" };
-        
+                
         // Update is called once per frame
         void Start()
         {
@@ -25,7 +23,6 @@ namespace Assets.Scripts
                 {
                     yield return new WaitForSeconds(1f);
                     arrow = Instantiate(arrowPrefab, this.transform.GetChild(i).position, Quaternion.identity) as GameObject;
-                    //arrow.GetComponent<Arrow>().Initialize(dir[i]);
                     arrow.transform.Rotate(new Vector3(0, 0, i*90));
                 }
             }

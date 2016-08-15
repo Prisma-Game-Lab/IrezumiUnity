@@ -11,13 +11,6 @@ namespace Assets.Scripts
         GameObject player;
         Player playerScript;
 
-        string dir;
-
-        public void Initialize(string direc) 
-        {
-            dir = direc;
-        }
-
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player");
@@ -45,21 +38,6 @@ namespace Assets.Scripts
 
         void Update()
         {
-            /*switch(dir)
-            {
-                case "up":
-                    transform.Translate(Vector2.up * Time.deltaTime * speed);
-                    break;
-                case "down":
-                    transform.Translate(Vector2.down * Time.deltaTime * speed);
-                    break;
-                case "left":
-                    transform.Translate(Vector2.left * Time.deltaTime * speed);
-                    break;
-                case "right":
-                    transform.Translate(Vector2.right * Time.deltaTime * speed);
-                    break;
-            }*/
             transform.Translate(Vector2.up * Time.deltaTime * speed);
         }
     }

@@ -63,10 +63,6 @@ namespace Assets.Scripts
             if (statsScreen = GameObject.FindGameObjectWithTag ("StatScreen")) 
             {
                 statsScreen.SetActive(false);
-                print("Last Hp: " + PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Hp"));
-                print("Last Ink: " + PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Ink"));
-                print("Last Minute: " + PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Minutes"));
-                print("Last Second: " + PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Seconds"));
             }
             
             if (pausedScreen = GameObject.FindGameObjectWithTag ("PausedScreen")) 
@@ -79,6 +75,8 @@ namespace Assets.Scripts
                 _playerIsOnScene = true;
                 _player = playerObj.GetComponent<Player>();
             }
+            _firstTime = true;
+            _stopWatch.Reset();
         }
 	
         // Update is called once per frame
@@ -105,11 +103,13 @@ namespace Assets.Scripts
                 TogglePause();
             }
             if(_playerIsOnScene)
+            {
                 if (_player.FirstInput && _firstTime)
                 {
                     _stopWatch.Start();
                     _firstTime = false;
                 }
+            }
         }
 
         public void LevelEnd()

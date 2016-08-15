@@ -16,6 +16,5 @@ namespace Assets.Scripts
             Time.text = stopWatch.Elapsed.Minutes + ":" +stopWatch.Elapsed.Seconds;
         }
 
-       
     }
 }
