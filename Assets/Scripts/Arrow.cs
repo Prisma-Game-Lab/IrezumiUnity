@@ -20,16 +20,15 @@ namespace Assets.Scripts
 
         void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.tag == "Player")
-            {
-                playerScript.Damage(20);
-            }
-
-            if (other.gameObject.tag == "Trap")
+			if (other.gameObject.tag == "Player") {
+				playerScript.Damage (20);
+			}
+			/* Revisao Pietro
+            else if (other.gameObject.tag == "Trap")
             {
                 Physics2D.IgnoreLayerCollision(0, 15);
             }
-
+			Fim */
             else
             {
                 Destroy(this.gameObject);

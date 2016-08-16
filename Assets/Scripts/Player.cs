@@ -134,29 +134,29 @@ namespace Assets.Scripts
         {
             float targetVelocityX = 0;
 
-            if (!IsDashing && !TakingHit)
+			if (IsDashing)
+			{
+				Velocity.y = 0;
+				targetVelocityX = _controller.Collisions.FaceDir * DashSpeed;
+				_firstTimeTakingHit = true;
+			}
+			else if (TakingHit)
+			{
+				var pushDir = _controller.Collisions.FaceDir;
+				if (_firstTimeTakingHit)
+				{
+					pushDir = -pushDir;
+					_firstTimeTakingHit = false;
+					Velocity.y = PushSpeed.y;
+				}
+				targetVelocityX = pushDir * PushSpeed.x;
+				Velocity.y += _gravity * Time.deltaTime;
+			}
+			else//if (!IsDashing && !TakingHit) //afinal, se nao entrou nos outros 2 ifs este vale automaticamente
             {
                 targetVelocityX = _directionalInput.x * MoveSpeed;
                 Velocity.y += _gravity * Time.deltaTime;
                 _firstTimeTakingHit = true;
-            }
-            else if (IsDashing)
-            {
-                Velocity.y = 0;
-                targetVelocityX = _controller.Collisions.FaceDir * DashSpeed;
-                _firstTimeTakingHit = true;
-            }
-            else if (TakingHit)
-            {
-                var pushDir = _controller.Collisions.FaceDir;
-                if (_firstTimeTakingHit)
-                {
-                    pushDir = -pushDir;
-                    _firstTimeTakingHit = false;
-                    Velocity.y = PushSpeed.y;
-                }
-                targetVelocityX = pushDir * PushSpeed.x;
-                Velocity.y += _gravity * Time.deltaTime;
             }
 
             if (Velocity.y < -70)
@@ -165,7 +165,7 @@ namespace Assets.Scripts
             }
 
             Velocity.x = Mathf.SmoothDamp(Velocity.x, targetVelocityX, ref _velocityXSmoothing, (_controller.Collisions.Below) ? _accelerationTimeGrounded : _accelerationTimeAirborne);
-            _stopped = Velocity.x == 0;
+            //_stopped = Velocity.x == 0; //Revisão Pietro 16/08
         }
 
         private void HandleWallSliding()
@@ -229,6 +229,7 @@ namespace Assets.Scripts
         public void SetDirectionalInput(Vector2 input)
         {
             _directionalInput = input;
+			_stopped = input.x == 0; //Revisão Pietro 16/08
         }
 
         public void OnDashInput()

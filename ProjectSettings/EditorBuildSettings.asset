@@ -8,6 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuTest.unity
   - enabled: 1
+    path: Assets/Scenes/PietroLevelSelector.unity
+  - enabled: 1
     path: Assets/Scenes/LevelSelector.unity
   - enabled: 1
     path: Assets/Scenes/LevelSelector Test.unity

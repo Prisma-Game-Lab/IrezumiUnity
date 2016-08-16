@@ -12,6 +12,7 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Start()
         {
+			Physics2D.IgnoreLayerCollision(0, 15);
             StartCoroutine(spawn());
         }
 
