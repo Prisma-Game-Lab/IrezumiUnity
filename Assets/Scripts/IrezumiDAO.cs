@@ -1,9 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Application
-{
-	public struct StageData{
+public struct StageData{
 		public int ink;
 		public int hp;
 		public int time;
@@ -59,8 +57,6 @@ namespace Application
 
 		static private StageData getStageData(int stageId){
 			string id = "l" + (stageId+1) + "_";
-			return StageData(PlayerPrefs.GetInt(id+kInkId),PlayerPrefs.GetInt(id+kHpId),PlayerPrefs.GetInt(id+kTimeId));
+			return new StageData(PlayerPrefs.GetInt(id+kInkId),PlayerPrefs.GetInt(id+kHpId),PlayerPrefs.GetInt(id+kTimeId));
 		}
 	}
-}
-

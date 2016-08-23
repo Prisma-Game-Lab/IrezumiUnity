@@ -46,7 +46,7 @@ namespace Assets.Scripts
                 const float size = .3f;
 
                 for (var i = 0; i < LocalWaypoints.Length; i++)
-                {
+				{
                     Vector3 globalWaypointPos = (Application.isPlaying) ? GlobalWaypoints[i] : LocalWaypoints[i] + transform.position;
                     Gizmos.DrawLine(globalWaypointPos - Vector3.up * size, globalWaypointPos + Vector3.up * size);
                     Gizmos.DrawLine(globalWaypointPos - Vector3.left * size, globalWaypointPos + Vector3.left * size);
