@@ -3,23 +3,37 @@ using System.Collections;
 
 public class FreezeFrame : MonoBehaviour {
 
-	public bool IsFrozen = false; //Is the game paused?
+    #region Variables
+    public bool IsFrozen; //Is the game paused?
 	public float FreezeFrameCooldown = 3; //How many seconds until freeze frame can happen again?
-	[SerializeField]float CooldownSeconds; //How many seconds until last freeze frane?
-	float PauseDuration; //Duration of pause
-	float PauseTime; //When was the game paused?
 
-	/// <summary>
-	/// Pauses the game during the specified time.
-	/// </summary>
-	/// <param name="time">Time - time the game will be paused</param>
-	public void Pause(float time){
-		if (IsFrozen || CooldownSeconds < FreezeFrameCooldown) return;
+    [SerializeField]
+    private float _cooldownSeconds; //How many seconds until last freeze frane?
+	private float _pauseDuration; //Duration of pause
+	private float _pauseTime; //When was the game paused?
+    private bool _checkingTime; //Should Update check if pause time has passed?
+    #endregion
+
+    /// <summary>
+    /// Pauses the game during the specified time.
+    /// </summary>
+    /// <param name="time">Time - time the game will be paused</param>
+    public void Pause(float time){
+		if (IsFrozen || _cooldownSeconds < FreezeFrameCooldown) return;
 		Time.timeScale = 0;
-		PauseTime = Time.realtimeSinceStartup;
+		_pauseTime = Time.realtimeSinceStartup;
 		IsFrozen = true;
-		PauseDuration = time;
+		_pauseDuration = time;
+	    _checkingTime = true;
 	}
+
+    public void Pause()
+    {
+        if (IsFrozen || _cooldownSeconds < FreezeFrameCooldown) return;
+        Time.timeScale = 0;
+        _pauseTime = Time.realtimeSinceStartup;
+        IsFrozen = true;
+    }
 
 	/// <summary>
 	/// Resumes the game.
@@ -27,23 +41,24 @@ public class FreezeFrame : MonoBehaviour {
 	public void Resume(){
 		Time.timeScale = 1;
 		IsFrozen = false;
-		CooldownSeconds = 0;
+		_cooldownSeconds = 0;
 	}
 
 	/// <summary>
 	/// Start this instance. Sets value of CooldownSeconds.
 	/// </summary>
 	public void Start(){
-		CooldownSeconds = FreezeFrameCooldown;
+		_cooldownSeconds = FreezeFrameCooldown;
 	}
 
 	/// <summary>
 	/// Update this instance. Checks if game is paused and if it should be resumed.
 	/// </summary>
 	public void Update(){
-		if(IsFrozen && (Time.realtimeSinceStartup > PauseTime + PauseDuration)){ //if game is paused and it's time to resume it
+		if(_checkingTime && IsFrozen && (Time.realtimeSinceStartup > _pauseTime + _pauseDuration)){ //if game is paused and it's time to resume it
 			Resume();
+		    _checkingTime = false;
 		}
-		CooldownSeconds+=Time.deltaTime;
+		_cooldownSeconds+=Time.deltaTime;
 	}
 }
