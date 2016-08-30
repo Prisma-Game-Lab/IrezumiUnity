@@ -196,6 +196,6 @@ MonoBehaviour:
   stayDuration: 1
   fadeOutDuration: 1
   scaleToFill: 0
-  sceneFormat: 0
-  sceneName: 
+  sceneFormat: 1
+  sceneName: MenuTest
   sceneIndex: 0
