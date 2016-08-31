@@ -114,9 +114,9 @@ namespace Assets.Scripts
 
 		private void updateText(){
 			int index = selectedMode + 1;
-			ink.text = "Ink Coletado: " + PlayerPrefs.GetInt(levels[index] + "_Ink");
-			hp.text = "Hp: " + PlayerPrefs.GetInt(levels[index] + "_Hp");
-			time.text = "Tempo: " + PlayerPrefs.GetInt(levels[index] + "_Minutes") + "m " + PlayerPrefs.GetInt(levels[index] + "_Seconds") + "s";
+			ink.text = "Ink Coletado(Best): " + PlayerPrefs.GetInt(levels[index] + "_Ink");
+			hp.text = "Hp(Best): " + PlayerPrefs.GetInt(levels[index] + "_Hp");
+			time.text = "Melhor Tempo: " + PlayerPrefs.GetInt(levels[index] + "_Minutes") + "m " + PlayerPrefs.GetInt(levels[index] + "_Seconds") + "s";
 		}
 
 		// Update is called once per frame

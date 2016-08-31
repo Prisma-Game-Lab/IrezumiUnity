@@ -118,11 +118,25 @@ namespace Assets.Scripts
             var stat = statsScreen.GetComponent<StatScreen>();
             _stopWatch.Stop();
             stat.SetStats(_player, _stopWatch);
-            HpBar.SetActive (false);
-            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Hp", ((int)_player.Hp));
-            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Ink", (int)_player.InkCollected);
-            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Minutes", _stopWatch.Elapsed.Minutes);
-            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Seconds", _stopWatch.Elapsed.Seconds);
+            HpBar.SetActive(false);
+
+            if (((int) _player.Hp) > PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Hp"))
+            {
+                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Hp", ((int) _player.Hp));
+            }
+            if ((int) _player.InkCollected > PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Ink"))
+            {
+                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Ink", (int) _player.InkCollected);
+            }
+            if (_stopWatch.Elapsed.Minutes < PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Minutes"))
+            {
+                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Minutes", _stopWatch.Elapsed.Minutes);
+                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Seconds", _stopWatch.Elapsed.Seconds);
+            }
+            else if (_stopWatch.Elapsed.Seconds < PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Seconds"))
+            {
+                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Seconds", _stopWatch.Elapsed.Seconds);
+            }
         }
 
         public bool IsPaused()
