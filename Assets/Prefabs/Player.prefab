@@ -235,6 +235,8 @@ MonoBehaviour:
   IsDashing: 0
   PlayerGraphics: {fileID: 126734}
   Velocity: {x: 0, y: 0}
+  InkCollected: 0
+  FirstInput: 0
   _gravity: 0
 --- !u!114 &11428258
 MonoBehaviour:
