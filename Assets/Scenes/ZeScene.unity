@@ -767,6 +767,14 @@ Prefab:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
       value: 63.145065
       objectReference: {fileID: 0}
+    - target: {fileID: 6852048, guid: 3751bd26a0ed17143a822f08c6d87dae, type: 2}
+      propertyPath: m_Points.Array.data[7].x
+      value: -56.134785
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852048, guid: 3751bd26a0ed17143a822f08c6d87dae, type: 2}
+      propertyPath: m_Points.Array.data[7].y
+      value: 46.09304
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3751bd26a0ed17143a822f08c6d87dae, type: 2}
   m_IsPrefabParent: 0
@@ -930,13 +938,6 @@ MonoBehaviour:
   CamShake: 0
   _shakeDuration: 0
   _shakeAmount: 0
-  _currentLookAheadX: 0
-  _targetLookAheadX: 0
-  _lookAheadDirX: 0
-  _smoothLookVelocityX: 0
-  _smoothLookVelocityY: 0
-  _smoothVelocityY: 0
-  _lookAheadStopped: 0
 --- !u!81 &801087767
 AudioListener:
   m_ObjectHideFlags: 0

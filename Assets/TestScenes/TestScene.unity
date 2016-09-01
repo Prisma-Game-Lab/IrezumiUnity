@@ -463,6 +463,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11441094, guid: b47c3a0a420eb6b45af6ebfb555e5882, type: 2}
+      propertyPath: _deltaMovement.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b47c3a0a420eb6b45af6ebfb555e5882, type: 2}
   m_IsPrefabParent: 0
@@ -864,10 +868,6 @@ Prefab:
     - target: {fileID: 431226, guid: 7b30d298271ce6b46a406eab09317039, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 431226, guid: 7b30d298271ce6b46a406eab09317039, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b30d298271ce6b46a406eab09317039, type: 2}
