@@ -30,7 +30,7 @@ namespace Assets.Scripts
         #region Start
         public void Start()
         {
-            SetDefaut();
+          //  SetDefaut();
             _focusArea = new FocusArea(Target.Collider.bounds, FocusAreaSize);
         }
 

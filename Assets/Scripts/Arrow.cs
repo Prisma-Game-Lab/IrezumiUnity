@@ -22,6 +22,7 @@ namespace Assets.Scripts
         {
 			if (other.gameObject.tag == "Player") {
 				playerScript.Damage (20);
+				Destroy (this.gameObject);
 			}
 			/* Revisao Pietro
             else if (other.gameObject.tag == "Trap")
