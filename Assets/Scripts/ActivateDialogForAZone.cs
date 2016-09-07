@@ -25,15 +25,7 @@ namespace Assets.Scripts
 
             if (_waitForPress && Input.GetKeyDown(KeyCode.Return))
             {
-                _dialogBox.ReloadScript(TextFile);
-                _dialogBox.CurrentLine = StartLine;
-                _dialogBox.EndAtLine = EndLine;
-                _dialogBox.EnableDialogBox();
-
-                if (DestroyWhenActivated)
-                {
-                    Destroy(gameObject);
-                }
+                UpdateDialogBox();
             }
         }
 
@@ -48,24 +40,28 @@ namespace Assets.Scripts
         void OnCollisionEnter2D(Collision2D collider)
         {
            if( collider.collider.name == "Player")
-            {
-                if (RequireButtonPress)
+           {
+               if (RequireButtonPress)
                 {
                     _waitForPress = true;
                     return;
                 }
 
-                _dialogBox.ReloadScript(TextFile);
-                _dialogBox.CurrentLine = StartLine;
-                _dialogBox.EndAtLine = EndLine;
-                _dialogBox.EnableDialogBox();
+               UpdateDialogBox();
+           }
+        }
 
-                if (DestroyWhenActivated)
-                {
-                    Destroy(gameObject);
-                }
+        private void UpdateDialogBox()
+        {
+            _dialogBox.ReloadScript(TextFile);
+            _dialogBox.CurrentLine = StartLine;
+            _dialogBox.ChangeEndAtLine(EndLine);
+            _dialogBox.EnableDialogBox();
+
+            if (DestroyWhenActivated)
+            {
+                Destroy(gameObject);
             }
-            
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Assets.Scripts
         }
 
 
-        private void TogglePause()
+        public void TogglePause()
         {
             if (!_gamePaused)
             {

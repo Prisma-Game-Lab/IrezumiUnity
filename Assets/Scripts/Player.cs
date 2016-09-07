@@ -58,7 +58,7 @@ namespace Assets.Scripts
         {
             _controller = GetComponent<Controller2D>();
             _graphicsAnimator = PlayerGraphics.GetComponent<Animator>();
-           // SetDefaut();
+            SetDefaut();
             SetGravityAndVelocityEquations();
         }
 

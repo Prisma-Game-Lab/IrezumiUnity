@@ -23,14 +23,14 @@ namespace Assets.Scripts
 
         private bool _isTyping;
         private bool _cancelTyping;
-        private FreezeFrame _freezeFrame;
+        private GameManager _gameManager;
 
         // Use this for initialization
         void Start ()
         {
             DialogPortrait.GetComponent<Image>().color = new Vector4(255,255,255, 255);
             DialogPortrait.enabled = false;
-            _freezeFrame = gameObject.GetComponent<FreezeFrame>();
+            _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             CurrentLine = 0;
             if (DialogText != null)
             {
@@ -61,7 +61,10 @@ namespace Assets.Scripts
                 {
                     CurrentLine++;
                     if (CurrentLine > EndAtLine)
+                    {
                         DisableDialogBox();
+                        _gameManager.TogglePause();
+                    }
                     else
                     {
                         PreprocessLine();
@@ -96,7 +99,7 @@ namespace Assets.Scripts
 
         public void EnableDialogBox()
         {
-            _freezeFrame.Pause();
+            _gameManager.TogglePause();
             DialogBoxObject.SetActive(true);
             IsActive = true;
             PreprocessLine();
@@ -109,11 +112,15 @@ namespace Assets.Scripts
         /// </summary>
         private void PreprocessLine()
         {
+            print(EndAtLine);
             if (CheckIfChangePortrait(TextLines[CurrentLine]))
             {
                 CurrentLine++;
                 if (CurrentLine > EndAtLine)
+                {
                     DisableDialogBox();
+                    _gameManager.TogglePause();
+                }
             }
         }
 
@@ -130,7 +137,6 @@ namespace Assets.Scripts
 
         public void DisableDialogBox()
         {
-            _freezeFrame.Resume();
             DialogBoxObject.SetActive(false);
             IsActive = false;
             DialogPortrait.enabled = false;
@@ -165,6 +171,16 @@ namespace Assets.Scripts
             DialogPortrait.enabled = true;
             if (Sprites[portraitNumber] != null)
                 DialogPortrait.sprite = Sprites[portraitNumber];
+        }
+
+        public void ChangeEndAtLine(int newEndAtLine)
+        {
+            if (newEndAtLine == 0) //endatline not set in inspector then get all lines
+                EndAtLine = TextLines.Length - 1;
+            if (newEndAtLine <= TextLines.Length - 1)
+                EndAtLine = newEndAtLine;
+            else
+                EndAtLine = TextLines.Length - 1;
         }
     }
 }
