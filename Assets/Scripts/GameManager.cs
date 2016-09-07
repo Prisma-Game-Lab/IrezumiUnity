@@ -56,6 +56,7 @@ namespace Assets.Scripts
         // Use this for initialization
         void Start () {
             DontDestroyOnLoad(this);
+            OnLevelWasLoaded(SceneManager.GetActiveScene().buildIndex);
         }
 
         void OnLevelWasLoaded(int level)
@@ -143,5 +144,7 @@ namespace Assets.Scripts
         {
             return _gamePaused;
         }
+
+        //private void 
     }
 }

@@ -112,7 +112,6 @@ namespace Assets.Scripts
         /// </summary>
         private void PreprocessLine()
         {
-            print(EndAtLine);
             if (CheckIfChangePortrait(TextLines[CurrentLine]))
             {
                 CurrentLine++;
