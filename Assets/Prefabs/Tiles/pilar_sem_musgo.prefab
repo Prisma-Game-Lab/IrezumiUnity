@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 446730}
   - 212: {fileID: 21204250}
   - 60: {fileID: 6085074}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: pilar_sem_musgo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
