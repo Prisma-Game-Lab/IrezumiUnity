@@ -30,7 +30,7 @@ namespace Assets.Scripts
         {
             DialogPortrait.GetComponent<Image>().color = new Vector4(255,255,255, 255);
             DialogPortrait.enabled = false;
-            _gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            _gameManager = GameManager.Instance;
             CurrentLine = 0;
             if (DialogText != null)
             {

@@ -4,21 +4,18 @@ namespace Assets.Scripts
 {
     public class LevelEnd : MonoBehaviour {
 
-        GameObject gameManager;
-
-        GameManager gm;
+        private GameManager _gameManager;
 
         void Start()
         {
-            gameManager = GameObject.FindGameObjectWithTag("GameManager");
-            gm = gameManager.GetComponent<GameManager>();
+            _gameManager = GameManager.Instance;
         }
 
         void OnTriggerEnter2D (Collider2D other)
         {
             if (other.gameObject.tag == "Player")
             {
-                gm.LevelEnd();
+                _gameManager.LevelEnd();
             }
         }
     }

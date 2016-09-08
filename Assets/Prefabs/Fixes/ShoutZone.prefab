@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 154748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0999998, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,9 +76,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextFile: {fileID: 4900000, guid: 9bc0079b94e7568428aaab46898f04bd, type: 3}
   StartLine: 0
-  EndLine: 0
-  DestroyWhenActivated: 0
-  RequireButtonPress: 1
+  EndLine: 6
+  DestroyWhenActivated: 1
+  RequireButtonPress: 0
 --- !u!212 &21210038
 SpriteRenderer:
   m_ObjectHideFlags: 1

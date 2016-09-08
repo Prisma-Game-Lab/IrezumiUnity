@@ -6,9 +6,6 @@ namespace Assets.Scripts
 {
     public class InitiateScript : MonoBehaviour
     {
-
-        private static GameObject _gameManager;
-        
         [RuntimeInitializeOnLoadMethod]
         static void InitializeGameManager()
         {

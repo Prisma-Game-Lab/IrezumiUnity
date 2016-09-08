@@ -10,11 +10,10 @@ namespace Assets.Scripts
         public float DashCooldown;
         public GameObject ParticleSpawn;
 
-        private ParticleSystem ParticleSystem;
-        private GameObject Trail;
-        private TrailRenderer tr;
-        private GameObject gameManager;
-        private GameManager gm;
+        private ParticleSystem _particleSystem;
+        private GameObject _trail;
+        private TrailRenderer _tr;
+        private GameManager _gameManager;
 
         [SerializeField]
         public bool TakingHit;
@@ -23,12 +22,11 @@ namespace Assets.Scripts
         #region Start
         public void Start()
         {
-            Trail = GameObject.Find("FollowTrail");
-            tr = Trail.GetComponent<TrailRenderer>();
+            _trail = GameObject.Find("FollowTrail");
+            _tr = _trail.GetComponent<TrailRenderer>();
             Player = GetComponent<Player>();
-			gameManager = GameObject.FindGameObjectWithTag("GameManager");
-            gm = gameManager.GetComponent<GameManager>();
-            ParticleSystem = ParticleSpawn.GetComponent<ParticleSystem>();
+            _gameManager = GameManager.Instance;
+            _particleSystem = ParticleSpawn.GetComponent<ParticleSystem>();
             DeactivateParticle();
         }
         #endregion
@@ -36,7 +34,7 @@ namespace Assets.Scripts
         #region Update
         public void Update()
         {
-            if (!gm.IsPaused())
+            if (!_gameManager.IsPaused)
             {
                 SetDashCooldown();
 
@@ -85,12 +83,12 @@ namespace Assets.Scripts
 
         private void ActivateParticle()
         {
-            ParticleSystem.Play();
+            _particleSystem.Play();
         }
 
         private void DeactivateParticle()
         {
-            ParticleSystem.Stop();
+            _particleSystem.Stop();
         }
         #endregion
     }

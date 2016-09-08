@@ -7,16 +7,15 @@ namespace Assets.Scripts
     public class GameManager : MonoBehaviour
     {
 
-        private GameObject statsScreen;
-        private GameObject HpBar;
-        private GameObject pausedScreen;
-        private GameObject playerObj;
-        private Stopwatch _stopWatch = new Stopwatch();
-        private bool _gamePaused = false;
+        private GameObject _statsScreen;
+        private GameObject _hpBar;
+        private GameObject _pausedScreen;
+        private GameObject _playerObj;
+        private readonly Stopwatch _stopWatch = new Stopwatch();
+        private bool _gamePaused;
         private bool _firstTime = true;
         private float _timeScaleTemp;
         private Player _player;
-
         private static GameManager _instance;
         private bool _playerIsOnScene;
 
@@ -25,22 +24,12 @@ namespace Assets.Scripts
             get { return _instance; }
         }
 
-
-        public void TogglePause()
+        #region Pause
+        public bool IsPaused
         {
-            if (!_gamePaused)
-            {
-                _gamePaused = true;
-                _timeScaleTemp = Time.timeScale;
-                Time.timeScale = 0;
-            }
-            else
-            {
-                _gamePaused = false;
-                Time.timeScale = _timeScaleTemp;
-            }
+            get { return _gamePaused; }
         }
-
+        
         public void EnablePause()
         {
             if (!_gamePaused)
@@ -59,6 +48,7 @@ namespace Assets.Scripts
                 Time.timeScale = _timeScaleTemp;
             }
         }
+        #endregion
 
         private void Awake()
         {
@@ -81,20 +71,20 @@ namespace Assets.Scripts
         void OnLevelWasLoaded(int level)
         {
             DisablePause();
-            if (statsScreen = GameObject.FindGameObjectWithTag ("StatScreen")) 
+            if (_statsScreen = GameObject.FindGameObjectWithTag ("StatScreen")) 
             {
-                statsScreen.SetActive(false);
+                _statsScreen.SetActive(false);
             }
             
-            if (pausedScreen = GameObject.FindGameObjectWithTag ("PausedScreen")) 
+            if (_pausedScreen = GameObject.FindGameObjectWithTag ("PausedScreen")) 
             {
-                pausedScreen.SetActive(false);
-                HpBar = GameObject.FindGameObjectWithTag("HPBarCanvas");	
+                _pausedScreen.SetActive(false);
+                _hpBar = GameObject.FindGameObjectWithTag("HPBarCanvas");	
             }
-            if (playerObj = GameObject.FindGameObjectWithTag("Player"))
+            if (_playerObj = GameObject.FindGameObjectWithTag("Player"))
             {
                 _playerIsOnScene = true;
-                _player = playerObj.GetComponent<Player>();
+                _player = _playerObj.GetComponent<Player>();
             }
             _firstTime = true;
             _stopWatch.Reset();
@@ -109,17 +99,17 @@ namespace Assets.Scripts
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
-            if (Input.GetKeyDown(KeyCode.P) && pausedScreen)
+            if (Input.GetKeyDown(KeyCode.P) && _pausedScreen)
             {
                 if (!_gamePaused)
                 {
-                    pausedScreen.SetActive(true);
+                    _pausedScreen.SetActive(true);
                     print("PAUSED");
                     EnablePause();
                 }
                 else
                 {
-                    pausedScreen.SetActive(false);
+                    _pausedScreen.SetActive(false);
                     print("UNPAUSED");
                     DisablePause();
                 }
@@ -136,11 +126,11 @@ namespace Assets.Scripts
 
         public void LevelEnd()
         {
-            statsScreen.SetActive(true);
-            var stat = statsScreen.GetComponent<StatScreen>();
+            _statsScreen.SetActive(true);
+            var stat = _statsScreen.GetComponent<StatScreen>();
             _stopWatch.Stop();
             stat.SetStats(_player, _stopWatch);
-            HpBar.SetActive(false);
+            _hpBar.SetActive(false);
 
             EnablePause();
 
@@ -163,11 +153,6 @@ namespace Assets.Scripts
             }
         }
 
-        public bool IsPaused()
-        {
-            return _gamePaused;
-        }
-
-        //private void 
+        
     }
 }
