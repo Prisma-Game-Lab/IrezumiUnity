@@ -12,7 +12,7 @@ namespace Assets.Scripts
         private GameObject pausedScreen;
         private GameObject playerObj;
         private Stopwatch _stopWatch = new Stopwatch();
-        private bool _gamePaused;
+        private bool _gamePaused = false;
         private bool _firstTime = true;
         private float _timeScaleTemp;
         private Player _player;
@@ -41,6 +41,25 @@ namespace Assets.Scripts
             }
         }
 
+        public void EnablePause()
+        {
+            if (!_gamePaused)
+            {
+                _gamePaused = true;
+                _timeScaleTemp = Time.timeScale;
+                Time.timeScale = 0;
+            }
+        }
+
+        public void DisablePause()
+        {
+            if (_gamePaused)
+            {
+                _gamePaused = false;
+                Time.timeScale = _timeScaleTemp;
+            }
+        }
+
         private void Awake()
         {
             if (_instance != null && _instance != this)
@@ -61,6 +80,7 @@ namespace Assets.Scripts
 
         void OnLevelWasLoaded(int level)
         {
+            DisablePause();
             if (statsScreen = GameObject.FindGameObjectWithTag ("StatScreen")) 
             {
                 statsScreen.SetActive(false);
@@ -95,13 +115,14 @@ namespace Assets.Scripts
                 {
                     pausedScreen.SetActive(true);
                     print("PAUSED");
+                    EnablePause();
                 }
                 else
                 {
                     pausedScreen.SetActive(false);
                     print("UNPAUSED");
+                    DisablePause();
                 }
-                TogglePause();
             }
             if(_playerIsOnScene)
             {
@@ -120,6 +141,8 @@ namespace Assets.Scripts
             _stopWatch.Stop();
             stat.SetStats(_player, _stopWatch);
             HpBar.SetActive(false);
+
+            EnablePause();
 
             if (((int) _player.Hp) > PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Hp"))
             {

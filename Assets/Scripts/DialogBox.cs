@@ -55,6 +55,8 @@ namespace Assets.Scripts
         {
             if(!IsActive)
                 return;
+
+            _gameManager.EnablePause();
             if (Input.anyKeyDown)
             {
                 if (!_isTyping)
@@ -63,7 +65,6 @@ namespace Assets.Scripts
                     if (CurrentLine > EndAtLine)
                     {
                         DisableDialogBox();
-                        _gameManager.TogglePause();
                     }
                     else
                     {
@@ -99,7 +100,7 @@ namespace Assets.Scripts
 
         public void EnableDialogBox()
         {
-            _gameManager.TogglePause();
+            _gameManager.EnablePause();
             DialogBoxObject.SetActive(true);
             IsActive = true;
             PreprocessLine();
@@ -118,7 +119,6 @@ namespace Assets.Scripts
                 if (CurrentLine > EndAtLine)
                 {
                     DisableDialogBox();
-                    _gameManager.TogglePause();
                 }
             }
         }
@@ -139,6 +139,7 @@ namespace Assets.Scripts
             DialogBoxObject.SetActive(false);
             IsActive = false;
             DialogPortrait.enabled = false;
+            _gameManager.DisablePause();
         }
 
         public void ReloadScript(TextAsset textFile)
