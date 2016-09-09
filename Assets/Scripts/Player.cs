@@ -117,7 +117,8 @@ namespace Assets.Scripts
 
             CalculateVelocity();
             HandleWallSliding();
-
+            if(_grounded)
+                _graphicsAnimator.SetBool("LeavingWall", false);
             _grounded = false;
             _facingRight = _controller.Collisions.FaceDir == 1;
 
@@ -245,6 +246,7 @@ namespace Assets.Scripts
 			FirstInput = true;
             if (_wallSliding)
             {
+                _graphicsAnimator.SetBool("LeavingWall",true);
                 /*player trying to move the same direction as the wall its facing and move away from the wall*/
                 if (_wallDirX == _directionalInput.x)
                 {
@@ -266,7 +268,7 @@ namespace Assets.Scripts
             }
             if (_controller.Collisions.Below)
                 Velocity.y = _maxjumpVelocity;
-        }
+		}
 
         public void OnJumpInputUp()
 		{
