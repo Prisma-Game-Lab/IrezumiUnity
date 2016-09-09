@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 470390}
   - 212: {fileID: 21233256}
   - 60: {fileID: 6046734}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: parede_com_musgo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 199234}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -21.59, y: 6.11, z: 0}
-  m_LocalScale: {x: 0.56, y: 0.56, z: 0.56}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -153,7 +153,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1729964905
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f890eb55e72303d4ab418e3080d1acf9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

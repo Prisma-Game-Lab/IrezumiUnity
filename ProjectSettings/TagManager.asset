@@ -32,7 +32,7 @@ TagManager:
   - Trap
   - WallTrap
   - ShoutZones
-  - 
+  - Foreground
   - 
   - 
   - 
@@ -62,4 +62,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 437324363
+    locked: 0
+  - name: Foreground
+    uniqueID: 1161761009
     locked: 0
