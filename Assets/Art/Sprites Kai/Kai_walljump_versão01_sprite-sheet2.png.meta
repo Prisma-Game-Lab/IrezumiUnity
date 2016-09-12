@@ -1,0 +1,217 @@
+fileFormatVersion: 2
+guid: 4a7897f0e6c80dc4d9a727982d38d2c5
+timeCreated: 1473644082
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: "Kai_walljump_vers\xE3o01_sprite-sheet2_0"
+    21300002: "Kai_walljump_vers\xE3o01_sprite-sheet2_1"
+    21300004: "Kai_walljump_vers\xE3o01_sprite-sheet2_2"
+    21300006: "Kai_walljump_vers\xE3o01_sprite-sheet2_3"
+    21300008: "Kai_walljump_vers\xE3o01_sprite-sheet2_4"
+    21300010: "Kai_walljump_vers\xE3o01_sprite-sheet2_5"
+    21300012: "Kai_walljump_vers\xE3o01_sprite-sheet2_6"
+    21300014: "Kai_walljump_vers\xE3o01_sprite-sheet2_7"
+    21300016: "Kai_walljump_vers\xE3o01_sprite-sheet2_8"
+    21300018: "Kai_walljump_vers\xE3o01_sprite-sheet2_9"
+    21300020: "Kai_walljump_vers\xE3o01_sprite-sheet2_10"
+    21300022: "Kai_walljump_vers\xE3o01_sprite-sheet2_11"
+    21300024: "Kai_walljump_vers\xE3o01_sprite-sheet2_12"
+    21300026: "Kai_walljump_vers\xE3o01_sprite-sheet2_13"
+    21300028: "Kai_walljump_vers\xE3o01_sprite-sheet2_14"
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 400
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "Kai_walljump_vers\xE3o01_sprite-sheet2_0"
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 207
+        width: 555
+        height: 1001
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Kai_walljump_vers\xE3o01_sprite-sheet2_1"
+      rect:
+        serializedVersion: 2
+        x: 1793
+        y: 270
+        width: 797
+        height: 1001
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Kai_walljump_vers\xE3o01_sprite-sheet2_2"
+      rect:
+        serializedVersion: 2
+        x: 3341
+        y: 231
+        width: 967
+        height: 1056
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Kai_walljump_vers\xE3o01_sprite-sheet2_3"
+      rect:
+        serializedVersion: 2
+        x: 5012
+        y: 129
+        width: 922
+        height: 1156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Kai_walljump_vers\xE3o01_sprite-sheet2_4"
+      rect:
+        serializedVersion: 2
+        x: 6621
+        y: 200
+        width: 980
+        height: 1094
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Kai_walljump_vers\xE3o01_sprite-sheet2_5"
+      rect:
+        serializedVersion: 2
+        x: 8285
+        y: 207
+        width: 836
+        height: 1098
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Kai_walljump_vers\xE3o01_sprite-sheet2_6"
+      rect:
+        serializedVersion: 2
+        x: 10129
+        y: 177
+        width: 719
+        height: 1125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Kai_walljump_vers\xE3o01_sprite-sheet2_7"
+      rect:
+        serializedVersion: 2
+        x: 11895
+        y: 168
+        width: 609
+        height: 1072
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Kai_walljump_vers\xE3o01_sprite-sheet2_8"
+      rect:
+        serializedVersion: 2
+        x: 13543
+        y: 113
+        width: 648
+        height: 1079
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Kai_walljump_vers\xE3o01_sprite-sheet2_10"
+      rect:
+        serializedVersion: 2
+        x: 15184
+        y: 59
+        width: 633
+        height: 1057
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: "Kai_walljump_vers\xE3o01_sprite-sheet2_12"
+      rect:
+        serializedVersion: 2
+        x: 10094
+        y: 799
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
