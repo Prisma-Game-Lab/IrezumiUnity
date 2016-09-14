@@ -1,5 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
@@ -15,6 +17,7 @@ namespace Assets.Scripts
         private bool _gamePaused;
         private bool _firstTime = true;
         private float _timeScaleTemp;
+        private float _fixedTimeScaleTemp;
         private Player _player;
         private static GameManager _instance;
         private bool _playerIsOnScene;
@@ -36,7 +39,9 @@ namespace Assets.Scripts
             {
                 _gamePaused = true;
                 _timeScaleTemp = Time.timeScale;
+                _fixedTimeScaleTemp = Time.fixedDeltaTime;
                 Time.timeScale = 0;
+                Time.fixedDeltaTime = 0;
             }
         }
 
@@ -46,6 +51,7 @@ namespace Assets.Scripts
             {
                 _gamePaused = false;
                 Time.timeScale = _timeScaleTemp;
+                Time.fixedDeltaTime = _fixedTimeScaleTemp;
             }
         }
         #endregion
@@ -126,6 +132,8 @@ namespace Assets.Scripts
 
         public void LevelEnd()
         {
+            StartCoroutine(SelectButtonLater());
+
             _statsScreen.SetActive(true);
             var stat = _statsScreen.GetComponent<StatScreen>();
             _stopWatch.Stop();
@@ -153,6 +161,17 @@ namespace Assets.Scripts
             }
         }
 
-        
+        /// <summary>
+        /// waits a frame before selecting the button.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator SelectButtonLater()
+        {
+            yield return null;
+            EventSystem es = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+            es.SetSelectedGameObject(null);
+            es.SetSelectedGameObject(es.firstSelectedGameObject);
+        }
+
     }
 }

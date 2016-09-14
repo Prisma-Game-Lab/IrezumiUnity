@@ -110,25 +110,28 @@ namespace Assets.Scripts
         #region Update
         public void Update()
         {
-            _wallSliding = false;
-            _wallDirX = (_controller.Collisions.Left) ? -1 : 1;
-			if(FirstInput)
-				Hp -= HpLostPerSecond * Time.deltaTime;
+            if (!GameManager.Instance.IsPaused)
+            {
+                _wallSliding = false;
+                _wallDirX = (_controller.Collisions.Left) ? -1 : 1;
+                if (FirstInput)
+                    Hp -= HpLostPerSecond*Time.deltaTime;
 
-            CalculateVelocity();
-            HandleWallSliding();
-            if(_grounded)
-                _graphicsAnimator.SetBool("LeavingWall", false);
-            _grounded = false;
-            _facingRight = _controller.Collisions.FaceDir == 1;
+                CalculateVelocity();
+                HandleWallSliding();
+                if (_grounded)
+                    _graphicsAnimator.SetBool("LeavingWall", false);
+                _grounded = false;
+                _facingRight = _controller.Collisions.FaceDir == 1;
 
-            SetGraphicsAnimatorConfigurations();
+                SetGraphicsAnimatorConfigurations();
 
-            _controller.Move(Velocity * Time.deltaTime, _directionalInput);
+                _controller.Move(Velocity*Time.deltaTime, _directionalInput);
 
-            ResetVerticalVelocity();
+                ResetVerticalVelocity();
 
-            _graphicsAnimator.SetBool("Grounded", _grounded);
+                _graphicsAnimator.SetBool("Grounded", _grounded);
+            }
         }
 
         private void CalculateVelocity()

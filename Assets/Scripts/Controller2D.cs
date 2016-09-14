@@ -45,8 +45,8 @@ namespace Assets.Scripts
         {
             _maxClimbAngle = 80;
             _maxDescendAngle = 80;
-            //TimeToRecover = .18f;
-            //InvulnerabilityTime = 2;
+            TimeToRecover = .18f;
+            InvulnerabilityTime = 2;
             //InteractiveMask = LayerMask.GetMask("Enemy","Trap");
         }
         #endregion          
