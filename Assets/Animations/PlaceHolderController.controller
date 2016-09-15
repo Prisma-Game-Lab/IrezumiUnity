@@ -924,7 +924,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 247c4d54ec4143148adfbc5b5e743029, type: 2}
+  m_Motion: {fileID: 7400000, guid: 225f53c60e4dca440a55280f8b86548f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: Grounded
@@ -1024,7 +1024,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: ed47d33e0d0cee1459c699407a493a4e, type: 2}
+  m_Motion: {fileID: 7400000, guid: 1cae0185ed8fe2840ae4f349c9e1efd2, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: FacingRight
@@ -1049,7 +1049,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e99dd91622e673c44a5e1a1e509b63d3, type: 2}
+  m_Motion: {fileID: 7400000, guid: a3fc7698f71d76f4c80cee1f8bdbdf97, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1074,7 +1074,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e0d6780b9d32bbd45b3cf65802de4a70, type: 2}
+  m_Motion: {fileID: 7400000, guid: b249f8697524e3c46a599caebe403168, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1095,10 +1095,10 @@ AnimatorStateMachine:
     m_Position: {x: 960, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110218348}
-    m_Position: {x: 960, y: 120, z: 0}
+    m_Position: {x: 1092, y: 132, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110203300}
-    m_Position: {x: 396, y: 120, z: 0}
+    m_Position: {x: 276, y: 132, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110228752}
     m_Position: {x: 36, y: 480, z: 0}
@@ -1119,13 +1119,13 @@ AnimatorStateMachine:
     m_Position: {x: 36, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110230426}
-    m_Position: {x: 960, y: 324, z: 0}
+    m_Position: {x: 1056, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000014217475268}
-    m_Position: {x: 396, y: 324, z: 0}
+    m_Position: {x: 264, y: 312, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000013417827872}
-    m_Position: {x: 396, y: 444, z: 0}
+    m_Position: {x: 432, y: 444, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000013677900992}
     m_Position: {x: 960, y: 456, z: 0}
@@ -1304,7 +1304,10 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: Velocity.x
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110204814}
   m_Solo: 0
@@ -1326,7 +1329,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: WallJumpR
-  m_Speed: 5
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000012325631912}
