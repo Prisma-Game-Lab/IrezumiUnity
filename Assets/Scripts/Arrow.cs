@@ -5,11 +5,11 @@ namespace Assets.Scripts
 {
     public class Arrow : MonoBehaviour
     {
-        private float speed;
+        public float speed = 20f;
 
         void Start()
         {
-            speed = 20f;
+            //speed = 20f;
         }
 
         void OnCollisionEnter2D(Collision2D other)
