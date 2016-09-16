@@ -5,23 +5,17 @@ namespace Assets.Scripts
 {
     public class Arrow : MonoBehaviour
     {
-
-        float speed;
-
-        GameObject player;
-        Player playerScript;
+        private float speed;
 
         void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player");
-            playerScript = player.GetComponent<Player>();
             speed = 20f;
         }
 
         void OnCollisionEnter2D(Collision2D other)
         {
 			if (other.gameObject.tag == "Player") {
-				playerScript.Damage (20);
+				other.gameObject.GetComponent<Player>().Damage (20);
 				Destroy (this.gameObject);
 			}
 			/* Revisao Pietro
