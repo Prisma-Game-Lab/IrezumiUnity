@@ -59,9 +59,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 431226}
   - 61: {fileID: 6161688}
-  - 114: {fileID: 11481542}
   - 114: {fileID: 11403348}
   - 114: {fileID: 11428258}
+  - 114: {fileID: 114000013391755490}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -237,6 +237,7 @@ MonoBehaviour:
   IsInvulnerable: 0
   IsDashing: 0
   PlayerGraphics: {fileID: 126734}
+  FreezeFrame: {fileID: 0}
   Velocity: {x: 0, y: 0}
   InkCollected: 0
   FirstInput: 0
@@ -256,35 +257,6 @@ MonoBehaviour:
   DashCooldown: 0
   ParticleSpawn: {fileID: 188272}
   TakingHit: 0
---- !u!114 &11481542
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 193566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bed71298b60675843a07f68ec234dbc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionMask:
-    serializedVersion: 2
-    m_Bits: 33280
-  SkinWidth: 0
-  HorizontalRayCount: 0
-  VerticalRayCount: 0
-  HorizontalRaySpacing: 0
-  VerticalRaySpacing: 0
-  Collider: {fileID: 0}
-  InteractiveMask:
-    serializedVersion: 2
-    m_Bits: 18432
-  PInput: {fileID: 11428258}
-  FreezeFrame: {fileID: 0}
-  TimeToRecover: 0
-  InvulnerabilityTime: 0
-  PauseDuration: 0
-  PlayerInput: {x: 0, y: 0}
 --- !u!198 &19858396
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -2126,3 +2098,30 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 193566}
   m_IsPrefabParent: 1
+--- !u!114 &114000013391755490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4dfe42085adca740b0f002f8944de65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionMask:
+    serializedVersion: 2
+    m_Bits: 33280
+  SkinWidth: 0
+  HorizontalRayCount: 0
+  VerticalRayCount: 0
+  HorizontalRaySpacing: 0
+  VerticalRaySpacing: 0
+  Collider: {fileID: 0}
+  InteractiveMask:
+    serializedVersion: 2
+    m_Bits: 18432
+  TimeToRecover: 0
+  InvulnerabilityTime: 0
+  Input: {x: 0, y: 0}
+  PInput: {fileID: 11428258}

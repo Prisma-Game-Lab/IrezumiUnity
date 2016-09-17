@@ -5,27 +5,26 @@ namespace Assets.Scripts
 {
     public class FlameTrap : MonoBehaviour
     {
-
-
-        GameObject playerObj;
-        Player playerScript;
-        Controller2D playerController;
+        #region Variables
+        private GameObject _playerObj;
+        private Player _playerScript;
+        private PlayerController _playerController;
+        #endregion
 
         void Start()
         {
-            playerObj = GameObject.FindGameObjectWithTag("Player");
-            playerScript = playerObj.GetComponent<Player>();
-            playerController = playerObj.GetComponent<Controller2D>();
+            _playerObj = GameObject.FindGameObjectWithTag("Player");
+            _playerScript = _playerObj.GetComponent<Player>();
+            _playerController = _playerObj.GetComponent<PlayerController>();
             
         }
 
         void OnCollisionEnter2D(Collision2D other)
         {
-            print("GREEN FLAME");
             if (other.gameObject.tag == "Player")
             {
-                playerScript.Damage(20);
-                playerController.SetPlayerWasHitAndIsInvulnerable();
+                _playerScript.Damage(20);
+                _playerController.SetPlayerWasHitAndIsInvulnerable();
             }
         }
     }

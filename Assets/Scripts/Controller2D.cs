@@ -3,26 +3,19 @@
 namespace Assets.Scripts
 {
     [RequireComponent (typeof (BoxCollider2D))]
-    [RequireComponent(typeof(FreezeFrame))]
     public class Controller2D : RaycastController
     {
 
         #region Variables
         private float _maxClimbAngle;
         private float _maxDescendAngle;
-        private GameObject MainCamera;
-        private CameraFollow CamScript;
-                       
+
         public LayerMask InteractiveMask;
         public CollisionInfo Collisions;
-        public PlayerInput PInput;
-        public FreezeFrame FreezeFrame;
         public float TimeToRecover;
         public float InvulnerabilityTime;
-        public float PauseDuration;
         [HideInInspector]
-        public Vector2 PlayerInput;
-        protected bool _isEnemyDead;
+        public Vector2 Input;
         #endregion     
                        
         #region Start
@@ -33,12 +26,7 @@ namespace Assets.Scripts
             Collisions.FaceDir = 1;
 
             Collider = GetComponent<BoxCollider2D> ();
-            FreezeFrame = GetComponent<FreezeFrame>();
             CalculateRaySpacing ();
-
-            MainCamera = GameObject.Find("Main Camera");
-            CamScript = MainCamera.GetComponent<CameraFollow>();
-
         }
 
         private void SetDefaut()
@@ -47,7 +35,7 @@ namespace Assets.Scripts
             _maxDescendAngle = 80;
             TimeToRecover = .18f;
             InvulnerabilityTime = 2;
-            //InteractiveMask = LayerMask.GetMask("Enemy","Trap");
+            InteractiveMask = LayerMask.GetMask("Enemy","Trap");
         }
         #endregion          
                        
@@ -76,85 +64,16 @@ namespace Assets.Scripts
             }
         }
 
-        private bool LeftInteractiveCollision(float rayLength, int i)
+        public virtual bool LeftInteractiveCollision(float rayLength, int i)
         {
-            Vector2 rayOrigin1 = RaycastOrigins.BottomLeft;
-            rayOrigin1 += Vector2.up*(HorizontalRaySpacing*i);
-            Debug.DrawRay(rayOrigin1, Vector2.left*rayLength, Color.green);
-
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin1, Vector2.left, rayLength, InteractiveMask);
-            if (hit)
-            {
-                if (hit.collider.tag == "Enemy" && hit.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
-                {
-					if (PInput.Player.IsDashing)
-                    {
-                        HitEnemy(hit);
-                    }
-                    else
-                    {
-                        SetPlayerWasHitAndIsInvulnerable();
-                    }
-                    return true;
-                }
-                else if (hit.collider.tag == "Trap" && hit.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
-                {
-                    print("Green flame");
-                   PInput.Player.Damage(20);
-                   SetPlayerWasHitAndIsInvulnerable();
-                }
-            }
             return false;
         }
 
-        private void RightInteractiveCollision(float rayLength, int i)
+        public virtual void RightInteractiveCollision(float rayLength, int i)
         {
-            Vector2 rayOrigin2 = RaycastOrigins.BottomRight;
-            rayOrigin2 += Vector2.up*(HorizontalRaySpacing*i);
-            Debug.DrawRay(rayOrigin2, Vector2.right*rayLength, Color.cyan);
 
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin2, Vector2.right, rayLength, InteractiveMask);
-            if (hit)
-            {
-                if (hit.collider.tag == "Enemy" && hit.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
-                {
-					if (PInput.Player.IsDashing) 
-					{
-                        HitEnemy(hit);
-                    }
-                    else
-                        SetPlayerWasHitAndIsInvulnerable();
-                }
-                else if (hit.collider.tag == "Trap" && hit.distance == 0)
-                {
-                    print("Green flame");
-                    PInput.Player.Damage(20);
-                    SetPlayerWasHitAndIsInvulnerable();
-                }
-            }
         }
-
-        private void DestroyEnemy(RaycastHit2D hit)
-        {
-            _isEnemyDead = true;
-            CamScript.ShakeCam();
-            var enemyHit = hit.collider.gameObject;
-            enemyHit.layer = 10;
-            enemyHit.tag = "DeadEnemy";
-            PInput.Player.RecoverHp();
-        }
-
-        private void HitEnemy(RaycastHit2D hit)
-        {
-            EnemyController enemy = hit.collider.gameObject.GetComponent<EnemyController>();
-            enemy.DecreaseHP();
-            print("hp--");
-            if (enemy.Hp <= 0)
-            {
-                DestroyEnemy(hit);
-            }
-        }
-
+        
         private void VerticalInteractiveCollision(float rayLength)
         {
             for (var i = 0; i < VerticalRayCount; i++)
@@ -166,75 +85,16 @@ namespace Assets.Scripts
             }
         }
 
-        private bool DownInteractiveCollision(float rayLength, int i)
+        public virtual bool DownInteractiveCollision(float rayLength, int i)
         {
-            Vector2 rayOrigin1 = RaycastOrigins.BottomLeft;
-            rayOrigin1 += Vector2.right*(VerticalRaySpacing*i);
-            Debug.DrawRay(rayOrigin1, Vector2.down*rayLength, Color.gray);
-
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin1, Vector2.down, rayLength, InteractiveMask);
-            if (hit)
-            {
-                if (hit.collider.tag == "Enemy" && hit.distance == 0)
-                {
-                    if (PInput.Player.IsDashing)
-                    {
-                        HitEnemy(hit);
-                    }
-                    return true;
-                }
-                else if (hit.collider.tag == "Trap" && hit.distance == 0)
-                {
-                    print("Green flame");
-                    PInput.Player.Damage(20);
-                    SetPlayerWasHitAndIsInvulnerable();
-                }
-            }
             return false;
         }
 
-        private void UpInteractiveCollision(float rayLength, int i)
+        public virtual void UpInteractiveCollision(float rayLength, int i)
         {
-            Vector2 rayOrigin2 = RaycastOrigins.TopLeft;
-            rayOrigin2 += Vector2.right*(VerticalRaySpacing*i);
-            Debug.DrawRay(rayOrigin2, Vector2.up*rayLength, Color.blue);
-
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin2, Vector2.up, rayLength, InteractiveMask);
-
-            if (hit)
-            {
-                if (hit.collider.tag == "Enemy" && hit.distance == 0)
-                {
-                    if (PInput.Player.IsDashing)
-                    {
-                        HitEnemy(hit);
-                    }
-                }
-                else if (hit.collider.tag == "Trap" && hit.distance == 0)
-                {
-                    print("Green flame");
-                    PInput.Player.Damage(20);
-                    SetPlayerWasHitAndIsInvulnerable();
-                }
-            }
+            
         }
-
-        public void SetPlayerWasHitAndIsInvulnerable()
-        {
-            ChangeHit();
-            Invoke("ChangeHit", TimeToRecover);
-            SetInvulnerability();
-            Invoke("SetInvulnerability", InvulnerabilityTime);
-        }
-        public void ChangeHit()
-        {
-            PInput.TakingHit = !PInput.TakingHit;
-        }
-
-        private void SetInvulnerability()
-        {
-            PInput.Player.IsInvulnerable = !PInput.Player.IsInvulnerable;
-        }
+        
         #endregion
 
         #region Move
@@ -271,7 +131,7 @@ namespace Assets.Scripts
             UpdateRaycastOrigins();
             Collisions.Reset();
             Collisions.DeltaMoveOld = deltaMove;
-            PlayerInput = input;
+            Input = input;
         }
         #endregion
 
@@ -398,7 +258,7 @@ namespace Assets.Scripts
                     return rayLength;
                 if (Collisions.PassingPlatform)
                     return rayLength;
-                if (PlayerInput.y == -1)
+                if (Input.y == -1)
                 {
                     Collisions.PassingPlatform = true;
                     Invoke("ResetPassingPlatform", .4f);

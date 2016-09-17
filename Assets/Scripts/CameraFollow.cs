@@ -82,7 +82,7 @@ namespace Assets.Scripts
             if (_focusArea.Velocity.x != 0)
             {
                 _lookAheadDirX = Mathf.Sign(_focusArea.Velocity.x);
-                if (Mathf.Sign(Target.PlayerInput.x) == Mathf.Sign(_focusArea.Velocity.x) && Target.PlayerInput.x != 0)
+                if (Mathf.Sign(Target.Input.x) == Mathf.Sign(_focusArea.Velocity.x) && Target.Input.x != 0)
                 {
                     _lookAheadStopped = false;
                     _targetLookAheadX = _lookAheadDirX*LookAheadDstX;

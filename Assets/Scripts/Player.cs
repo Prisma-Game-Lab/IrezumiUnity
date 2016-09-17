@@ -2,6 +2,8 @@
 
 namespace Assets.Scripts
 {
+
+    [RequireComponent(typeof(FreezeFrame))]
     [RequireComponent (typeof (Controller2D))]
     public class Player : MonoBehaviour
     {
@@ -27,6 +29,7 @@ namespace Assets.Scripts
         public bool IsInvulnerable;
         public bool IsDashing;
         public GameObject PlayerGraphics;
+        public FreezeFrame FreezeFrame;
         [HideInInspector]
         public Vector2 Velocity;
         [HideInInspector]
@@ -94,8 +97,8 @@ namespace Assets.Scripts
             TakingHit = false;
             IsInvulnerable = false;
             IsDashing = false;
-
-         
+            
+            FreezeFrame = GetComponent<FreezeFrame>();
         }
         
 

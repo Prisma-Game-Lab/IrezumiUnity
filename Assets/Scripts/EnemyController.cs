@@ -13,7 +13,7 @@ namespace Assets.Scripts
         private bool _horDir;
         private bool _verDir;
         private Vector2 _oldPosition;
-        private bool isInvulnerable;
+        private bool _isInvulnerable;
 
         public float Hp;
         public GameObject EnemyGraphics;
@@ -21,6 +21,7 @@ namespace Assets.Scripts
         public bool Alive = true ;
 
         #endregion
+
 
         #region Start
         public override void Start()
@@ -56,11 +57,11 @@ namespace Assets.Scripts
         #region Enemy HP
         public void DecreaseHP()
         {
-            if (!isInvulnerable)
+            if (!_isInvulnerable)
             {
                 Hp--;
                 float playerDashTime = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().DashTime;
-                isInvulnerable = true;
+                _isInvulnerable = true;
                 Invoke("ChangeInvulnerability", playerDashTime);
             }
         }
@@ -70,8 +71,9 @@ namespace Assets.Scripts
         /// </summary>
         private void ChangeInvulnerability()
         {
-            isInvulnerable = !isInvulnerable;
+            _isInvulnerable = !_isInvulnerable;
         }
         #endregion
+        
     }
 }
