@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 487398}
   - 212: {fileID: 21257838}
   - 95: {fileID: 9572394}
+  - 114: {fileID: 114000013418163966}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -2125,3 +2126,14 @@ MonoBehaviour:
   InvulnerabilityTime: 0
   Input: {x: 0, y: 0}
   PInput: {fileID: 11428258}
+--- !u!114 &114000013418163966
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f38e6136c3c0e34e9f6db1f3cd101f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

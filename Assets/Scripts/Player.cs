@@ -82,7 +82,7 @@ namespace Assets.Scripts
             WallSlideSpeed = 3;
             WallStickTime = .25f;
             DashSpeed = 30;
-            DashTime = .3f;
+            DashTime = .36666f;
             Hp = 100;
 			HpLostPerSecond = 1;
 			HpLostOnDash = 10;
@@ -209,7 +209,7 @@ namespace Assets.Scripts
             _graphicsAnimator.SetFloat("Velocity.y", Velocity.y + 1.9f);
             _graphicsAnimator.SetBool("FacingRight", _facingRight);
             _graphicsAnimator.SetBool("Stopped", _stopped);
-            _graphicsAnimator.SetBool("Dashing", IsDashing);
+            //_graphicsAnimator.SetBool("Dashing", IsDashing);
             _graphicsAnimator.SetBool("WallSliding", _wallSliding);
         }
 
@@ -242,11 +242,23 @@ namespace Assets.Scripts
         public void OnDashInput()
         {
 			FirstInput = true;
-            IsDashing = true;
-            Invoke("ResetDashing", DashTime);
+            //IsDashing = true;
+            _graphicsAnimator.SetBool("Dashing",true);
+            //Invoke("ResetDashing", DashTime);
 			Hp -= HpLostOnDash;
         }
-       
+
+        public void StartDash()
+        {
+            IsDashing = true;
+        }
+
+        public void ResetAllDashing()
+        {
+            IsDashing = false;
+            _graphicsAnimator.SetBool("Dashing", false);
+        }
+
         public void OnJumpInputDown()
 		{
 			FirstInput = true;
@@ -304,10 +316,7 @@ namespace Assets.Scripts
 		#endregion
 
         #region Not used
-        public void ResetDashing()
-        {
-            IsDashing = false;
-        }
+      
 
         private void CalculatePushSpeed()
         {

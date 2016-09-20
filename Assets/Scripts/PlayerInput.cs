@@ -55,7 +55,7 @@ namespace Assets.Scripts
                         {
                             DashCooldown = 1.5f;
                             Player.OnDashInput();
-                            ActivateParticle();
+                            // ActivateParticle();
                             Invoke("DeactivateParticle", 0.32f);
                         }
                     }
