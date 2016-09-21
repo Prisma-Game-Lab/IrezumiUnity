@@ -2,13 +2,7 @@
 using System.Collections;
 
 public class RotatingPlatformController : MonoBehaviour {
-    /*variaveis:
-        tempo atual
-        tempo de espera
-        angulo maximo de rotacao
-        rotacao atual
-        sentido da rotacao
-        velocidade da rotacao*/
+
     public float waitingTime;
     public float rotatingSpeed; //initial speed of rotation, degrees per second
     public float acceleration; //acceleration of rotation
