@@ -142,7 +142,7 @@ namespace Assets.Scripts
 
             EnablePause();
 
-            if (((int) _player.Hp) > PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Hp"))
+            if (((int) _player.Hp) > PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_Hp",0))
             {
                 PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Hp", ((int) _player.Hp));
             }
@@ -159,6 +159,7 @@ namespace Assets.Scripts
             {
                 PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_Seconds", _stopWatch.Elapsed.Seconds);
             }
+
         }
 
         /// <summary>

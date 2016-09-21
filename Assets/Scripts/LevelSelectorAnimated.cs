@@ -26,12 +26,12 @@ namespace Assets.Scripts
 		private int selectedMode = 1;
 
 		[SerializeField] private string[] levels = {
-			"TestScene",
-			"Scene",
-			"Level3",
-			"Level4",
-			"Level5"
-		};
+			"DemoScene",
+            "DemoScene",
+            "DemoScene",
+            "DemoScene",
+            "DemoScene"
+        };
 		private int levelsQuant;
 
 		private Text ink;
@@ -114,20 +114,25 @@ namespace Assets.Scripts
 
 		private void updateText(){
 			int index = selectedMode + 1;
-			ink.text = "Ink Coletado(Best): " + PlayerPrefs.GetInt(levels[index] + "_Ink");
+            /*ink.text = "Ink Coletado(Best): " + PlayerPrefs.GetInt(levels[index] + "_Ink");
 			hp.text = "Hp(Best): " + PlayerPrefs.GetInt(levels[index] + "_Hp");
-			time.text = "Melhor Tempo: " + PlayerPrefs.GetInt(levels[index] + "_Minutes") + "m " + PlayerPrefs.GetInt(levels[index] + "_Seconds") + "s";
-		}
+			time.text = "Melhor Tempo: " + PlayerPrefs.GetInt(levels[index] + "_Minutes") + "m " + PlayerPrefs.GetInt(levels[index] + "_Seconds") + "s";*/
+            
+            ink.text = "Ink Coletado(Best): " + PlayerPrefs.GetInt("DemoScene_Ink");
+            hp.text = "Hp(Best): " + PlayerPrefs.GetInt("DemoScene_Hp");
+            time.text = "Melhor Tempo: " + PlayerPrefs.GetInt("DemoScene_Minutes") + "m " + PlayerPrefs.GetInt("DemoScene_Seconds") + "s";
+        }
 
 		// Update is called once per frame
 		void Update () {
 			if (!is_busy) {
-				if (Input.GetKey (KeyCode.Return))
-					SceneManager.LoadScene (levels [selectedMode + 1]);
-				else if (Input.GetKey (KeyCode.LeftArrow))
+                if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Space))
+                    SceneManager.LoadScene(3);
+					//SceneManager.LoadScene (levels [selectedMode + 1]);
+				/*else if (Input.GetKey (KeyCode.LeftArrow))
 					changeLeft ();
 				else if (Input.GetKey (KeyCode.RightArrow))
-					changeRight ();
+					changeRight ();*/
 			}
 			else{
 				int count = 0;
