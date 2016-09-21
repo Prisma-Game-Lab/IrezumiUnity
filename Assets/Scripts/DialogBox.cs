@@ -157,7 +157,7 @@ namespace Assets.Scripts
             {
                 if (currentLine[1] == '\0')
                 {
-                    Debug.Log("Número esperado. Portrait não foi trocado.");
+                    //Debug.Log("Número esperado. Portrait não foi trocado.");
                     return false;
                 }
                 ChangePortrait(int.Parse(currentLine[1].ToString()));

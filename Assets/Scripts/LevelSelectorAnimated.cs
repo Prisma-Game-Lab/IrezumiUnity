@@ -87,7 +87,7 @@ namespace Assets.Scripts
 				}
 				selectedMode++;
 				modes[modes.Length-1].GetComponent<Image>().sprite = Resources.Load<Sprite>(levels[selectedMode+3]);
-				Debug.Log (levels [selectedMode + 3]);
+				//Debug.Log (levels [selectedMode + 3]);
 				updateText ();
 			}
 		}

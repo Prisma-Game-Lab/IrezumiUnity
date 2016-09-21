@@ -55,7 +55,7 @@ public class RotatingPlatformController : MonoBehaviour {
         //if ((sense == -1 && transform.eulerAngles.z < 270) || (sense == 1 && transform.eulerAngles.z < 90))
         {
             isRotating = true;
-            Debug.Log("isRotating = true");
+            //Debug.Log("isRotating = true");
         }
     }
 

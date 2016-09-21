@@ -16,9 +16,9 @@ namespace Assets.Scripts {
 		void Start () {
             _windsArray = GameObject.FindGameObjectsWithTag("Wind");
 
-            foreach(GameObject obj in _windsArray){
+            /*foreach(GameObject obj in _windsArray){
                 Debug.Log(obj.name);
-            }
+            }*/
 
 			_wind = InitializeWind();
 		}
