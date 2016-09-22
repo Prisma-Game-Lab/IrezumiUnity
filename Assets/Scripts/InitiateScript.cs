@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
-using UnityEditor;
+//using UnityEditor;
 using System.Collections;
 
 namespace Assets.Scripts
 {
     public class InitiateScript : MonoBehaviour
     {
+        /*
         [RuntimeInitializeOnLoadMethod]
         static void InitializeGameManager()
         {
@@ -16,5 +17,6 @@ namespace Assets.Scripts
                 Instantiate(gameManager);
             }
         }
+        */
     }
 }
