@@ -97,8 +97,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104616}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -68.86551, y: 70.093445, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -86.83, y: 6.64, z: -1.234375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -158,9 +158,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.026420593, y: -0.0264287}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.3482235, y: 1.3346964}
 --- !u!114 &11416872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,9 +173,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 111876, guid: 016fd38069a7fd8499ec3ead11037ed4, type: 2}
-  _degrees: []
-  _cooldownTime: 0
-  _arrowSpeed: 0
+  _degrees:
+  - 270
+  _timeToFirstShoot: 0
+  _cooldownTime: 2
+  _arrowSpeed: 10
 --- !u!212 &21252704
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -205,7 +207,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1397523891
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2de99d135f92fee4ea76151d533c86f6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4b2a1abf15a72a84e917a148e4e655bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

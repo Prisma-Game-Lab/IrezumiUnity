@@ -3,33 +3,41 @@ using System.Collections;
 
 namespace Assets.Scripts
 {
-	public class FallingPlatform : PlatformController
+	public class FallingPlatform : MonoBehaviour
 	{
-        public float waitingTime;
-        private float _fallingSpeed;
+        public float timeBeforeFall;
+        public float fallingSpeed;
 		private Transform _transform;
+        private float time;
         private bool isFalling;
+        private Vector3 movement;
 
 		// Use this for initialization
-		public override void Awake ()
+		public void Awake ()
 		{
-			base.Awake ();
 			_transform = GetComponent<Transform> ();
 
-			LocalWaypoints = new Vector3[2];
-			LocalWaypoints [0] = new Vector3 (0, 0, 0);
-			LocalWaypoints [1] = new Vector3 (0, -10000, 0);
+            movement.x = 0;
+            movement.y = 0;
+            movement.z = 0;
 
             isFalling = false;
-			_fallingSpeed = Speed;
-			Speed = 0;
 		}
+
+        void Update()
+        {
+            if (isFalling)
+            {
+                time = Time.deltaTime;
+                movement.y = time * (-fallingSpeed);
+                _transform.Translate(movement);
+            }
+        }
 
         IEnumerator Fall (float time)
         {
             yield return new WaitForSeconds(time);
             {
-                Speed = _fallingSpeed;
                 isFalling = true;
             }
         }
@@ -37,7 +45,7 @@ namespace Assets.Scripts
 		void OnTriggerEnter2D (Collider2D collider)
 		{
 			if (collider.name == "Player" && !isFalling) {
-                StartCoroutine(Fall(waitingTime));
+                StartCoroutine(Fall(timeBeforeFall));
 			}
 		}
 	}
