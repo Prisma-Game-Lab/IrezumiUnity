@@ -13,6 +13,7 @@ namespace Assets.Scripts
         /// Directions arrows will fire, in order. (in degrees).
         /// </summary>
         [SerializeField] private float[] _degrees;
+        [SerializeField] private float _timeToFirstShoot;
         [SerializeField] private float _cooldownTime;
         [SerializeField] private float _arrowSpeed;
         private int _actualDir;
@@ -26,6 +27,7 @@ namespace Assets.Scripts
 
         IEnumerator spawn()
         {
+            yield return new WaitForSeconds(_timeToFirstShoot);
             while (true)
             {
                 //for (int i = 0; i < 4; i++ )

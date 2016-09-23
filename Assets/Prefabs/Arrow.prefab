@@ -9,9 +9,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 464404}
   - 212: {fileID: 21258636}
-  - 61: {fileID: 6151556}
   - 114: {fileID: 11446698}
   - 50: {fileID: 5027712}
+  - 61: {fileID: 61000012810311740}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 3.67, z: 0}
+  m_LocalPosition: {x: -23.451887, y: 90.36675, z: 0}
   m_LocalScale: {x: 0.27475378, y: 0.27475378, z: 0.27475378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -49,20 +49,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &6151556
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 111876}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 3.83, y: 5.6}
 --- !u!114 &11446698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,3 +105,17 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 111876}
   m_IsPrefabParent: 1
+--- !u!61 &61000012810311740
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111876}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 3.5}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 7}
