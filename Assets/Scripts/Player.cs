@@ -120,6 +120,12 @@ namespace Assets.Scripts
                 if (FirstInput)
                     Hp -= HpLostPerSecond*Time.deltaTime;
 
+                if (Hp <= 0)
+                {
+                    Debug.Log("YOU ARE DEAD");
+                    GameManager.Instance.EnablePause();
+                }
+
                 CalculateVelocity();
                 HandleWallSliding();
                 if (_grounded)

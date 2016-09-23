@@ -1,0 +1,241 @@
+fileFormatVersion: 2
+guid: 75d8813ea03c32148a264158308ea29b
+timeCreated: 1474653749
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Kai_Dash (7000)_0
+    21300002: Kai_Dash (7000)_1
+    21300004: Kai_Dash (7000)_3
+    21300006: Kai_Dash (7000)_4
+    21300008: Kai_Dash (7000)_5
+    21300010: Kai_Dash (7000)_6
+    21300012: Kai_Dash (7000)_7
+    21300014: Kai_Dash (7000)_8
+    21300016: Kai_Dash (7000)_9
+    21300018: Kai_Dash (7000)_10
+    21300020: Kai_Dash (7000)_11
+    21300022: Kai_Dash (7000)_12
+    21300024: Kai_Dash (7000)_14
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 170
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Kai_Dash (7000)_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 38
+        width: 352
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Kai_Dash (7000)_1
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 0
+        width: 277
+        height: 311
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Kai_Dash (7000)_3
+      rect:
+        serializedVersion: 2
+        x: 1167
+        y: 0
+        width: 298
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Kai_Dash (7000)_4
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 0
+        width: 343
+        height: 333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Kai_Dash (7000)_5
+      rect:
+        serializedVersion: 2
+        x: 2244
+        y: 0
+        width: 349
+        height: 333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Kai_Dash (7000)_6
+      rect:
+        serializedVersion: 2
+        x: 2791
+        y: 22
+        width: 358
+        height: 317
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Kai_Dash (7000)_7
+      rect:
+        serializedVersion: 2
+        x: 3324
+        y: 39
+        width: 379
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Kai_Dash (7000)_8
+      rect:
+        serializedVersion: 2
+        x: 3861
+        y: 39
+        width: 382
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Kai_Dash (7000)_9
+      rect:
+        serializedVersion: 2
+        x: 4401
+        y: 39
+        width: 381
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Kai_Dash (7000)_10
+      rect:
+        serializedVersion: 2
+        x: 4948
+        y: 7
+        width: 375
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Kai_Dash (7000)_11
+      rect:
+        serializedVersion: 2
+        x: 5518
+        y: 19
+        width: 328
+        height: 316
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Kai_Dash (7000)_12
+      rect:
+        serializedVersion: 2
+        x: 6076
+        y: 0
+        width: 324
+        height: 311
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Kai_Dash (7000)_14
+      rect:
+        serializedVersion: 2
+        x: 6663
+        y: 0
+        width: 233
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
