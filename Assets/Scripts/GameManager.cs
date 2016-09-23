@@ -99,7 +99,7 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update ()
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.Backspace))
             {
                 print(SceneManager.GetActiveScene().name);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);

@@ -45,9 +45,9 @@ namespace Assets.Scripts
 
                 if (!TakingHit)
                 {
-                    if (Input.GetKeyDown(KeyCode.Space))
+                    if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
                         Player.OnJumpInputDown();
-                    if (Input.GetKeyUp(KeyCode.Space))
+                    if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
                         Player.OnJumpInputUp();
                     if (Input.GetKeyDown(KeyCode.F))
                     {

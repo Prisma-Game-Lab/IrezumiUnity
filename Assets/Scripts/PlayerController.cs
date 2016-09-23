@@ -32,6 +32,7 @@ namespace Assets.Scripts
                     }
                     else
                     {
+                        PInput.Player.Damage(20);
                         SetPlayerWasHitAndIsInvulnerable();
                     }
                     return true;
@@ -61,7 +62,10 @@ namespace Assets.Scripts
                         HitEnemy(hit);
                     }
                     else
+                    {
+                        PInput.Player.Damage(20);
                         SetPlayerWasHitAndIsInvulnerable();
+                    }
                 }
                 else if (hit.collider.tag == "Trap" && hit.distance == 0)
                 {
@@ -144,10 +148,13 @@ namespace Assets.Scripts
         
         public void SetPlayerWasHitAndIsInvulnerable()
         {
-            ChangeHit();
-            Invoke("ChangeHit", TimeToRecover);
-            SetInvulnerability();
-            Invoke("SetInvulnerability", InvulnerabilityTime);
+            if (PInput.Player.Hp > 0)
+            {
+                ChangeHit();
+                Invoke("ChangeHit", TimeToRecover);
+                SetInvulnerability();
+                Invoke("SetInvulnerability", InvulnerabilityTime);
+            }
         }
 
         public void ChangeHit()

@@ -26,11 +26,11 @@ namespace Assets.Scripts
 		private int selectedMode = 1;
 
 		[SerializeField] private string[] levels = {
-			"DemoScene",
-            "DemoScene",
-            "DemoScene",
-            "DemoScene",
-            "DemoScene"
+            "DemoSceneNewTiles",
+            "DemoSceneNewTiles",
+            "DemoSceneNewTiles",
+            "DemoSceneNewTiles",
+            "DemoSceneNewTiles"
         };
 		private int levelsQuant;
 
