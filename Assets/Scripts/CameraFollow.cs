@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 namespace Assets.Scripts
 {
@@ -24,6 +25,11 @@ namespace Assets.Scripts
         private float _smoothVelocityY;
         private bool _lookAheadStopped;
 
+		private float _DefaultZoom; 
+		[SerializeField]
+		private float _TargetZoom;
+		public float currentVelocityZoom;
+
         
         #endregion
 
@@ -31,6 +37,8 @@ namespace Assets.Scripts
         public void Start()
         {
             SetDefaut();
+			_DefaultZoom = Camera.main.orthographicSize;
+			_TargetZoom = _DefaultZoom;
             _focusArea = new FocusArea(Target.Collider.bounds, FocusAreaSize);
         }
 
@@ -54,7 +62,16 @@ namespace Assets.Scripts
         }
         #endregion
 
-        #region Update
+		#region Update
+		public void Update()
+		{
+			ZoomCam ();
+		}
+
+
+		#endregion
+
+        #region LateUpdate
         public void LateUpdate()
         {
             _focusArea.Update(Target.Collider.bounds);
@@ -172,6 +189,27 @@ namespace Assets.Scripts
         }
 
         #endregion
+
+		#region Cam Zoom
+
+		private void ZoomCam()
+		{	
+			Camera.main.orthographicSize = Mathf.SmoothDamp (Camera.main.orthographicSize, _TargetZoom, ref currentVelocityZoom, 0.2F);
+		}
+
+		public void ChangeTargetZoom(float NewTargetZoom)
+		{
+			Debug.Log (NewTargetZoom);
+			_TargetZoom = NewTargetZoom;
+			Invoke ("DefaultTargetZoom",0.5F);
+		}
+		private void DefaultTargetZoom()
+		{
+			
+			_TargetZoom = _DefaultZoom;
+		}			
+
+		#endregion
 
     }
 }

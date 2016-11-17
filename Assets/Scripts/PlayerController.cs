@@ -28,7 +28,7 @@ namespace Assets.Scripts
                 {
                     if (PInput.Player.IsDashing)
                     {
-                        HitEnemy(hit);
+                        HitEnemy(hit);		
                     }
                     else
                     {
@@ -140,6 +140,7 @@ namespace Assets.Scripts
         private void DestroyEnemy(RaycastHit2D hit)
         {
             _camScript.ShakeCam();
+			_camScript.ChangeTargetZoom(7);
             var enemyHit = hit.collider.gameObject;
             enemyHit.layer = 10;
             enemyHit.tag = "DeadEnemy";
