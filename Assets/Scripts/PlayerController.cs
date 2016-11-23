@@ -24,7 +24,7 @@ namespace Assets.Scripts
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin1, Vector2.left, rayLength, InteractiveMask);
             if (hit)
             {
-                if (hit.collider.tag == "Enemy" && hit.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
+                if ((hit.collider.tag == "Enemy"|| hit.collider.tag == "FlyingEnemy") && hit.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
                 {
                     if (PInput.Player.IsDashing)
                     {
@@ -55,7 +55,7 @@ namespace Assets.Scripts
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin2, Vector2.right, rayLength, InteractiveMask);
             if (hit)
             {
-                if (hit.collider.tag == "Enemy" && hit.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
+                if ((hit.collider.tag == "Enemy" || hit.collider.tag == "FlyingEnemy") && hit.distance == 0 && !PInput.GetHit() && !PInput.Player.IsInvulnerable)
                 {
                     if (PInput.Player.IsDashing)
                     {
@@ -129,6 +129,10 @@ namespace Assets.Scripts
 
         private void HitEnemy(RaycastHit2D hit)
         {
+            if (hit.transform.tag == "FlyingEnemy")
+            {
+                DestroyEnemy(hit);
+            }
             EnemyController enemy = hit.collider.gameObject.GetComponent<EnemyController>();
             enemy.DecreaseHP();
             if (enemy.Hp <= 0)

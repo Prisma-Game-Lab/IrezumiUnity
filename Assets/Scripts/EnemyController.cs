@@ -12,8 +12,7 @@ namespace Assets.Scripts
         private WaypointController _waypoints;
         private bool _horDir;
         private bool _verDir;
-        private Vector2 _oldPosition;
-        private bool _isInvulnerable;
+        private Vector2 _oldPosition;        
 
         public float Hp;
         public GameObject EnemyGraphics;
@@ -48,8 +47,11 @@ namespace Assets.Scripts
             EnemyMove(_deltaMovement);
             GraphicsAnimator.SetBool("horDir", _horDir);
             GraphicsAnimator.SetBool("verDir", _verDir);
-            if (gameObject.tag == "DeadEnemy")
+            if (this.tag == "DeadEnemy")
+            {
                 Alive = false;
+                Destroy(this.gameObject);
+            }
             GraphicsAnimator.SetBool("Alive", Alive);
         }
         #endregion
@@ -57,21 +59,18 @@ namespace Assets.Scripts
         #region Enemy HP
         public void DecreaseHP()
         {
+            Hp--;
+
+            /*
             if (!_isInvulnerable)
             {
-                Hp--;
+                
                 float playerDashTime = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().DashTime;
                 _isInvulnerable = true;
                 Invoke("ChangeInvulnerability", playerDashTime);
+                
             }
-        }
-
-        /// <summary>
-        /// Changes the isInvulnerable bool
-        /// </summary>
-        private void ChangeInvulnerability()
-        {
-            _isInvulnerable = !_isInvulnerable;
+            */
         }
         #endregion
         

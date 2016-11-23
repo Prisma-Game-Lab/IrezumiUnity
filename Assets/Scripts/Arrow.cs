@@ -18,12 +18,13 @@ namespace Assets.Scripts
 				other.gameObject.GetComponent<Player>().Damage (20);
 				Destroy (this.gameObject);
 			}
-			/* Revisao Pietro
-            else if (other.gameObject.tag == "Trap")
+		   // Revisao Pietro
+            else if (other.gameObject.tag == "Enemy"|| other.gameObject.tag == "FlyingEnemy")
             {
-                Physics2D.IgnoreLayerCollision(0, 15);
+                Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), this.GetComponent<Collider2D>(),true);
+                //Physics2D.IgnoreLayerCollision(0, 18);
             }
-			Fim */
+			
             else
             {
                 Destroy(this.gameObject);
