@@ -25458,6 +25458,7 @@ GameObject:
   - 124: {fileID: 1975305796}
   - 81: {fileID: 1975305795}
   - 114: {fileID: 1975305794}
+  - 114: {fileID: 1975305799}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -25519,6 +25520,8 @@ MonoBehaviour:
   CamShake: 0
   _shakeDuration: 0
   _shakeAmount: 0
+  _TargetZoom: 0
+  currentVelocityZoom: 0
 --- !u!81 &1975305795
 AudioListener:
   m_ObjectHideFlags: 0
@@ -25553,6 +25556,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1975305799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1975305792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7651f6c6032e86140b96e9e5e0626416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filterType: 2
+  preview: 0
+  previewScale: {x: 1, y: 1, z: 1}
+  movementScale: 0
+  rotationScale: 1
+  maxVelocity: 8
+  minVelocity: 0.1
+  velocityScale: 0.375
+  softZDistance: 0.005
+  velocityDownsample: 1
+  excludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  shader: {fileID: 4800000, guid: 59928c5520aec15429a33e8230b67c43, type: 3}
+  dx11MotionBlurShader: {fileID: 4800000, guid: 59928c5520aec15429a33e8230b67c43,
+    type: 3}
+  replacementClear: {fileID: 0}
+  noiseTexture: {fileID: 0}
+  jitter: 0.05
+  showVelocity: 0
+  showVelocityScale: 1
 --- !u!1001 &1977582439
 Prefab:
   m_ObjectHideFlags: 0
