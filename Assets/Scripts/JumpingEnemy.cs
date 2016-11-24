@@ -26,9 +26,6 @@ namespace Assets.Scripts
                 {Direction.Esquerda, Vector2.right }
 
             };
-            JumpHeight = 7;
-            JumpDuration = 2;
-            Velocity = 7;
         }
         
         // Update is called once per frame
