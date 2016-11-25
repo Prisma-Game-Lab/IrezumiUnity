@@ -61,7 +61,7 @@ namespace Assets.Scripts
         {
             _controller = GetComponent<Controller2D>();
             _graphicsAnimator = PlayerGraphics.GetComponent<Animator>();
-            SetDefaut();
+            // SetDefaut();
             SetGravityAndVelocityEquations();
         }
 
@@ -75,24 +75,24 @@ namespace Assets.Scripts
             _firstTimeTakingHit = true;
 			FirstInput = false;
 
-            MoveSpeed = 16;
+            MoveSpeed = 25;
             MaxjumpHeight = 9;
             MinjumpHeight = 1;
             TimeToJumpApex = .4f;
-            WallSlideSpeed = 3;
+            WallSlideSpeed = 15;
             WallStickTime = .25f;
-            DashSpeed = 30;
+            DashSpeed = 45;
             DashTime = .36666f;
             Hp = 100;
-			HpLostPerSecond = 1;
+			HpLostPerSecond = 5;
 			HpLostOnDash = 10;
-			HpRecoverOnKill = 15;
+			HpRecoverOnKill = 20;
             InkCollected = 0;
 
-            WallJumpClimb = new Vector2(36, 28);
-            WallJumpOff = new Vector2(2, 3);
-            WallJumpLeap = new Vector2(45, 32);
-            PushSpeed = new Vector2(20, 20);
+            WallJumpClimb = new Vector2(48, 36); // 36, 28
+            WallJumpOff = new Vector2(6, 5); // 36, 28
+            WallJumpLeap = new Vector2(58, 48); // 45, 32
+            PushSpeed = new Vector2(30, 30);
 
             TakingHit = false;
             IsInvulnerable = false;

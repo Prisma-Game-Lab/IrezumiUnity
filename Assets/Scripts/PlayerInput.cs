@@ -45,11 +45,14 @@ namespace Assets.Scripts
 
                 if (!TakingHit)
                 {
-                    if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+                  //  if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+                    if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
                         Player.OnJumpInputDown();
-                    if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
+                  //  if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
+                    if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.Space))
                         Player.OnJumpInputUp();
-                    if (Input.GetKeyDown(KeyCode.F))
+                  //  if (Input.GetKeyDown(KeyCode.F))
+                    if (Input.GetKeyDown(KeyCode.D))
                     {
                         if (DashCooldown == 0)
                         {

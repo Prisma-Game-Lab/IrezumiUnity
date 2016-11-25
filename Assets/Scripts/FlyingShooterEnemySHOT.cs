@@ -44,7 +44,7 @@ namespace Assets.Scripts
             
             FirstFlag = true;
             EnemyPosition = transform.position;
-            SetDefault();
+            // SetDefault();
             Chit1 = false;
             Chit2 = false;
             Chit3 = false;        

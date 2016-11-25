@@ -44,7 +44,7 @@ namespace Assets.Scripts
 
         private void SetDefaut()
         {
-            FocusAreaSize = new Vector2(3, 5);
+            FocusAreaSize = new Vector2(10, 10);
             VerticalOffset = 0;
             LookAheadDstX = 5;
             LookSmoothTimeX = .25f;
