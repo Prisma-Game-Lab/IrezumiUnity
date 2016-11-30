@@ -93,7 +93,7 @@ namespace Assets.Scripts
                         PlayerLastPosition = CircleHit[i].transform.position;
                         Vector3 RelativePosition = SpawnBullet.transform.position - PlayerLastPosition;
                         AngleZ = Vector3.Angle(-Vector3.up, RelativePosition);
-                        //print(AngleZ);
+                       
 
 
                         //SHOOT
@@ -101,7 +101,7 @@ namespace Assets.Scripts
                         {
                             Debug.DrawLine(SpawnBullet.transform.position, PlayerLastPosition, Color.red); // Draw a line o sight 
 
-                            if (Time.time >= CooldownTime && AngleZ >= 135)
+                            if (Time.time >= CooldownTime && AngleZ >= 135 && CircleHit[i].GetComponent<Player>().ALIVE)
                             {
                                 Bullet = Instantiate(FlyingEnemyBulletPrefab, SpawnBullet.transform.position, Quaternion.identity) as GameObject; // Instatiate the Bullet
                                 Bullet.transform.rotation = Quaternion.FromToRotation(Vector3.up, RelativePosition); // Set the rotation of the bullet

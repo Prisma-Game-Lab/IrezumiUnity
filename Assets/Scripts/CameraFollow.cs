@@ -30,7 +30,9 @@ namespace Assets.Scripts
 		private float _TargetZoom;
 		public float currentVelocityZoom;
 
-        
+        private bool DeadPlayer;
+        Vector3 PlayerPosition;
+        Vector3 NewPos;
         #endregion
 
         #region Start
@@ -91,7 +93,19 @@ namespace Assets.Scripts
                 focusPosition.x = Mathf.SmoothDamp(focusPosition.x, focusPosition.x + Mathf.Cos(randomValue) * _shakeAmount, ref _smoothLookVelocityX, 0.02f);
                 focusPosition.y = Mathf.SmoothDamp(focusPosition.y, focusPosition.y + Mathf.Sin(randomValue) * _shakeAmount, ref _smoothLookVelocityY, 0.02f);
             }
-            transform.position = (Vector3)focusPosition + Vector3.forward * -10;
+            if (DeadPlayer)
+            {
+                NewPos.x = Mathf.SmoothDamp(transform.position.x, PlayerPosition.x, ref _smoothLookVelocityX, 0.03f);
+                NewPos.y = Mathf.SmoothDamp(transform.position.y, PlayerPosition.y, ref _smoothLookVelocityX, 0.03f);
+                NewPos.z = -10;
+                _TargetZoom = 4;
+                transform.position = NewPos;
+            }
+            else
+            {
+               transform.position = (Vector3)focusPosition + Vector3.forward * -10;
+            }
+            
         }
 
         private void SetTargetLookAheadX()
@@ -193,8 +207,14 @@ namespace Assets.Scripts
 		#region Cam Zoom
 
 		private void ZoomCam()
-		{	
-			Camera.main.orthographicSize = Mathf.SmoothDamp (Camera.main.orthographicSize, _TargetZoom, ref currentVelocityZoom, 0.2F);
+		{
+            float ZoomTime = 0.2f;
+            if (DeadPlayer)
+            {
+                ZoomTime = 2;
+            }
+            Camera.main.orthographicSize = Mathf.SmoothDamp (Camera.main.orthographicSize, _TargetZoom, ref currentVelocityZoom, ZoomTime);
+            
 		}
 
 		public void ChangeTargetZoom(float NewTargetZoom)
@@ -205,11 +225,18 @@ namespace Assets.Scripts
 		}
 		private void DefaultTargetZoom()
 		{
-			
 			_TargetZoom = _DefaultZoom;
-		}			
+		}
 
-		#endregion
+        #endregion
+
+        #region Dramatic Zoom
+        public void DramaticZoom(Vector3 PPosition)
+        {
+            DeadPlayer = true;
+            PlayerPosition = PPosition;
+        }
+        #endregion
 
     }
 }

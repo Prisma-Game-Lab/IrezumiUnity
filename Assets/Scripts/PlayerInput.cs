@@ -39,11 +39,19 @@ namespace Assets.Scripts
                 SetDashCooldown();
 
                 /*vector input stores players coordinates*/
+                
                 var directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+                if (!Player.ALIVE)
+                {
+                    directionalInput = Vector2.zero;
+                }
+
                 Player.CheckIfPlayerMoved(directionalInput);
                 Player.SetDirectionalInput(directionalInput);
 
-                if (!TakingHit)
+                
+
+                if (!TakingHit && Player.ALIVE)
                 {
                     if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
                         Player.OnJumpInputDown();

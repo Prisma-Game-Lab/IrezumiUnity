@@ -9,6 +9,7 @@ namespace Assets.Scripts
     {
 
         #region Variables
+        public bool ALIVE;
         public float MoveSpeed;
         public float MaxjumpHeight;
         public float MinjumpHeight;
@@ -54,6 +55,7 @@ namespace Assets.Scripts
         private Animator _graphicsAnimator;
         [SerializeField]
         private float _gravity;
+        private CameraFollow _camScript;
         #endregion
 
         #region Start
@@ -61,6 +63,7 @@ namespace Assets.Scripts
         {
             _controller = GetComponent<Controller2D>();
             _graphicsAnimator = PlayerGraphics.GetComponent<Animator>();
+            _camScript = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
             SetDefaut();
             SetGravityAndVelocityEquations();
         }
@@ -70,6 +73,8 @@ namespace Assets.Scripts
         /// </summary>
         private void SetDefaut()
         {
+
+            ALIVE = true;
             _accelerationTimeAirborne = .04f;
             _accelerationTimeGrounded = .01f;
             _firstTimeTakingHit = true;
@@ -123,7 +128,9 @@ namespace Assets.Scripts
                 if (Hp <= 0)
                 {
                     Debug.Log("YOU ARE DEAD");
-                    GameManager.Instance.EnablePause();
+                    ALIVE = false;
+                    _camScript.DramaticZoom(transform.position);
+                    // GameManager.Instance.EnablePause();
                 }
 
                 CalculateVelocity();
