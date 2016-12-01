@@ -14,6 +14,7 @@ TagManager:
   - PausedScreen
   - StatScreen
   - Wind
+  - FlyingEnemy
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - WallTrap
   - ShoutZones
   - Foreground
-  - 
+  - DeathCanvas
   - 
   - 
   - 
@@ -65,4 +66,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 437324363
+    locked: 0
+  - name: DeathCanvas
+    uniqueID: 413853807
     locked: 0

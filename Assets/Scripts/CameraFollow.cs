@@ -96,7 +96,7 @@ namespace Assets.Scripts
             if (DeadPlayer)
             {
                 NewPos.x = Mathf.SmoothDamp(transform.position.x, PlayerPosition.x, ref _smoothLookVelocityX, 0.03f);
-                NewPos.y = Mathf.SmoothDamp(transform.position.y, PlayerPosition.y, ref _smoothLookVelocityX, 0.03f);
+                NewPos.y = Mathf.SmoothDamp(transform.position.y, PlayerPosition.y, ref _smoothLookVelocityY, 0.03f);
                 NewPos.z = -10;
                 _TargetZoom = 4;
                 transform.position = NewPos;
