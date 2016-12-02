@@ -1,6 +1,9 @@
-﻿Linha sem dono
->0
-oi eu sou o ruda
-mais uma linha só pra garantir
->1
+﻿Linha <cps = 1>sem</cps> dono
+show Hideaki 
+<cps = 50> oi eu sou o ruda 
+</cps>jdoiajdiwjdjaiwdja 
+mais uma <cps = 1>linha</cps> só pra garantir
 oi eu sou o bulletkin
+dijfeajf\n dwihdha
+fieojfaeoifjaeiofjoeijfe
+eoajfoiejfoieajfa

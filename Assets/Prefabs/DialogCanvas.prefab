@@ -87,17 +87,17 @@ MonoBehaviour:
   TextFile: {fileID: 4900000, guid: b0e2cc516d3a46d4cafb873cf5bb5c3c, type: 3}
   DialogPortrait: {fileID: 11429200}
   Sprites:
-  - {fileID: 21300000, guid: bd62b2887b85acf428cace4258174ef9, type: 3}
-  - {fileID: 21300000, guid: c5479dec39f807b4882d23a1aaa7e3f4, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   TestOnScreen: 0
   TextLines: []
   CurrentLine: 0
   EndAtLine: 0
   IsActive: 1
-  TypeSpeed: 0.1
   Font: {fileID: 0}
   FontSize: 0
   ScrollText: 1
+  CPS: 5
 --- !u!114 &11405662
 MonoBehaviour:
   m_ObjectHideFlags: 1

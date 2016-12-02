@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,18 +17,27 @@ namespace Assets.Scripts
         public int CurrentLine;
         public int EndAtLine;
         public bool IsActive;
-        public float TypeSpeed;
         public Font Font;
         public int FontSize;
         public bool ScrollText;
+        public int CPS;
 
+
+        private float _typeSpeed;
+        private float _typeSpeedDefaut;
         private bool _isTyping;
         private bool _cancelTyping;
         private GameManager _gameManager;
+        private Regex _showRegex =new Regex(@"(\bshow [A-z]+\b)");
+        private string _visualNovelFolder = "VisualNovel/";
+        private Regex _cpsRegex = new Regex(@"\<cps( )*=( )*[0-9]+\>");
+        private Regex _cpsEndRegex = new Regex(@"\<\/cps\>");
 
         // Use this for initialization
         void Start ()
         {
+            _typeSpeed = (float) (1.0/CPS);
+            _typeSpeedDefaut = _typeSpeed;
             DialogPortrait.GetComponent<Image>().color = new Vector4(255,255,255, 255);
             DialogPortrait.enabled = false;
             _gameManager = GameManager.Instance;
@@ -90,10 +100,15 @@ namespace Assets.Scripts
             _cancelTyping = false;
             while (_isTyping && !_cancelTyping && letter < lineOfText.Length -1)
             {
+                if (lineOfText[letter] == '<')
+                {
+                    if (!CheckIfCPS(ref lineOfText))
+                        CheckIfCPSEnd(ref lineOfText);
+                }
                 DialogText.text += lineOfText[letter++];
-                yield return CoroutineUtilities.WaitForRealtimeSeconds(TypeSpeed);
+                yield return CoroutineUtilities.WaitForRealtimeSeconds(_typeSpeed);
             }
-            DialogText.text = lineOfText;
+            DialogText.text = FilterForCommands(lineOfText);
             _isTyping = false;
             _cancelTyping = false;
         }
@@ -123,6 +138,7 @@ namespace Assets.Scripts
             }
         }
 
+
         /// <summary>
         /// Start a coroutine to scroll the text (if ScrollText is true) or write the entire line at once
         /// </summary>
@@ -131,7 +147,19 @@ namespace Assets.Scripts
             if (ScrollText)
                 StartCoroutine(TextScroll(TextLines[CurrentLine]));
             else
-                DialogText.text = TextLines[CurrentLine];
+                DialogText.text = FilterForCommands(TextLines[CurrentLine]);
+        }
+
+        /// <summary>
+        /// if user cancels scrolling remove all comands from line before letting it go to the screen
+        /// </summary>
+        /// <param name="textLine"></param>
+        /// <returns></returns>
+        private string FilterForCommands(string textLine)
+        {
+            textLine = _cpsRegex.Replace(textLine, "");
+            textLine = _cpsEndRegex.Replace(textLine, "");
+            return textLine;
         }
 
         public void DisableDialogBox()
@@ -151,26 +179,55 @@ namespace Assets.Scripts
             }
         }
 
+        private bool CheckIfCPS(ref string currentLine)
+        {
+            var match = _cpsRegex.Match(currentLine);
+            var sucess = match.Success;
+            if (sucess)
+            {
+                var split = match.ToString().Split(' ');
+                var number = int.Parse(split[2].Split('>')[0]);
+                _typeSpeed = (float) (1.0/number);
+                currentLine = _cpsRegex.Replace(currentLine, "");
+            }
+            return sucess;
+        }
+
+        private bool CheckIfCPSEnd(ref string currentLine)
+        {
+            var match = _cpsEndRegex.Match(currentLine);
+            var sucess = match.Success;
+            if (sucess)
+            {
+                _typeSpeed = _typeSpeedDefaut; //sets Type Speed to default
+                currentLine = _cpsEndRegex.Replace(currentLine, "");
+            }
+            return sucess;
+        }
+
+
         private bool CheckIfChangePortrait(string currentLine)
         {
-            if (currentLine[0] == '>')
+            var match = _showRegex.Match(currentLine);
+            if (match.Success)
             {
-                if (currentLine[1] == '\0')
-                {
-                    //Debug.Log("Número esperado. Portrait não foi trocado.");
-                    return false;
-                }
-                ChangePortrait(int.Parse(currentLine[1].ToString()));
+                var split = match.ToString().Split(' ');
+                var name = split[1];
+                ChangePortrait(name);
                 return true;
             }
             return false;
         }
-
-        private void ChangePortrait(int portraitNumber)
+        
+        private void ChangePortrait(string name)
         {
             DialogPortrait.enabled = true;
-            if (Sprites[portraitNumber] != null)
-                DialogPortrait.sprite = Sprites[portraitNumber];
+            var sprite = Resources.Load<Sprite>(_visualNovelFolder + name);
+
+            if (sprite != null)
+                DialogPortrait.sprite = sprite;
+            else
+                DialogPortrait.enabled = false;
         }
 
         public void ChangeEndAtLine(int newEndAtLine)
