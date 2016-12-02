@@ -10,14 +10,16 @@ namespace Assets.Scripts
         public Direction Direcao;
         public int JumpHeight;
         public float JumpDuration;
-        public float Velocity;
+        private float _gravity;
         private Vector2 _velocity;
         private Vector3 _enemyPosition;
         private Dictionary<Direction, Vector2> _directionalVector;
         private bool _jumping;
 
         // Use this for initialization
-        void Start () {
+        void Start ()
+        {
+            _gravity = JumpHeight/JumpDuration;
             _directionalVector = new Dictionary<Direction, Vector2>
             {
                 {Direction.Cima, Vector2.down},
@@ -49,26 +51,27 @@ namespace Assets.Scripts
             {
                 if (controller.HitVertical((int) _directionalVector[Direcao].y))
                 {
-                    _velocity = new Vector3(0, JumpHeight, 0);
+
+                    _velocity = new Vector3(0, _directionalVector[Direcao].y *_gravity, 0);
                     _jumping = true;
                     Invoke("ChangeJumping", JumpDuration);
                 }
                 else
                 {
-                    _velocity = _directionalVector[Direcao]* Velocity;
+                    _velocity = _directionalVector[Direcao]* _gravity;
                 }
             }
             else //Se movimento for para direita ou para esquerda checar por colisao dem X
             {
                 if (controller.HitHorizontal((int) _directionalVector[Direcao].x))
                 {
-                    _velocity = new Vector3(JumpHeight,0 , 0);
+                    _velocity = new Vector3(_directionalVector[Direcao].x *_gravity, 0, 0);
                     _jumping = true;
                     Invoke("ChangeJumping", JumpDuration);
                 }
                 else
                 {
-                    _velocity = _directionalVector[Direcao]* Velocity;
+                    _velocity = _directionalVector[Direcao]* _gravity;
                 }
             }
         }
