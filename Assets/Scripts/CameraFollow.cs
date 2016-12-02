@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace Assets.Scripts
 {
+
     public class CameraFollow : MonoBehaviour
     {
         #region Variables
@@ -30,6 +31,7 @@ namespace Assets.Scripts
 		private float _TargetZoom;
 		public float currentVelocityZoom;
 
+		private PolygonCollider2D _mapEdges;
         private bool DeadPlayer;
         Vector3 PlayerPosition;
         Vector3 NewPos;
@@ -42,6 +44,7 @@ namespace Assets.Scripts
 			_DefaultZoom = Camera.main.orthographicSize;
 			_TargetZoom = _DefaultZoom;
             _focusArea = new FocusArea(Target.Collider.bounds, FocusAreaSize);
+			_mapEdges = GameObject.FindGameObjectWithTag("Bounds").GetComponent<PolygonCollider2D> ();
         }
 
         private void SetDefaut()
@@ -68,6 +71,7 @@ namespace Assets.Scripts
 		public void Update()
 		{
 			ZoomCam ();
+			//Debug.Log (CheckCameraBounds(GetCameraBounds(), _mapEdges.bounds));
 		}
 
 
@@ -105,6 +109,12 @@ namespace Assets.Scripts
             {
                transform.position = (Vector3)focusPosition + Vector3.forward * -10;
             }
+
+			Vector3 cameraOutOfBounds = CheckCameraBounds (GetCameraBounds(), _mapEdges);
+			//this vector contains the distance between the camera bounds and the map bounds, if the camera is outside
+			//the map bounds. If it's not, it will be (0,0).
+
+			transform.position += cameraOutOfBounds;
             
         }
 
@@ -128,6 +138,62 @@ namespace Assets.Scripts
                 }
             }
         }
+
+		/// <summary>
+		/// Gets the bounds of the camera.
+		/// </summary>
+		/// <returns> the camera bounds.</returns>
+		private Bounds GetCameraBounds(){
+			float screenAspect = (float)Screen.width / (float)Screen.height;
+			float cameraH = Camera.main.orthographicSize * 2;
+			return new Bounds (Camera.main.transform.position, new Vector3 (cameraH * screenAspect, cameraH, 0));
+		}
+
+		/// <summary>
+		/// Checks if the camera is passing through the map bounds.
+		/// </summary>
+		/// <returns> a Vector 2 indicating if the camera is out of bounds. If it's not, the coordinate will be 0. 
+		/// If it is, it will be the distance between the two bounds.</returns>
+		/// <param name="camera">Camera.</param>
+		/// <param name="map">Map.</param>
+		private Vector3 CheckCameraBounds(Bounds camera, PolygonCollider2D map){
+			Vector3 outOfBounds = new Vector3 (0,0,0);
+
+			if(camera.max.x > map.bounds.max.x){
+				outOfBounds.x = map.bounds.max.x - camera.max.x;
+			}
+			else if(camera.min.x < map.bounds.min.x){
+				outOfBounds.x = map.bounds.min.x - camera.min.x;
+			}
+
+			if(camera.max.y > map.bounds.max.y){
+				outOfBounds.y = map.bounds.max.y - camera.max.y;
+			}
+
+			else if(camera.min.y < map.bounds.min.y){
+				outOfBounds.y = map.bounds.min.y - camera.min.y;
+			}
+
+			return outOfBounds;
+		}
+
+		/*
+		private Vector3 FindClosestPoint(PolygonCollider2D map, Vector2 point){
+			float dist = Mathf.Infinity;
+			Vector2 result = Vector2.zero;
+
+			foreach(Vector2 corner in map.points){
+				Vector2 test = transform.TransformPoint (corner);
+				float d = Vector2.Distance (test, point);
+				if(d < dist){
+					dist = d;
+					result = test;
+				}
+			}
+
+			return result;
+		}
+		*/
         #endregion
 
         #region Structs

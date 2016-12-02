@@ -15,6 +15,7 @@ TagManager:
   - StatScreen
   - Wind
   - FlyingEnemy
+  - Bounds
   layers:
   - Default
   - TransparentFX

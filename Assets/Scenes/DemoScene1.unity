@@ -4035,6 +4035,53 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 477662, guid: aebb4c15aa4b17c418689e918faba74e, type: 2}
   m_PrefabInternal: {fileID: 1086544245}
+--- !u!1 &258004450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 258004452}
+  - 60: {fileID: 258004451}
+  m_Layer: 0
+  m_Name: Scene Bounds
+  m_TagString: Bounds
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!60 &258004451
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 258004450}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: 1.68, y: 10}
+      - {x: 152.5, y: 10}
+      - {x: 152.5, y: -50}
+      - {x: 1.68, y: -50}
+--- !u!4 &258004452
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 258004450}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -83.29623, y: 98.99428, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
 --- !u!4 &260633582 stripped
 Transform:
   m_PrefabParentObject: {fileID: 477662, guid: aebb4c15aa4b17c418689e918faba74e, type: 2}
@@ -16081,7 +16128,7 @@ Transform:
   - {fileID: 128022500}
   - {fileID: 1357064565}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!1001 &1148699035
 Prefab:
   m_ObjectHideFlags: 0
@@ -19176,7 +19223,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 484464, guid: 67b7d9949f1e133478d7b40b0ed67897, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 484464, guid: 67b7d9949f1e133478d7b40b0ed67897, type: 2}
       propertyPath: m_LocalScale.x
@@ -19898,7 +19945,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 431226, guid: 7b30d298271ce6b46a406eab09317039, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b30d298271ce6b46a406eab09317039, type: 2}
@@ -26343,6 +26390,8 @@ MonoBehaviour:
   CamShake: 0
   _shakeDuration: 0
   _shakeAmount: 0
+  _TargetZoom: 0
+  currentVelocityZoom: 0
 --- !u!81 &1975305795
 AudioListener:
   m_ObjectHideFlags: 0
