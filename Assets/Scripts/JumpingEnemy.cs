@@ -15,10 +15,13 @@ namespace Assets.Scripts
         private Vector3 _enemyPosition;
         private Dictionary<Direction, Vector2> _directionalVector;
         private bool _jumping;
+        private JumpingEnemyController _controller;
 
         // Use this for initialization
         void Start ()
         {
+            //SetDefault();
+            _controller = gameObject.GetComponent<JumpingEnemyController>();
             _gravity = JumpHeight/JumpDuration;
             _directionalVector = new Dictionary<Direction, Vector2>
             {
@@ -29,19 +32,22 @@ namespace Assets.Scripts
 
             };
         }
-        
+
+        private void SetDefault()
+        {
+            JumpHeight = 5;
+            JumpDuration = 2;
+        }
+
         // Update is called once per frame
         void Update ()
         {
             _enemyPosition = this.transform.position;
-            
-            var controller = gameObject.GetComponent<JumpingEnemyController>();
 
             if(!_jumping)
-                CheckCollisions(controller);
+                CheckCollisions(_controller);
             
             transform.Translate(_velocity * Time.deltaTime);
-
         }
 
         private void CheckCollisions(JumpingEnemyController controller)
@@ -51,8 +57,8 @@ namespace Assets.Scripts
             {
                 if (controller.HitVertical((int) _directionalVector[Direcao].y))
                 {
-
-                    _velocity = new Vector3(0, _directionalVector[Direcao].y *_gravity, 0);
+                    var isUp = Direcao == Direction.Cima ? 1 : -1;
+                    _velocity = new Vector3(0, -1*_directionalVector[Direcao].y * _gravity, 0);
                     _jumping = true;
                     Invoke("ChangeJumping", JumpDuration);
                 }
@@ -65,7 +71,7 @@ namespace Assets.Scripts
             {
                 if (controller.HitHorizontal((int) _directionalVector[Direcao].x))
                 {
-                    _velocity = new Vector3(_directionalVector[Direcao].x *_gravity, 0, 0);
+                    _velocity = new Vector3(-1*_directionalVector[Direcao].x *_gravity, 0, 0);
                     _jumping = true;
                     Invoke("ChangeJumping", JumpDuration);
                 }

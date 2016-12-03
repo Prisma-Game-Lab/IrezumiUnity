@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010694668892}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -61.2, y: 91.5, z: 1.328125}
+  m_LocalPosition: {x: -51.6, y: 86.7, z: 1.328125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -69,9 +69,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direcao: 0
-  JumpHeight: 5
-  JumpDuration: 2
-  Velocity: 10
+  JumpHeight: 6
+  JumpDuration: 1
 --- !u!114 &114000013716592502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,8 +84,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollisionMask:
     serializedVersion: 2
-    m_Bits: 512
-  SkinWidth: 0
+    m_Bits: 768
+  SkinWidth: 0.2
   HorizontalRayCount: 0
   VerticalRayCount: 0
   HorizontalRaySpacing: 0

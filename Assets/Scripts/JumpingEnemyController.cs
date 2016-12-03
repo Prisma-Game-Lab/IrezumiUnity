@@ -5,8 +5,9 @@ namespace Assets.Scripts
     public class JumpingEnemyController : RaycastController {
 
         // Use this for initialization
-        void Start () {
-	
+        void Start ()
+        {
+            SkinWidth = 0.2f;
         }
 	
         // Update is called once per frame
