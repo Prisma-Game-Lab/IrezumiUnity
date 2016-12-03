@@ -10,7 +10,6 @@ namespace Assets.Scripts
         public GameObject DialogBoxObject;
         public Text DialogText;
         public TextAsset TextFile;
-        public Image DialogPortrait;
         public Sprite[] Sprites;
         public bool TestOnScreen;
         public string[] TextLines;
@@ -23,23 +22,32 @@ namespace Assets.Scripts
         public int CPS;
 
 
+        private Image[] _dialogPortrait;
         private float _typeSpeed;
         private float _typeSpeedDefaut;
         private bool _isTyping;
         private bool _cancelTyping;
         private GameManager _gameManager;
-        private Regex _showRegex =new Regex(@"(\bshow [A-z]+\b)");
+        private Regex _showRegex =new Regex(@"(\bshow (left|right|center) [A-z]+\b)");
         private string _visualNovelFolder = "VisualNovel/";
         private Regex _cpsRegex = new Regex(@"\<cps( )*=( )*[0-9]+\>");
         private Regex _cpsEndRegex = new Regex(@"\<\/cps\>");
+
+        public enum Position
+        {
+            Left,
+            Right,
+            Center
+        }
 
         // Use this for initialization
         void Start ()
         {
             _typeSpeed = (float) (1.0/CPS);
             _typeSpeedDefaut = _typeSpeed;
-            DialogPortrait.GetComponent<Image>().color = new Vector4(255,255,255, 255);
-            DialogPortrait.enabled = false;
+
+            SetAllDialogPortraits();
+           
             _gameManager = GameManager.Instance;
             CurrentLine = 0;
             if (DialogText != null)
@@ -58,7 +66,22 @@ namespace Assets.Scripts
             else
                 DisableDialogBox();
         }
-	
+
+        private void SetAllDialogPortraits()
+        {
+            _dialogPortrait = new Image[3];
+
+            _dialogPortrait[(int)Position.Left] = transform.Find("DialogPortraitLeft").GetComponent<Image>();
+            _dialogPortrait[(int)Position.Center] = transform.Find("DialogPortraitCenter").GetComponent<Image>();
+            _dialogPortrait[(int)Position.Right] = transform.Find("DialogPortraitRight").GetComponent<Image>();
+
+            for (int i = 0; i < _dialogPortrait.Length; i++)
+            {
+                _dialogPortrait[i].GetComponent<Image>().color = new Vector4(255, 255, 255, 255);
+                _dialogPortrait[i].enabled = false;
+            }
+        }
+
 
         // Update is called once per frame
         void Update ()
@@ -166,7 +189,10 @@ namespace Assets.Scripts
         {
             DialogBoxObject.SetActive(false);
             IsActive = false;
-            DialogPortrait.enabled = false;
+            for (int i = 0; i < _dialogPortrait.Length; i++)
+            {
+                _dialogPortrait[i].enabled = false;
+            }
             _gameManager.DisablePause();
         }
 
@@ -212,22 +238,37 @@ namespace Assets.Scripts
             if (match.Success)
             {
                 var split = match.ToString().Split(' ');
-                var name = split[1];
-                ChangePortrait(name);
+                var position = split[1];
+                var name = split[2];
+                ChangePortrait(position, name);
                 return true;
             }
             return false;
         }
         
-        private void ChangePortrait(string name)
+        private void ChangePortrait(string position, string name)
         {
-            DialogPortrait.enabled = true;
+            int pos =0;
+            Debug.Log(position);
+            switch (position)
+            {
+                case "left":
+                    pos = (int)Position.Left;
+                    break;
+                case "right":
+                    pos = (int)Position.Right;
+                    break;
+                case "center":
+                    pos = (int)Position.Center;
+                    break;
+            }
+            _dialogPortrait[pos].enabled = true;
             var sprite = Resources.Load<Sprite>(_visualNovelFolder + name);
 
             if (sprite != null)
-                DialogPortrait.sprite = sprite;
+                _dialogPortrait[pos].sprite = sprite;
             else
-                DialogPortrait.enabled = false;
+                _dialogPortrait[pos].enabled = false;
         }
 
         public void ChangeEndAtLine(int newEndAtLine)
@@ -239,5 +280,7 @@ namespace Assets.Scripts
             else
                 EndAtLine = TextLines.Length - 1;
         }
+
+       
     }
 }

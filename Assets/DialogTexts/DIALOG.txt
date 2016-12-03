@@ -1,5 +1,5 @@
 ﻿Linha <cps = 1>sem</cps> dono
-show Hideaki 
+show right Hideaki 
 <cps = 50> oi eu sou o ruda 
 </cps>jdoiajdiwjdjaiwdja 
 mais uma <cps = 1>linha</cps> só pra garantir
