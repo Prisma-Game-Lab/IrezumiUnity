@@ -99,11 +99,11 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update ()
         {
-            if (Input.GetKeyDown(KeyCode.Backspace))
+            /*if (Input.GetKeyDown(KeyCode.Backspace))
             {
                 print(SceneManager.GetActiveScene().name);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
+            }*/
 
             if (Input.GetKeyDown(KeyCode.P) && _pausedScreen)
             {
@@ -172,6 +172,12 @@ namespace Assets.Scripts
             EventSystem es = GameObject.Find("EventSystem").GetComponent<EventSystem>();
             es.SetSelectedGameObject(null);
             es.SetSelectedGameObject(es.firstSelectedGameObject);
+        }
+
+        public void ResetLevel()
+        {
+            print(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
     }

@@ -36,5 +36,14 @@ namespace Assets.Scripts
             }
             DeathCanvasAnimator.SetBool("Started", Started);
         }
+
+        public void ResetLevel()
+        {
+            if (!PlayerScript.ALIVE)
+            {
+                GameManager.Instance.ResetLevel();
+            }
+            
+        }
     }
 }
