@@ -94,6 +94,7 @@ MonoBehaviour:
   FontSize: 30
   ScrollText: 1
   Cps: 5
+  ScaleFactor: 1.5
 --- !u!114 &11405662
 MonoBehaviour:
   m_ObjectHideFlags: 1

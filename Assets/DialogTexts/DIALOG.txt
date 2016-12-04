@@ -1,12 +1,24 @@
-﻿Linha <cps = 1>sem</cps> dono
-show right Hideaki 
-<cps = 50> oi eu<w = 5> sou o ruda 
-</cps>jdoiajdiwjdjaiwdja 
-mais uma <cps = 1>linha</cps> só pra garantir
+﻿Linha 1 faheihehd jhafhahefeuia <\n> aoiwdjoidja  
+show right Hideaki
+[fixed]espera.<w = 0.5>.<w=0.5>.<w = 0.5>
+talking right
+oi eu sou o <cps=2>ruda</cps> e eu to <cps = 2>aqui</cps> pra falar umas paradas muito doidas
+show center Hideaki2
+eu vo fala 
+talking center
+[fixed] jdoiajdiwjdjaiwdja 
+show right none
+show left Hideaki
+[nome] mais uma linha só pra garantir
 oi efsfefe
-show right nothing
-show left Hideaki2
-dijfeajf\n dwih<w = 2>dha
+
+show right none
+talking none
+dijfeajf dwih<w = 2>dha
 fieojfaeoifjaeiofjoeijfe
-show center Hideaki
+
+dajdkwh
+dwaduhawdhwa
+dwaidhwadhwadhawdawiduiawdhuwahduawhdwa
+dhiauwdhiwaudhuiwah
 eoajfoiejfoieajfa
