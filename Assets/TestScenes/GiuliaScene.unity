@@ -332,10 +332,35 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 22398650, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
-      propertyPath: m_Camera
+    - target: {fileID: 11401830, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
+      propertyPath: Font
       value: 
-      objectReference: {fileID: 876346089}
+      objectReference: {fileID: 12800000, guid: f46c353e39d485342b23717a2316a88b,
+        type: 3}
+    - target: {fileID: 11401830, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
+      propertyPath: FontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421938, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
+      propertyPath: m_FontData.m_RichText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421938, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
+      propertyPath: m_FontData.m_AlignByGeometry
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421938, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421938, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11421938, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
   m_IsPrefabParent: 0
@@ -1224,7 +1249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1694668832
 Transform:
   m_ObjectHideFlags: 0

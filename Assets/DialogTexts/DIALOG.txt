@@ -1,9 +1,12 @@
 ﻿Linha <cps = 1>sem</cps> dono
 show right Hideaki 
-<cps = 50> oi eu sou o ruda 
+<cps = 50> oi eu<w = 5> sou o ruda 
 </cps>jdoiajdiwjdjaiwdja 
 mais uma <cps = 1>linha</cps> só pra garantir
-oi eu sou o bulletkin
-dijfeajf\n dwihdha
+oi efsfefe
+show right nothing
+show left Hideaki2
+dijfeajf\n dwih<w = 2>dha
 fieojfaeoifjaeiofjoeijfe
+show center Hideaki
 eoajfoiejfoieajfa

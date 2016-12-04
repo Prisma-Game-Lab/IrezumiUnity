@@ -10,7 +10,6 @@ namespace Assets.Scripts
         public GameObject DialogBoxObject;
         public Text DialogText;
         public TextAsset TextFile;
-        public Sprite[] Sprites;
         public bool TestOnScreen;
         public string[] TextLines;
         public int CurrentLine;
@@ -19,7 +18,7 @@ namespace Assets.Scripts
         public Font Font;
         public int FontSize;
         public bool ScrollText;
-        public int CPS;
+        public int Cps;
 
 
         private Image[] _dialogPortrait;
@@ -28,10 +27,11 @@ namespace Assets.Scripts
         private bool _isTyping;
         private bool _cancelTyping;
         private GameManager _gameManager;
-        private Regex _showRegex =new Regex(@"(\bshow (left|right|center) [A-z]+\b)");
         private string _visualNovelFolder = "VisualNovel/";
-        private Regex _cpsRegex = new Regex(@"\<cps( )*=( )*[0-9]+\>");
-        private Regex _cpsEndRegex = new Regex(@"\<\/cps\>");
+        private readonly Regex _showRegex = new Regex(@"(\bshow (left|right|center) [A-z0-9]+\b)");
+        private readonly Regex _cpsRegex = new Regex(@"\<cps( )*=( )*[0-9]+\>");
+        private readonly Regex _cpsEndRegex = new Regex(@"\<\/cps\>");
+        private readonly Regex _waitRegex = new Regex(@"\<w( )*=( )*[0-9]+\>");
 
         public enum Position
         {
@@ -43,7 +43,7 @@ namespace Assets.Scripts
         // Use this for initialization
         void Start ()
         {
-            _typeSpeed = (float) (1.0/CPS);
+            _typeSpeed = (float) (1.0/Cps);
             _typeSpeedDefaut = _typeSpeed;
 
             SetAllDialogPortraits();
@@ -113,10 +113,11 @@ namespace Assets.Scripts
         /// <summary>
         /// Courotine to type each letter
         /// </summary>
-        /// <param name="lineOfText"></param>
+        /// <param charname="lineOfText"></param>
         /// <returns></returns>
         private IEnumerator TextScroll(string lineOfText)
         {
+            int waitTime = 0;
             var letter = 0;
             DialogText.text = "";
             _isTyping = true;
@@ -125,8 +126,10 @@ namespace Assets.Scripts
             {
                 if (lineOfText[letter] == '<')
                 {
-                    if (!CheckIfCPS(ref lineOfText))
-                        CheckIfCPSEnd(ref lineOfText);
+                    if (!CheckIfCps(ref lineOfText))
+                        if (!CheckIfCpsEnd(ref lineOfText))
+                            if(CheckIfWait(ref lineOfText, ref waitTime))
+                                yield return CoroutineUtilities.WaitForRealtimeSeconds(waitTime);
                 }
                 DialogText.text += lineOfText[letter++];
                 yield return CoroutineUtilities.WaitForRealtimeSeconds(_typeSpeed);
@@ -136,7 +139,7 @@ namespace Assets.Scripts
             _cancelTyping = false;
         }
 
-        public void EnableDialogBox()
+       public void EnableDialogBox()
         {
             _gameManager.EnablePause();
             DialogBoxObject.SetActive(true);
@@ -176,12 +179,13 @@ namespace Assets.Scripts
         /// <summary>
         /// if user cancels scrolling remove all comands from line before letting it go to the screen
         /// </summary>
-        /// <param name="textLine"></param>
+        /// <param charname="textLine"></param>
         /// <returns></returns>
         private string FilterForCommands(string textLine)
         {
             textLine = _cpsRegex.Replace(textLine, "");
             textLine = _cpsEndRegex.Replace(textLine, "");
+            textLine = _waitRegex.Replace(textLine, "");
             return textLine;
         }
 
@@ -189,7 +193,7 @@ namespace Assets.Scripts
         {
             DialogBoxObject.SetActive(false);
             IsActive = false;
-            for (int i = 0; i < _dialogPortrait.Length; i++)
+            for (var i = 0; i < _dialogPortrait.Length; i++)
             {
                 _dialogPortrait[i].enabled = false;
             }
@@ -205,7 +209,7 @@ namespace Assets.Scripts
             }
         }
 
-        private bool CheckIfCPS(ref string currentLine)
+        private bool CheckIfCps(ref string currentLine)
         {
             var match = _cpsRegex.Match(currentLine);
             var sucess = match.Success;
@@ -219,7 +223,7 @@ namespace Assets.Scripts
             return sucess;
         }
 
-        private bool CheckIfCPSEnd(ref string currentLine)
+        private bool CheckIfCpsEnd(ref string currentLine)
         {
             var match = _cpsEndRegex.Match(currentLine);
             var sucess = match.Success;
@@ -230,7 +234,20 @@ namespace Assets.Scripts
             }
             return sucess;
         }
+        
 
+        private bool CheckIfWait(ref string currentLine, ref int waitTime)
+        {
+            var match = _waitRegex.Match(currentLine);
+            var sucess = match.Success;
+            if (sucess)
+            {
+                var split = match.ToString().Split(' ');
+                waitTime = int.Parse(split[2].Split('>')[0]);
+                currentLine = _waitRegex.Replace(currentLine, "");
+            }
+            return sucess;
+        }
 
         private bool CheckIfChangePortrait(string currentLine)
         {
@@ -239,17 +256,16 @@ namespace Assets.Scripts
             {
                 var split = match.ToString().Split(' ');
                 var position = split[1];
-                var name = split[2];
-                ChangePortrait(position, name);
+                var charname = split[2];
+                ChangePortrait(position, charname);
                 return true;
             }
             return false;
         }
         
-        private void ChangePortrait(string position, string name)
+        private void ChangePortrait(string position, string charname)
         {
-            int pos =0;
-            Debug.Log(position);
+            var pos =0;
             switch (position)
             {
                 case "left":
@@ -263,7 +279,7 @@ namespace Assets.Scripts
                     break;
             }
             _dialogPortrait[pos].enabled = true;
-            var sprite = Resources.Load<Sprite>(_visualNovelFolder + name);
+            var sprite = Resources.Load<Sprite>(_visualNovelFolder + charname);
 
             if (sprite != null)
                 _dialogPortrait[pos].sprite = sprite;
