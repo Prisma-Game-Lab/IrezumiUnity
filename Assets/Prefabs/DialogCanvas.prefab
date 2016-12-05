@@ -92,6 +92,7 @@ MonoBehaviour:
   IsActive: 1
   Font: {fileID: 12800000, guid: f46c353e39d485342b23717a2316a88b, type: 3}
   FontSize: 30
+  NamesSize: 36
   ScrollText: 1
   Cps: 5
   ScaleFactor: 1.5

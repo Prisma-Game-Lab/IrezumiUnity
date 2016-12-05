@@ -1,10 +1,10 @@
-﻿Linha 1 faheihehd jhafhahefeuia <\n> aoiwdjoidja  
+﻿[Narrador] Linha 1 aqui esta um exemplo de teste <\n> aoiwdjoidja  
 show right Hideaki
-[fixed]espera.<w = 0.5>.<w=0.5>.<w = 0.5>
+[fixed]Espere.<w = 0.5>.<w=0.5>.<w = 0.5>
 talking right
-oi eu sou o <cps=2>ruda</cps> e eu to <cps = 2>aqui</cps> pra falar umas paradas muito doidas
+[Ruda]Oi eu sou o <cps=2>ruda</cps> e eu to <cps = 2>aqui</cps> pra falar umas paradas muito doidas
 show center Hideaki2
-eu vo fala 
+Eu vo fala ein
 talking center
 [fixed] jdoiajdiwjdjaiwdja 
 show right none

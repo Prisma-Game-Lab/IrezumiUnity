@@ -332,33 +332,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11401830, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
-      propertyPath: Font
+    - target: {fileID: 22398650, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
+      propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 12800000, guid: f46c353e39d485342b23717a2316a88b,
-        type: 3}
+      objectReference: {fileID: 876346089}
     - target: {fileID: 11401830, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
-      propertyPath: FontSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421938, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
-      propertyPath: m_FontData.m_RichText
+      propertyPath: TestOnScreen
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11421938, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
-      propertyPath: m_FontData.m_AlignByGeometry
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421938, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
-      propertyPath: m_FontData.m_BestFit
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421938, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
-      propertyPath: m_RaycastTarget
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421938, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
-      propertyPath: m_Enabled
+    - target: {fileID: 11401830, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
+      propertyPath: IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

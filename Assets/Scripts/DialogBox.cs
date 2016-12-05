@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.VR;
 
 namespace Assets.Scripts
 {
     public class DialogBox : MonoBehaviour
     {
+        #region Variables
         public GameObject DialogBoxObject;
         public Text DialogText;
         public TextAsset TextFile;
-        public bool TestOnScreen;
-        public string[] TextLines;
-        public int CurrentLine;
-        public int EndAtLine;
         public bool IsActive;
         public Font Font;
         public int FontSize;
+        public int NamesSize;
         public bool ScrollText;
         public int Cps;
         public float ScaleFactor;
-
-
-        private Image[] _dialogPortrait;
+        [HideInInspector]
+        public int CurrentLine;
+        
+        private int _endAtLine;
+        private string[] _textLines;
+        private Image[] _dialogPortraits;
         private float _typeSpeed;
         private float _typeSpeedDefaut;
         private bool _isTyping;
@@ -39,16 +39,21 @@ namespace Assets.Scripts
         private readonly Regex _waitRegex = new Regex(@"\<w( )*=( )*[0-9]+(\.)?[0-9]*\>");
         private readonly Regex _talkingRegex = new Regex(@"(\btalking (left|right|center|none)\b)");
         private readonly Regex _fixedRegex = new Regex(@"\[fixed\]");
+        private readonly Regex _nameRegex = new Regex(@"\[[A-z0-9 ]+\]");
+        private bool _hasName;
+        private string _charName;
 
-        public enum Position
+        internal enum Position
         {
             Left,
             Right,
             Center
         }
+        #endregion
+
 
         // Use this for initialization
-        void Start ()
+        public void Start ()
         {
             ScaleFactor = 1.3f;
 
@@ -68,9 +73,9 @@ namespace Assets.Scripts
                     DialogText.fontSize = FontSize;
             }
             if (TextFile != null)
-                TextLines = TextFile.text.Split('\n');//slip txt file in lines
-            if (EndAtLine == 0) //endatline not set in inspector then get all lines
-                EndAtLine = TextLines.Length -1;
+                _textLines = TextFile.text.Split('\n');//slip txt file in lines
+            if (_endAtLine == 0) //endatline not set in inspector then get all lines
+                _endAtLine = _textLines.Length -1;
             if (IsActive)
                 EnableDialogBox();
             else
@@ -79,23 +84,23 @@ namespace Assets.Scripts
 
         private void SetAllDialogPortraits()
         {
-            _dialogPortrait = new Image[3];
+            _dialogPortraits = new Image[3];
 
-            _dialogPortrait[(int)Position.Left] = transform.Find("DialogPortraitLeft").GetComponent<Image>();
-            _dialogPortrait[(int)Position.Center] = transform.Find("DialogPortraitCenter").GetComponent<Image>();
-            _dialogPortrait[(int)Position.Right] = transform.Find("DialogPortraitRight").GetComponent<Image>();
+            _dialogPortraits[(int)Position.Left] = transform.Find("DialogPortraitLeft").GetComponent<Image>();
+            _dialogPortraits[(int)Position.Center] = transform.Find("DialogPortraitCenter").GetComponent<Image>();
+            _dialogPortraits[(int)Position.Right] = transform.Find("DialogPortraitRight").GetComponent<Image>();
 
-            for (int i = 0; i < _dialogPortrait.Length; i++)
+            foreach (var dialogPortrait in _dialogPortraits)
             {
-                _dialogPortrait[i].GetComponent<Image>().color = new Vector4(255, 255, 255, 255);
-                _dialogPortrait[i].enabled = false;
-                _dialogPortrait[i].gameObject.transform.localScale = new Vector3(1, 1, 1);
+                dialogPortrait.GetComponent<Image>().color = new Vector4(255, 255, 255, 255);
+                dialogPortrait.enabled = false;
+                dialogPortrait.gameObject.transform.localScale = new Vector3(1, 1, 1);
             }
         }
 
 
         // Update is called once per frame
-        void Update ()
+        public void Update ()
         {
             if(!IsActive)
                 return;
@@ -106,7 +111,7 @@ namespace Assets.Scripts
                 if (!_isTyping)
                 {
                     CurrentLine++;
-                    if (CurrentLine > EndAtLine)
+                    if (CurrentLine > _endAtLine)
                     {
                         DisableDialogBox();
                     }
@@ -124,13 +129,12 @@ namespace Assets.Scripts
         /// <summary>
         /// Courotine to type each letter
         /// </summary>
-        /// <param charname="lineOfText"></param>
+        /// <param name="lineOfText"></param>
         /// <returns></returns>
         private IEnumerator TextScroll(string lineOfText)
         {
             float waitTime = 0;
             var letter = 0;
-            DialogText.text = "";
             _isTyping = true;
             _cancelTyping = false;
             while (_isTyping && !_cancelTyping && letter < lineOfText.Length -1)
@@ -175,38 +179,41 @@ namespace Assets.Scripts
         /// </summary>
         private bool PreprocessLine()
         {
-            if (CheckIfChangePortrait(TextLines[CurrentLine]) || CheckIfCharacterIsTalking(TextLines[CurrentLine]))
+            if (CheckIfChangePortrait(_textLines[CurrentLine]) || CheckIfCharacterIsTalking(_textLines[CurrentLine]))
             {
                 CurrentLine++;
-                if (CurrentLine > EndAtLine)
+                if (CurrentLine > _endAtLine)
                 {
                     DisableDialogBox();
                 }
                 return true;
             }
-            CheckForFixed(ref TextLines[CurrentLine]);
-            //CheckForName();
+            DialogText.text = ""; //inicializa o text
+            CheckForFixed(ref _textLines[CurrentLine]);
+            CheckForName(ref _textLines[CurrentLine]);
             return false;
         }
-        
+
         /// <summary>
         /// Start a coroutine to scroll the text (if ScrollText is true) or write the entire line at once
         /// </summary>
         private void WriteDialog()
         {
             if (ScrollText)
-                StartCoroutine(TextScroll(TextLines[CurrentLine]));
+                StartCoroutine(TextScroll(_textLines[CurrentLine]));
             else
-                DialogText.text = FilterForCommands(TextLines[CurrentLine]);
+                DialogText.text = FilterForCommands(_textLines[CurrentLine]);
         }
 
         /// <summary>
         /// if user cancels scrolling remove all comands from line before letting it go to the screen
         /// </summary>
-        /// <param charname="textLine"></param>
+        /// <param name="textLine"></param>
         /// <returns></returns>
         private string FilterForCommands(string textLine)
         {
+            if (_hasName)
+                textLine = _charName + "\n" + textLine.Trim();
             textLine = _cpsRegex.Replace(textLine, "");
             textLine = _cpsEndRegex.Replace(textLine, "");
             textLine = _waitRegex.Replace(textLine, "");
@@ -217,9 +224,9 @@ namespace Assets.Scripts
         {
             DialogBoxObject.SetActive(false);
             IsActive = false;
-            for (var i = 0; i < _dialogPortrait.Length; i++)
+            foreach (var dialogPortrait in _dialogPortraits)
             {
-                _dialogPortrait[i].enabled = false;
+                dialogPortrait.enabled = false;
             }
             _gameManager.DisablePause();
         }
@@ -228,8 +235,8 @@ namespace Assets.Scripts
         {
             if (textFile != null)
             {
-                TextLines = new string[TextFile.text.Length];
-                TextLines = textFile.text.Split('\n');
+                _textLines = new string[TextFile.text.Length];
+                _textLines = textFile.text.Split('\n');
             }
         }
         
@@ -242,6 +249,25 @@ namespace Assets.Scripts
             {
                 _fixed = true;
                 currentLine = _fixedRegex.Replace(currentLine, "");
+            }
+        }
+
+        private void CheckForName(ref string currentLine)
+        {
+            _hasName = false;
+            var match = _nameRegex.Match(currentLine);
+            var sucess = match.Success;
+            if (sucess)
+            {
+                var split =match.ToString().Split('[');
+                var charname = split[1].Split(']')[0].Trim();
+                currentLine = _nameRegex.Replace(currentLine, "");
+                currentLine =  currentLine.Trim();
+                _hasName = true;
+                _charName = "<color=red><size="+ NamesSize + ">" + charname + "</size></color>";
+                //DialogText.fontSize = FontSize + 1;
+                DialogText.text += _charName + "\n";
+                //DialogText.fontSize = FontSize;
             }
         }
 
@@ -347,14 +373,14 @@ namespace Assets.Scripts
                     others.Add(Position.Center);
                     break;
             }
-            if (_dialogPortrait[pos].enabled)
+            if (_dialogPortraits[pos].enabled)
             {
-                var actualScale = _dialogPortrait[pos].gameObject.transform.localScale;
-                _dialogPortrait[pos].gameObject.transform.localScale = new Vector3(ScaleFactor*actualScale.x,
+                var actualScale = _dialogPortraits[pos].gameObject.transform.localScale;
+                _dialogPortraits[pos].gameObject.transform.localScale = new Vector3(ScaleFactor*actualScale.x,
                     ScaleFactor*actualScale.y, actualScale.z);
             }
             foreach (var other in others)
-                _dialogPortrait[(int) other].gameObject.transform.localScale = new Vector3(1, 1, 1);
+                _dialogPortraits[(int) other].gameObject.transform.localScale = new Vector3(1, 1, 1);
 
         }
 
@@ -374,24 +400,24 @@ namespace Assets.Scripts
                     break;
             }
             
-            _dialogPortrait[pos].enabled = true;
+            _dialogPortraits[pos].enabled = true;
             var sprite = Resources.Load<Sprite>(_visualNovelFolder + charname);
 
             if (sprite != null)
-                _dialogPortrait[pos].sprite = sprite;
+                _dialogPortraits[pos].sprite = sprite;
             else
-                _dialogPortrait[pos].enabled = false;
+                _dialogPortraits[pos].enabled = false;
 
         }
 
         public void ChangeEndAtLine(int newEndAtLine)
         {
             if (newEndAtLine == 0) //endatline not set in inspector then get all lines
-                EndAtLine = TextLines.Length - 1;
-            if (newEndAtLine <= TextLines.Length - 1)
-                EndAtLine = newEndAtLine;
+                _endAtLine = _textLines.Length - 1;
+            if (newEndAtLine <= _textLines.Length - 1)
+                _endAtLine = newEndAtLine;
             else
-                EndAtLine = TextLines.Length - 1;
+                _endAtLine = _textLines.Length - 1;
         }
 
        
