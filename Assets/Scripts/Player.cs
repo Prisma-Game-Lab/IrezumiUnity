@@ -56,6 +56,8 @@ namespace Assets.Scripts
         [SerializeField]
         private float _gravity;
         private CameraFollow _camScript;
+
+        public bool WallJumping;
         #endregion
 
         #region Start
@@ -104,6 +106,7 @@ namespace Assets.Scripts
             IsDashing = false;
             
             FreezeFrame = GetComponent<FreezeFrame>();
+            WallJumping = false;
         }
         
 
@@ -122,6 +125,11 @@ namespace Assets.Scripts
             {
                 _wallSliding = false;
                 _wallDirX = (_controller.Collisions.Left) ? -1 : 1;
+                if(InputManager.Directional_Zero() || _grounded)
+                {
+                    WallJumping = false;
+                }
+
                 if (FirstInput)
                     Hp -= HpLostPerSecond*Time.deltaTime;
 
@@ -138,11 +146,14 @@ namespace Assets.Scripts
                 if (_grounded)
                     _graphicsAnimator.SetBool("LeavingWall", false);
                 _grounded = false;
-                _facingRight = _controller.Collisions.FaceDir == 1;
+                
+                  facingRight = _controller.Collisions.FaceDir == 1;
+                
 
                 SetGraphicsAnimatorConfigurations();
 
-                _controller.Move(Velocity*Time.deltaTime, _directionalInput);
+                _controller.Move(Velocity * Time.deltaTime, _directionalInput);
+                            
 
                 ResetVerticalVelocity();
 
@@ -195,23 +206,26 @@ namespace Assets.Scripts
 
             if ((_controller.Collisions.Left || _controller.Collisions.Right) && !_controller.Collisions.Below && Velocity.y < 0)
             {
-                _wallSliding = true;
-
-                if (Velocity.y < -WallSlideSpeed)
-                    Velocity.y = -WallSlideSpeed;
-
-                if (_timeToWallUnstick > 0)
+                if (_directionalInput.x == _wallDirX)
                 {
-                    _velocityXSmoothing = 0;
-                    Velocity.x = 0;
+                    _wallSliding = true;
 
-                    if (_directionalInput.x != _wallDirX && _directionalInput.x != 0)
-                        _timeToWallUnstick -= Time.deltaTime;
-                    else
-                        _timeToWallUnstick = WallStickTime;
+                    if (Velocity.y < -WallSlideSpeed)
+                        Velocity.y = -WallSlideSpeed;
+
+                    //if (_timeToWallUnstick > 0)
+                    //{
+                    //    _velocityXSmoothing = 0;
+                    //    Velocity.x = 0;
+
+                    //    if (_directionalInput.x != _wallDirX && _directionalInput.x != 0)
+                    //        _timeToWallUnstick -= Time.deltaTime;
+                    //    else
+                    //        _timeToWallUnstick = WallStickTime;
+                    //}
+                    //else
+                    //    _timeToWallUnstick = WallStickTime;
                 }
-                else
-                    _timeToWallUnstick = WallStickTime;
             }
 
         }
@@ -277,25 +291,27 @@ namespace Assets.Scripts
 			FirstInput = true;
             if (_wallSliding)
             {
+                WallJumping = true;
                 _graphicsAnimator.SetBool("LeavingWall",true);
                 /*player trying to move the same direction as the wall its facing and move away from the wall*/
-                if (_wallDirX == _directionalInput.x)
-                {
-                    Velocity.x = -_wallDirX * WallJumpClimb.x;
-                    Velocity.y = WallJumpClimb.y;
-                }
-                    /*player doesnt press any key and fall off the wall*/
-                else if (_directionalInput.x == 0)
-                {
-                    Velocity.x = -_wallDirX * WallJumpOff.y;
-                    Velocity.y = WallJumpOff.y;
-                }
+                
+                //if (_wallDirX == _directionalInput.x)
+                //{
+                //    Velocity.x = -_wallDirX * WallJumpClimb.x;
+                //    Velocity.y = WallJumpClimb.y;
+                //}
+                //    /*player doesnt press any key and fall off the wall*/
+                //else if (_directionalInput.x == 0)
+                //{
+                //    Velocity.x = -_wallDirX * WallJumpOff.y;
+                //    Velocity.y = WallJumpOff.y;
+                //}
+                
                     /*player trying to move opposite direction */
-                else
-                {
-                    Velocity.x = -_wallDirX * WallJumpLeap.x;
-                    Velocity.y = WallJumpLeap.y;
-                }
+                
+                Velocity.x = -_wallDirX * WallJumpLeap.x;
+                Velocity.y = WallJumpLeap.y;
+                
             }
             if (_controller.Collisions.Below)
                 Velocity.y = _maxjumpVelocity;

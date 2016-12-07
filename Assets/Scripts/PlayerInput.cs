@@ -40,24 +40,32 @@ namespace Assets.Scripts
 
                 /*vector input stores players coordinates*/
                 
-                var directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+                var directionalInput = InputManager.Directional_Input();
+                //Debug.Log(directionalInput);
                 if (!Player.ALIVE)
                 {
                     directionalInput = Vector2.zero;
                 }
 
-                Player.CheckIfPlayerMoved(directionalInput);
-                Player.SetDirectionalInput(directionalInput);
-
+                Player.CheckIfPlayerMoved(directionalInput);                
+                
+                if(Player.WallJumping)
+                {
+                   Player.SetDirectionalInput(-directionalInput);
+                }
+                else
+                {
+                    Player.SetDirectionalInput(directionalInput);
+                }           
                 
 
                 if (!TakingHit && Player.ALIVE)
                 {
-                    if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
+                    if (InputManager.Jump_InputDown())
                         Player.OnJumpInputDown();
-                    if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
+                    if (InputManager.Jump_InputUp())
                         Player.OnJumpInputUp();
-                    if (Input.GetKeyDown(KeyCode.F))
+                    if (InputManager.Dash_Input())
                     {
                         if (DashCooldown == 0)
                         {
