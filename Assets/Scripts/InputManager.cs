@@ -39,6 +39,11 @@ namespace Assets.Scripts
         {
             return (Directional_Input() == Vector2.zero);
         }
+
+        public static bool Submit_Input()
+        {
+            return Input.GetButtonDown("Submit");
+        }
     }
 }
 
