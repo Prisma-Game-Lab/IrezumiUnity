@@ -147,7 +147,7 @@ namespace Assets.Scripts
                     _graphicsAnimator.SetBool("LeavingWall", false);
                 _grounded = false;
                 
-                  facingRight = _controller.Collisions.FaceDir == 1;
+                _facingRight = _controller.Collisions.FaceDir == 1;
                 
 
                 SetGraphicsAnimatorConfigurations();
