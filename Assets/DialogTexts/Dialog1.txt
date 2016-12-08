@@ -1,2 +1,2 @@
-oi, dialogo numero 1 djhfjahfkafh hiauhdiuawdh hdiuwhduiahw
+oi, dialogo \n numero 1 djhfjahfkafh hiauhdiuawdh hdiuwhduiahw
 linha2

@@ -137,6 +137,9 @@ namespace Assets.Scripts
             var letter = 0;
             _isTyping = true;
             _cancelTyping = false;
+
+            lineOfText = Regex.Unescape(lineOfText);
+
             while (_isTyping && !_cancelTyping && letter < lineOfText.Length -1)
             {
                 bool wait = false;
@@ -148,6 +151,7 @@ namespace Assets.Scripts
                 DialogText.text += lineOfText[letter++];
                 yield return CoroutineUtilities.WaitForRealtimeSeconds(_typeSpeed);
             }
+
             DialogText.text = FilterForCommands(lineOfText);
             _isTyping = false;
             _cancelTyping = false;

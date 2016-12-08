@@ -1,4 +1,4 @@
-﻿[Narrador] Linha 1 aqui esta um exemplo de teste <\n> aoiwdjoidja  
+﻿[Narrador] Linha 1 aqui esta um exemplo de teste \naoiwdjoidja  
 show right Hideaki
 [fixed]Espere.<w = 0.5>.<w=0.5>.<w = 0.5>
 talking right
