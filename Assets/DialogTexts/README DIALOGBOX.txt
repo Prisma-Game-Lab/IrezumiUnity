@@ -36,10 +36,10 @@ Exemplos:
 =====================================================================
 Nome: 		Pula linha
 O que faz: 	pula uma linha
-Comando:	<\n>
+Comando:	\n
 
 Exemplos:
-Era voce!<\n>
+Era voce!\n
 Agora nós sabemos em que confiar
 =====================================================================
 Nome: 		Show
