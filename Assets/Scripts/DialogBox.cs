@@ -111,9 +111,14 @@ namespace Assets.Scripts
             if(!IsActive)
                 return;
 
-            _gameManager.EnablePause();
-            if (Input.anyKeyDown) //todo: só permitir key do teclado (n mouse)
+            _gameManager.EnablePause(); //pause game //todo: instead of pausing, focus camera on other things
+            if (Input.anyKeyDown) 
             {
+                if (Input.GetMouseButtonDown(0)
+                || Input.GetMouseButtonDown(1)
+                || Input.GetMouseButtonDown(2))
+                    return; //Do Nothing, only keyboard allowed
+
                 if (!_isTyping)
                 {
                     CurrentLine++;
@@ -180,17 +185,18 @@ namespace Assets.Scripts
             _gameManager.EnablePause();
             DialogBoxObject.SetActive(true);
             IsActive = true;
-           while (PreprocessLine()){}
-           WriteDialog();
+            while (PreprocessLine()){}
+            WriteDialog();
         }
 
         /// <summary>
-        /// Checks if the line is a dialog or a 'change portrait' command
-        /// if it is a command then we should skip the line and check if the next line exists
+        /// Checks if the line is a dialog or a 'change portrait'/'talking' command or a empty line
+        /// if it is a command or empty line then we should skip the line and check if the next line exists (is not the last one)
+        /// after that we initialize the dialogtext with an empty string and check for [Name] or [fixed]
         /// </summary>
         private bool PreprocessLine()
         {
-            if (CheckIfChangePortrait(_textLines[CurrentLine]) || CheckIfCharacterIsTalking(_textLines[CurrentLine]))
+            if (CheckIfChangePortrait(_textLines[CurrentLine]) || CheckIfCharacterIsTalking(_textLines[CurrentLine]) || CheckIfEmptyLine(_textLines[CurrentLine]))
             {
                 CurrentLine++;
                 if (CurrentLine > _endAtLine)
@@ -220,9 +226,7 @@ namespace Assets.Scripts
 
         private Vector3 GetCharacterPos(int pos)
         {
-            TextGenerator generator;
-            
-            generator = DialogText.cachedTextGenerator;
+            var generator = DialogText.cachedTextGenerator;
 
             if ((pos*4 + 2) > generator.verts.Count)
             {
@@ -250,13 +254,9 @@ namespace Assets.Scripts
             var charPos = GetCharacterPos(textLine.Length-1);
 
             if (charPos == Vector3.zero)
-            {
                 _endTextIcon.transform.position = transform.FindChild("EndIconPos").gameObject.transform.position;
-            }
             else
-            {
                 _endTextIcon.transform.position = charPos;
-            }
             _endTextIcon.SetActive(true);
 
             return textLine;
@@ -287,7 +287,7 @@ namespace Assets.Scripts
         private void CheckForFixed(ref string currentLine)
         {
             _fixed = false;
-            var match = _fixedRegex.Match(currentLine);
+            var match = _fixedRegex.Match(currentLine.ToLower());
             var sucess = match.Success;
             if (sucess)
             {
@@ -374,6 +374,13 @@ namespace Assets.Scripts
                 ChangePortrait(position, charname);
                 return true;
             }
+            return false;
+        }
+
+        private bool CheckIfEmptyLine(string currentLine)
+        {
+            if (currentLine.Equals("\r"))
+                return true;
             return false;
         }
 

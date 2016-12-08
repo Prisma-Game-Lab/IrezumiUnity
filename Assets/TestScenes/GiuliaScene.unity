@@ -336,9 +336,13 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 876346089}
-    - target: {fileID: 11401830, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
-      propertyPath: TestOnScreen
+    - target: {fileID: 114146, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
+      propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22398650, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
+      propertyPath: m_PixelPerfect
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11401830, guid: aec05a5348fc7ba4e914ed495c47527a, type: 2}
       propertyPath: IsActive

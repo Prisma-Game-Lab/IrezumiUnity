@@ -1,24 +1,22 @@
-﻿[Narrador] Linha 1 aqui esta um exemplo de teste \naoiwdjoidja  
+﻿[Narrador] Linha 1 aqui está um exemplo de teste \nesse texto ta em outra linha 
+[Narrador] 0123456789 _+-.,!@#$%^&*();\/|<>"'
+
 show right Hideaki
 [fixed]Espere.<w = 0.5>.<w=0.5>.<w = 0.5>
 talking right
 [Ruda]Oi eu sou o <cps=2>ruda</cps> e eu to <cps = 2>aqui</cps> pra falar umas paradas muito doidas
+
 show center Hideaki2
 Eu vo fala ein
 talking center
-[fixed] jdoiajdiwjdjaiwdja 
+[fixed] nao da pra passar esse dialogo 
+
 show right none
 show left Hideaki
-[nome] mais uma linha só pra garantir
-oi efsfefe
+talking left
+[Hideaki] mais uma linha pra garantir
+oi testes teste\n teste
 
 show right none
 talking none
-dijfeajf dwih<w = 2>dha
-fieojfaeoifjaeiofjoeijfe
-
-dajdkwh
-dwaduhawdhwa
-dwaidhwadhwadhawdawiduiawdhuwahduawhdwa
-dhiauwdhiwaudhuiwah
-eoajfoiejfoieajfa
+esse é o ultimo teste pra mostrar o que \nacontece qnd o texto fica muito grande \nela passa da caixa e nao aparece..

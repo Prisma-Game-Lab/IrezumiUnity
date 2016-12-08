@@ -13,7 +13,11 @@ Para utilizar a dialog que INICIA JUNTO COM A FASE:
 
 *Para utilizar um dialog que é acionado quando voce entra em uma area utilizar o prefab ShoutZone
 	
-Lista de comandos possiveis para a dialog box txt:
+obs: linhas em branco no arquivo de dialogo serão ignoradas
+
+=====================================================================
+
+COMANDOS:
 
 =====================================================================
 Nome: 		Talking
