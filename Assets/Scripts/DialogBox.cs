@@ -21,7 +21,9 @@ namespace Assets.Scripts
         public float ScaleFactor;
         [HideInInspector]
         public int CurrentLine;
-        
+        public float OffsetX;
+        public float OffsetY;
+
         private int _endAtLine;
         private string[] _textLines;
         private Image[] _dialogPortraits;
@@ -42,6 +44,7 @@ namespace Assets.Scripts
         private readonly Regex _nameRegex = new Regex(@"\[[A-z0-9 ]+\]");
         private bool _hasName;
         private string _charName;
+        private GameObject _endTextIcon;
 
         internal enum Position
         {
@@ -55,6 +58,9 @@ namespace Assets.Scripts
         // Use this for initialization
         public void Start ()
         {
+            _endTextIcon = transform.FindChild("EndTextIcon").gameObject;
+            _endTextIcon.SetActive(false);
+
             ScaleFactor = 1.3f;
 
             _cpsClosed = true;
@@ -152,6 +158,7 @@ namespace Assets.Scripts
                 yield return CoroutineUtilities.WaitForRealtimeSeconds(_typeSpeed);
             }
 
+            DialogText.text = lineOfText;
             DialogText.text = FilterForCommands(lineOfText);
             _isTyping = false;
             _cancelTyping = false;
@@ -203,10 +210,28 @@ namespace Assets.Scripts
         /// </summary>
         private void WriteDialog()
         {
+            _endTextIcon.SetActive(false);
             if (ScrollText)
                 StartCoroutine(TextScroll(_textLines[CurrentLine]));
             else
                 DialogText.text = FilterForCommands(_textLines[CurrentLine]);
+            
+        }
+
+        private Vector3 GetCharacterPos(int pos)
+        {
+            TextGenerator generator;
+            
+            generator = DialogText.cachedTextGenerator;
+
+            if ((pos*4 + 2) > generator.verts.Count)
+            {
+                return Vector3.zero;
+            }
+            var localPos = new Vector3(generator.verts[pos * 4 + 2].position.x + OffsetX, generator.verts[pos * 4].position.y + OffsetY, 0);
+            var globalPos = DialogText.transform.localToWorldMatrix.MultiplyPoint(localPos);
+
+            return globalPos;
         }
 
         /// <summary>
@@ -221,6 +246,19 @@ namespace Assets.Scripts
             textLine = _cpsRegex.Replace(textLine, "");
             textLine = _cpsEndRegex.Replace(textLine, "");
             textLine = _waitRegex.Replace(textLine, "");
+
+            var charPos = GetCharacterPos(textLine.Length-1);
+
+            if (charPos == Vector3.zero)
+            {
+                _endTextIcon.transform.position = transform.FindChild("EndIconPos").gameObject.transform.position;
+            }
+            else
+            {
+                _endTextIcon.transform.position = charPos;
+            }
+            _endTextIcon.SetActive(true);
+
             return textLine;
         }
 
@@ -233,6 +271,8 @@ namespace Assets.Scripts
                 dialogPortrait.enabled = false;
             }
             _gameManager.DisablePause();
+
+            _endTextIcon.SetActive(false);
         }
 
         public void ReloadScript(TextAsset textFile)
