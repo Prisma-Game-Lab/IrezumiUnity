@@ -78,7 +78,7 @@ Transform:
   m_GameObject: {fileID: 193566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 487398}
@@ -218,18 +218,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f907aac5c31ffcc49b906c40a6007002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0
-  MaxjumpHeight: 0
-  MinjumpHeight: 0
-  TimeToJumpApex: 0
-  WallSlideSpeed: 0
-  WallStickTime: 0
-  DashSpeed: 0
-  DashTime: 0
-  Hp: 0
-  HpLostPerSecond: 0
-  HpLostOnDash: 0
-  HpRecoverOnKill: 0
+  ALIVE: 0
+  MoveSpeed: 25
+  MaxjumpHeight: 9
+  MinjumpHeight: 1
+  TimeToJumpApex: 0.4
+  WallSlideSpeed: 15
+  WallStickTime: 0.25
+  DashSpeed: 45
+  DashTime: 0.36666
+  Hp: 100
+  HpLostPerSecond: 5
+  HpLostOnDash: 10
+  HpRecoverOnKill: 20
   WallJumpClimb: {x: 0, y: 0}
   WallJumpOff: {x: 0, y: 0}
   WallJumpLeap: {x: 0, y: 0}
@@ -243,6 +244,7 @@ MonoBehaviour:
   InkCollected: 0
   FirstInput: 0
   _gravity: 0
+  WallJumping: 0
 --- !u!114 &11428258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -264,7 +266,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188272}
-  serializedVersion: 2
+  serializedVersion: 4
   lengthInSec: 2
   startDelay:
     scalar: 0
@@ -302,12 +304,13 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  randomSeed: 0
   looping: 0
   prewarm: 0
   playOnAwake: 0
   moveWithTransform: 0
+  autoRandomSeed: 1
   scalingMode: 2
+  randomSeed: 0
   InitialModule:
     serializedVersion: 2
     enabled: 1
