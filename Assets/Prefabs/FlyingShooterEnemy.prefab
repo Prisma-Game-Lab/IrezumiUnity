@@ -113,9 +113,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.15379333, y: 0.19306183}
+  m_Offset: {x: -0.15379333, y: 0.02}
   serializedVersion: 2
-  m_Size: {x: 1.6217494, y: 2.0536814}
+  m_Size: {x: 1.6217494, y: 2.35}
 --- !u!114 &114000012140131652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,13 +127,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b030fe1935707478dd0d418f95f666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstFlag: 0
+  DrawGizmos: 0
+  PlayerLastPosition: {x: 0, y: 0, z: 0}
   FlyingEnemyBulletPrefab: {fileID: 111876, guid: 39c4a10447acc0f498c92083c1b0216b,
     type: 2}
   SpawnBullet: {fileID: 1000011206774024}
   BulletSpeed: 0
-  TimeBetweenShots: 0
   Range: 0
+  Cooldown: 0
   Chit1: 0
   Chit2: 0
   Chit3: 0

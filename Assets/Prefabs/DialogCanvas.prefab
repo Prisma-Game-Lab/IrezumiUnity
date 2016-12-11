@@ -84,8 +84,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogBoxObject: {fileID: 149460}
   DialogText: {fileID: 11421938}
-  TextFile: {fileID: 4900000, guid: b0e2cc516d3a46d4cafb873cf5bb5c3c, type: 3}
-  IsActive: 0
+  TextFile: {fileID: 4900000, guid: 79707e25ac7e8814f92bc6474b177d53, type: 3}
+  IsActive: 1
   Font: {fileID: 12800000, guid: f46c353e39d485342b23717a2316a88b, type: 3}
   FontSize: 30
   NamesSize: 36
@@ -94,7 +94,7 @@ MonoBehaviour:
   ScaleFactor: 1.5
   CurrentLine: 0
   OffsetX: 50
-  OffsetY: 0
+  OffsetY: 10
 --- !u!114 &11405662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -465,8 +465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a69bdb3982a130a42a892ff065b33cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 25
-  Distance: 0.5
+  Speed: 50
+  Distance: 1
 --- !u!114 &114000011938539242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -608,6 +608,6 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 242.9, y: -174.8}
+  m_AnchoredPosition: {x: 242.9, y: -155.6}
   m_SizeDelta: {x: 33, y: 33}
   m_Pivot: {x: 0.5, y: 0.5}
