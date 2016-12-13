@@ -162,8 +162,7 @@ namespace Assets.Scripts
                 DialogText.text += lineOfText[letter++];
                 yield return CoroutineUtilities.WaitForRealtimeSeconds(_typeSpeed);
             }
-
-            DialogText.text = lineOfText;
+            
             DialogText.text = FilterForCommands(lineOfText);
             _isTyping = false;
             _cancelTyping = false;
@@ -224,20 +223,6 @@ namespace Assets.Scripts
             
         }
 
-        private Vector3 GetCharacterPos(int pos)
-        {
-            var generator = DialogText.cachedTextGenerator;
-
-            if ((pos*4 + 2) > generator.verts.Count)
-            {
-                return Vector3.zero;
-            }
-            var localPos = new Vector3(generator.verts[pos * 4 + 2].position.x + OffsetX, generator.verts[pos * 4].position.y + OffsetY, 0);
-            var globalPos = DialogText.transform.localToWorldMatrix.MultiplyPoint(localPos);
-
-            return globalPos;
-        }
-
         /// <summary>
         /// if user cancels scrolling remove all comands from line before letting it go to the screen
         /// </summary>
@@ -251,12 +236,7 @@ namespace Assets.Scripts
             textLine = _cpsEndRegex.Replace(textLine, "");
             textLine = _waitRegex.Replace(textLine, "");
 
-            var charPos = GetCharacterPos(textLine.Length-1);
-
-            if (charPos == Vector3.zero)
-                _endTextIcon.transform.position = transform.FindChild("EndIconPos").gameObject.transform.position;
-            else
-                _endTextIcon.transform.position = charPos;
+            _endTextIcon.transform.position = transform.FindChild("EndIconPos").gameObject.transform.position;
             _endTextIcon.SetActive(true);
 
             return textLine;
