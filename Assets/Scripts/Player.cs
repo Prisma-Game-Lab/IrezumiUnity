@@ -49,6 +49,7 @@ namespace Assets.Scripts
         private bool _facingRight;
         private bool _stopped;
         private bool _grounded;
+		private bool _wasTakingHit;
         private int _wallDirX;
         private Controller2D _controller;
         private Vector2 _directionalInput;
@@ -176,6 +177,7 @@ namespace Assets.Scripts
 				var pushDir = _controller.Collisions.FaceDir;
 				if (_firstTimeTakingHit)
 				{
+					_wasTakingHit = true;
 					pushDir = -pushDir;
 					_firstTimeTakingHit = false;
 					Velocity.y = PushSpeed.y;
@@ -186,8 +188,14 @@ namespace Assets.Scripts
 			else//if (!IsDashing && !TakingHit) //afinal, se nao entrou nos outros 2 ifs este vale automaticamente
             {
                 targetVelocityX = _directionalInput.x * MoveSpeed;
-                Velocity.y += _gravity * Time.deltaTime;
-                _firstTimeTakingHit = true;
+				if (_wasTakingHit) {
+					_wasTakingHit = false;
+					Velocity.x *= -1;
+				} 
+				else {
+					Velocity.y += _gravity * Time.deltaTime;
+				}
+				_firstTimeTakingHit = true;
             }
 
             if (Velocity.y < -70)
